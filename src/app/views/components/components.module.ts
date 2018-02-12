@@ -27,6 +27,8 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 
+import { QRCodeModule } from 'angular2-qrcode';
+
 @NgModule({
   imports: [
     ComponentsRoutingModule,
@@ -35,7 +37,8 @@ import { HttpModule } from '@angular/http';
     TabsModule,
     FormsModule,
     CommonModule,
-    HttpModule
+    HttpModule,
+    QRCodeModule
   ],
   declarations: [
     ButtonsComponent,

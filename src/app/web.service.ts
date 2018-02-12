@@ -36,6 +36,7 @@ export class WebService {
     }
 
     Login(email: string, password: string) {
+        
         // localStorage.setItem(this.loginvalid, "false");
         let data = new URLSearchParams();
         data.append('email', email);
@@ -43,7 +44,6 @@ export class WebService {
         var res = this.http.post(this.base_url + 'auth/login', data).subscribe(res => {
             this.authenticate(res);
         })
-
     }
 
     authenticate(res) {
@@ -60,7 +60,7 @@ export class WebService {
         localStorage.setItem(this.loginvalid, "true");
         localStorage.setItem(this.NAME_KEY, authResponse.user.firstname);
         localStorage.setItem(this.userid, authResponse.user._id);
-        this.router.navigate(['']);
+        this.router.navigate(['components/forms']);
     }
 
     logout() {
@@ -68,7 +68,7 @@ export class WebService {
         localStorage.removeItem(this.loginvalid);
         localStorage.removeItem(this.NAME_KEY);
         localStorage.removeItem(this.userid);
-        this.router.navigate(['']);
+        this.router.navigate(['components/forms']);
         location.reload();
     }
 

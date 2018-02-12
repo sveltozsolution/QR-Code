@@ -7,17 +7,23 @@
             <div class="card-body">
               <h4 style="margin-bottom:20px;">Sign In to your account</h4>
               <!-- <p class="text-muted">Sign In to your account</p> -->
+
+              <!-- <span style="color:red !important;font: bold 15px Georgia, serif;">Incorrect email & password</span><br> -->
+              
               <div class="input-group mb-3">
+
                 <span class="input-group-addon"><i class="icon-user"></i></span>
-                <input type="text" class="form-control" placeholder="Username">
+                <input type="text" class="form-control" placeholder="Username" [(ngModel)]="email">
+                <!-- <input type="text" placeholder="Enter Email" ><br> -->
               </div>
               <div class="input-group mb-4">
                 <span class="input-group-addon"><i class="icon-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" placeholder="Password"  [(ngModel)]="password">
+                <!-- <input type="password" placeholder="Enter Password"><br> -->
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <button type="button" class="btn btn-primary loginbutton" style="margin-bottom: 4px;" >Login</button>
+                  <button type="button" class="btn btn-primary loginbutton" style="margin-bottom: 4px;" (click)="Login()" >Login</button>
                   <br>
                   <button style="margin-bottom: 4px; " class="btn btn-twitter visible-sm visible-xs loginbutton"  type="button">
                       <span> Log in with Twitter</span>
@@ -40,7 +46,7 @@
               <div class="row">
                 <div class="col-sm-12">
                     <p>Don't have a Qrcode account yet? <br>
-                    <a href="#">Create your account now</a></p>
+                    <a href="/#/pages/register">Create your account now</a></p>
 
                 </div>
               </div>

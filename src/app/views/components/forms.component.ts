@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebService } from 'app/web.service';
+import { Ng2DeviceService } from 'ng2-device-detector';
 
 @Component({
     templateUrl: 'forms.component.html',
-    providers: [WebService]
+    providers: [WebService, Ng2DeviceService]
 })
 export class FormsComponent {
+    deviceInfo = null;
 
     totalitems: number;
     items = [];
@@ -63,6 +65,15 @@ export class FormsComponent {
     vzip = "";
     vcountry = "";
 
+    //coupon section
+    ctitle = "";
+    cdiscount = "";
+    cwebsite = "";
+    cpromocode = "";
+    coffer = "";
+    cterms = "";
+    cdate = "";
+
     qrtype: string = "url";
     qrstatus: string = "Static";
     qrstatus_static: boolean = true;
@@ -102,6 +113,8 @@ export class FormsComponent {
     eurl: string = "";
     urlid: string;
 
+
+
     //boolean variable for static or Dynamic
     staticqrcode: String = "";
     userid: string = "";
@@ -111,12 +124,12 @@ export class FormsComponent {
     // defaultqrimage: boolean = true;
     editcontactsection: boolean = true;
 
-    mydatasection: boolean = false;
+    mydatasection: boolean = true;
     othersection: boolean = true;
 
     //color on button 
-    staticbutton: boolean = true;
-    dynamicbutton: boolean = false;
+    // staticbutton: boolean = true;
+    // dynamicbutton: boolean = false;
 
     //required field message
     messageurlfield: boolean = false;
@@ -125,17 +138,19 @@ export class FormsComponent {
     messagetextfield: boolean = false;
     messagevcardfield: boolean = false;
     messagesmsfield: boolean = false;
+    messagecouponfield: boolean = false;
 
     //show the signin and signout button
     signin: boolean = true;
     signout: boolean = false;
 
+    qrstatus_hide: boolean = true;
 
-    constructor(private router: Router, private webservice: WebService) { }
+    constructor(private router: Router, private webservice: WebService, private deviceService: Ng2DeviceService) { }
 
     ngOnInit() {
         // this.initializevariable();
-        debugger;
+
         this.userid = localStorage.getItem("userid");
 
         if (this.userid == null) {
@@ -145,45 +160,55 @@ export class FormsComponent {
             this.signout = true;
             this.signin = false;
 
-            // this.bindqrcode();
+          //  this.bindqrcode();
             this.username = localStorage.getItem("firstname");
         }
+        var x = "Language of the browser: " + navigator.language;
+        console.log("Language->" + x)
+        
+        this.epicFunction();
+        // alert(x);
     }
 
-    bindqrcode() {
-        this.webservice.getallqrcode().subscribe(qrcode => {
-            // this.dynamicjsondata(qrcode);
-        })
-    }
+    // bindqrcode() {
+    //     this.webservice.getallqrcode().subscribe(qrcode => {
+    //         this.dynamicjsondata(qrcode);
+    //     })
+    // }
 
 
-    dynamicjsondata(qrcode) {
+    // dynamicjsondata(qrcode) {
 
-        this.items = [];
-        var fullname = "";
+    //     this.items = [];
+    //     var fullname = "";
 
-        for (var i = (qrcode.length - 1); i >= 0; i--) {
+    //     for (var i = (qrcode.length - 1); i >= 0; i--) {
 
-            var dynamicpath = "";
+    //         var dynamicpath = "";
 
-            if (qrcode[i].qrtype == "contact") {
-                debugger;
-                var jsondata = qrcode[i].qrdata;
-                var jsonobj = JSON.parse(jsondata);
-                var keys = Object.keys(jsonobj);
-                var values = values(jsonobj);
-                fullname = values[0] + ' ' + values[1];
+    //         if (qrcode[i].qrtype == "contact") {
+    //             debugger;
+    //             // var jsondata = qrcode[i].qrdata;
+    //             // var jsonobj = JSON.parse(jsondata);
+    //             // var keys = Object.keys(jsonobj);
+    //             // var values = Object.values(jsonobj);
 
-                // var dynamicpath = "http://localhost:4200/dynamic/" + qrcode[i]._id;
-                dynamicpath = "https://aniruddhasveltoz.github.io/qr-generator/dynamic/" + qrcode[i]._id;
-            } else {
-                dynamicpath = qrcode[i].qrdata;
-            }
+    //             var jsondata = qrcode[i].qrdata;
+    //             const values = Object.keys(jsondata).map(key => jsondata[key]).map(x => x.substr(0, x.length - 4));
+    //             const commaJoinedValues = values.join(',');
+    //             console.log(commaJoinedValues);
+    //             fullname = values[0] + ' ' + values[1];
 
-            this.items.push({ 'id': qrcode[i]._id, 'name': fullname, 'generateddate': qrcode[i].generateddate, 'qrtype': qrcode[i].qrtype, 'path': dynamicpath })
-        }
+    //             // var dynamicpath = "http://localhost:4200/dynamic/" + qrcode[i]._id;
+    //             dynamicpath = "https://aniruddhasveltoz.github.io/qr-generator/dynamic/" + qrcode[i]._id;
+    //         } else {
+    //             dynamicpath = qrcode[i].qrdata;
+    //         }
 
-    }
+    //         this.items.push({ 'id': qrcode[i]._id, 'name': fullname, 'generateddate': qrcode[i].generateddate, 'qrtype': qrcode[i].qrtype, 'path': dynamicpath })
+    //     }
+
+    // }
 
 
     qrstatusclick() {
@@ -195,37 +220,24 @@ export class FormsComponent {
                 this.qrstatus_dynamic = true;
                 this.qrstatus_static = false;
 
-                this.dynamicbutton = true;
-                this.staticbutton = false;
-
             } else {
                 this.qrstatus = "Static";
                 this.qrstatus_dynamic = false;
                 this.qrstatus_static = true;
-
-                this.dynamicbutton = false;
-                this.staticbutton = true;
             }
         } else {
             this.qrstatus = "Static";
             this.qrstatus_dynamic = false;
             this.qrstatus_static = true;
 
-            this.dynamicbutton = false;
-            this.staticbutton = true;
         }
-
         console.log("in status click method");
         console.log(this.qrstatus);
     }
 
 
     Qrtypeclick(qrcodetype) {
-        // this.generateqrimage = false;
-        // this.defaultqrimage = true;
-
-        this.dynamicbutton = false;
-        this.staticbutton = true;
+        this.generateqrimage = false;
 
         if (qrcodetype == "url") {
             this.urlsection = true;
@@ -235,11 +247,11 @@ export class FormsComponent {
             this.smssection = false;
             this.textsection = false;
             this.vcardsection = false;
+            this.couponsection = false;
+            this.qrstatus_hide = true;
             // this.mydatasection = false;
             // this.othersection = true;
 
-            this.dynamicbutton = true;
-            this.staticbutton = false;
         }
         else if (qrcodetype == "contact") {
 
@@ -250,12 +262,12 @@ export class FormsComponent {
             this.smssection = false;
             this.textsection = false;
             this.vcardsection = false;
+            this.couponsection = false;
+            this.qrstatus_hide = false;
+
+
             // this.mydatasection = false;
             // this.othersection = true;
-
-            this.dynamicbutton = true;
-            this.staticbutton = false;
-
             //     this.qrstatus = "Dynamic";
         }
         else if (qrcodetype == "phone") {
@@ -266,6 +278,8 @@ export class FormsComponent {
             this.smssection = false;
             this.textsection = false;
             this.vcardsection = false;
+            this.couponsection = false;
+
             // this.mydatasection = false;
             //     this.othersection = true;
 
@@ -280,6 +294,8 @@ export class FormsComponent {
             this.phonesection = false;
             this.textsection = false;
             this.vcardsection = false;
+            this.couponsection = false;
+
             // this.mydatasection = false;
             //     this.othersection = true;
 
@@ -293,11 +309,30 @@ export class FormsComponent {
             this.phonesection = false;
             this.smssection = false;
             this.vcardsection = false;
+            this.couponsection = false;
+
             // this.mydatasection = false;
             // this.othersection = true;
 
             // this.qrstatus = "Static";
         }
+
+        else if (qrcodetype == "coupon") {
+            this.couponsection = true;
+
+            this.urlsection = false;
+            this.contactsection = false;
+            this.phonesection = false;
+            this.smssection = false;
+            this.vcardsection = false;
+            this.textsection = false;
+            this.mydatasection = false;
+            this.othersection = true;
+
+            this.qrstatus = "Static";
+
+        }
+
         // else if (qrcodetype == "showdata") {
         //     this.mydatasection = true;
 
@@ -316,6 +351,8 @@ export class FormsComponent {
             this.phonesection = false;
             this.smssection = false;
             this.textsection = false;
+            this.couponsection = false;
+
             // this.mydatasection = false;
             //     this.othersection = true;
 
@@ -397,20 +434,38 @@ export class FormsComponent {
                 this.qrdata = this.text;
             }
         }
+
+        else if (this.couponsection) {
+            qrtype = "coupon";
+            if (this.ctitle == "" || this.cdiscount == "") {
+                this.messagecouponfield = true;
+                this.generateqrimage = false;
+            }
+            else {
+                this.messagecouponfield = false;
+                this.createJson();
+            }
+
+
+        }
+
         else {
             this.createJson();
         }
         if (this.qrstatus == "Dynamic") {
             if (this.signin == true) {
-                //this.router.navigate(['login']);
+                this.router.navigate(['login']);
             }
             else {
                 console.log("adding dynamic");
                 // if (this.messagerequiredfield == false) {
-                //     this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata);
-                // }
+                if (this.messageurlfield == false || this.messagecontactfield == false || this.messagephonefield == false || this.messagetextfield == false || this.messagevcardfield == false || this.messagesmsfield == false || this.messagecouponfield == false) {
+                    //     this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata);
+                    // }
 
-                this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata);
+                    this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata);
+                    window.location.reload();
+                }
             }
         }
         else {
@@ -419,7 +474,7 @@ export class FormsComponent {
                 this.staticjsondata(this.qrdata);
             }
             this.staticqrcode = this.qrdata;
-            this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata);
+            // this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata);
 
         }
 
@@ -477,7 +532,8 @@ export class FormsComponent {
 
                 + '}';
         }
-        else {
+
+        else if (this.vcardsection) {
             Jsonobj = '{'
                 + '"First Name" : "' + this.vfirstname + '",'
                 + '"Family Name" : "' + this.vfamilyname + '",'
@@ -493,8 +549,33 @@ export class FormsComponent {
                 + '"Country" : "' + this.vcountry + '"'
                 + '}';
         }
+        //coupon section
+        else {
+            Jsonobj = '{'
+                + '"Title" : "' + this.ctitle + '",'
+                + '"Discount" : "' + this.cdiscount + '",'
+                + '"Website" : "' + this.cwebsite + '",'
+                + '"Promo Code" : "' + this.cpromocode + '",'
+                + '"Offer" : "' + this.coffer + '",'
+                + '"Terms" : "' + this.cterms + '",'
+                + '"Expiry Date" : "' + this.cdate + '",'
+        }
 
         this.qrdata = Jsonobj;
+    }
+
+    epicFunction() {
+
+        console.log('hello `qrcode` component');
+        this.deviceInfo = this.deviceService.getDeviceInfo();
+
+        var des = this.deviceService.isDesktop();
+        var mob = this.deviceService.isMobile();
+        var tab = this.deviceService.isTablet();
+        console.log("desktop-> " + des);
+        console.log("Mobile-> " + mob);
+        console.log("Tab->" + tab);
+
     }
 }
 

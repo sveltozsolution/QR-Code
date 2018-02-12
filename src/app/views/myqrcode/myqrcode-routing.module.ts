@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MyqrcodeComponent } from './myqrcode.component';
 
+
 const routes: Routes = [
   {
     path: '',

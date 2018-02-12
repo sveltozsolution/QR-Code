@@ -83,6 +83,10 @@
   padding-top: 0px;
   float:right;
 }
+.btnsign{
+  margin-top:2px;
+  margin-right:15px;
+}
 
 .segmented-control {
   position: relative;
@@ -301,10 +305,10 @@
       .segmented-control > input:nth-child(7):checked ~ label:nth-of-type(7):after, .segmented-control > input:nth-child(7):checked ~ label:nth-of-type(7):before {
         opacity: 1; }
       .segmented-control > input:nth-child(7):checked ~ label:first-of-type:nth-last-of-type(7):after, .segmented-control > input:nth-child(7):checked ~ label:first-of-type:nth-last-of-type(7):before, .segmented-control > input:nth-child(7):checked ~ label:first-of-type:nth-last-of-type(7) ~ label:after, .segmented-control > input:nth-child(7):checked ~ label:first-of-type:nth-last-of-type(7) ~ label:before {
-        -moz-transform: translateX(600%);
-        -ms-transform: translateX(600%);
-        -webkit-transform: translateX(600%);
-        transform: translateX(600%); }
+        -moz-transform: translateX(631%);
+        -ms-transform: translateX(631%);
+        -webkit-transform: translateX(631%);
+        transform: translateX(631%); }
 
 
 
@@ -643,6 +647,10 @@ tr.visible-print{display:table-row!important}td.visible-print,th.visible-print{d
     // .app-header.navbar .navbar-brand{
     //     left:30%;
     //     }
+    .qrcodeside{
+      margin-top:10px;
+      margin-left:15px;
+    }
         .buttonform{
           margin-top: -30px;
           height: 25px !important;

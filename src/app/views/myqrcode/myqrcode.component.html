@@ -1,1 +1,35 @@
-<h1>this myqrcode pages</h1>
+ <!--Dynamic data-->
+ <div>
+        <div class="col-sm-12" style="margin-top:10px;">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-6">
+            <div>
+              <h3 style="background-color: #3c1e1ec2;color:white">
+                <label class="text">My Dynamic Codes</label>
+              </h3>
+            </div>
+          </div>
+          <div class="col-sm-3"></div>
+        </div>
+        <div class="row" *ngFor="let item of items">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-6">
+            <div class="row">
+              <div id="wrapper" #wrapper class="col-sm-4">
+                <qr-code style="margin-left: 15px;" [value]="item.path" [size]="110"></qr-code><br>
+                <button type="button" class="btn btn-sm btn-primary" style="margin-left: 18px;width: 74px;height: 21px;">
+              <p style="margin-top:-5px;">Download</p>
+              </button>
+              </div> 
+            <div class="col-sm-8 Download">
+                <label>{{item.generateddate | date }}</label><br>
+                <p style="font-size: 25px;">{{item.name}}<button *ngIf="item.qrtype=='contact'" (click)="Editcontact(item.id)" data-toggle="modal" data-target="#contactModal"
+                    type="button" class="btn btn-sm btn-primary" style="margin-left:5px;">Edit</button></p>
+                <p style="color: green;">{{item.path}} <button *ngIf="item.qrtype=='url'" disabled type="button" class="btn btn-sm btn-primary" style="margin-left:5px;">Edit</button></p><br>
+              </div> 
+            </div>
+            <hr style="border:1px solid black;margin-top:4px;width:94%;">
+          </div>
+          <div class="col-sm-3"></div>
+        </div> -->
+      </div>

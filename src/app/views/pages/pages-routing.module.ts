@@ -6,6 +6,10 @@ import { P500Component } from './500.component';
 import { LoginComponent } from './login.component';
 import { RegisterComponent } from './register.component';
 
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -46,7 +50,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), HttpModule,  FormsModule] ,
   exports: [RouterModule]
 })
 export class PagesRoutingModule {}

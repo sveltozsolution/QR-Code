@@ -32,16 +32,18 @@ export const navigation = [
       //   url: '/components/cards',
       //   icon: 'icon-puzzle'
       // },
-      {
-        name: 'Forms',
-        url: '/components/forms',
-        icon: 'icon-puzzle'
-      },
+
+      // {
+      //   name: 'Forms',
+      //   url: '/components/forms',
+      //   icon: 'icon-puzzle'
+      // },
       // {
       //   name: 'Modals',
       //   url: '/components/modals',
       //   icon: 'icon-puzzle'
       // },
+
       // {
       //   name: 'Switches',
       //   url: '/components/switches',
@@ -94,13 +96,26 @@ export const navigation = [
   //   url: '/charts',
   //   icon: 'icon-pie-chart'
   // },
+
   {
-    name: 'Qrcode Generate',
-    url: '/qrcode',
-    icon: 'icon-pie-chart'
+    name: 'Home',
+    url: '/components/forms',
+    icon: 'icon-puzzle'
   },
   {
-    name: 'MyQrcode',
+    name: 'Features',
+    url: 'features',
+    icon: 'icon-puzzle'
+  },
+
+  // {
+  //   name: 'Qrcode Generate',
+  //   url: '/qrcode',
+  //   icon: 'icon-pie-chart'
+  // },
+
+  {
+    name: 'My QRCode',
     url: '/myqrcode',
      icon: 'icon-pie-chart'
   },
@@ -115,8 +130,8 @@ export const navigation = [
   //   icon: 'icon-pie-chart'
   // },
   {
-    name: 'Setting',
-    url: '/setting',
+    name: 'Help',
+    url: '/help',
     icon: 'icon-pie-chart'
   },
   // {
@@ -124,45 +139,45 @@ export const navigation = [
   //   url: '/vcard',
   //   icon: 'icon-pie-chart'
   // },
-  {
-    name: '',
-    url: '/mycode',
+  // {
+  //   name: '',
+  //   url: '/mycode',
     
-  },
-  {
-    divider: true
-  },
+  // },
+  // {
+  //   divider: true
+  // },
   // {
   //   title: true,
   //   name: 'Extras',
   // },
-  {
-    name: 'Pages',
-    url: '/pages',
-    icon: 'icon-star',
-    children: [
-      {
-        name: 'Login',
-        url: '/pages/login',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Register',
-        url: '/pages/register',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Error 404',
-        url: '/pages/404',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Error 500',
-        url: '/pages/500',
-        icon: 'icon-star'
-      }
+  // {
+    // name: '',
+    // url: '/pages',
+    // icon: 'icon-star',
+    // children: [
+    //   {
+    //     name: 'Login',
+    //     url: '/pages/login',
+    //     icon: 'icon-star'
+    //   },
+    //   {
+    //     name: 'Register',
+    //     url: '/pages/register',
+    //     icon: 'icon-star'
+    //   },
+      // {
+      //   name: 'Error 404',
+      //   url: '/pages/404',
+      //   icon: 'icon-star'
+      // },
+      // {
+      //   name: 'Error 500',
+      //   url: '/pages/500',
+      //   icon: 'icon-star'
+      // }
     ]
-  },
+  // },
   // {
   //   name: 'Download CoreUI',
   //   url: 'http://coreui.io/angular/',
@@ -176,4 +191,4 @@ export const navigation = [
   //   icon: 'icon-layers',
   //   variant: 'danger'
   // }
-];
+// ];
