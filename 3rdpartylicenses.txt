@@ -1,3 +1,7 @@
+ng2-device-detector@1.0.1
+MIT
+MIT
+
 @angular/forms@5.0.1
 MIT
 MIT
