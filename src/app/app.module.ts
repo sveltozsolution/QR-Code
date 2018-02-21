@@ -4,7 +4,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 
-import { CommonModule } from '@angular/common';  
+import { CommonModule, PathLocationStrategy } from '@angular/common';  
 
 
 // Import containers
@@ -68,6 +68,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -85,7 +86,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
   ],
   providers: [{
     provide: LocationStrategy,
-    useClass: HashLocationStrategy
+    useClass: PathLocationStrategy
   }],
   bootstrap: [ AppComponent ]
 })

@@ -14,7 +14,7 @@ export class FormsComponent {
     items = [];
     qrdata: string = "";
 
-    username: string = "";
+    //  username: string = "";
 
     loginvalid;
     // url variable
@@ -121,7 +121,6 @@ export class FormsComponent {
 
     contactid: string;
     generateqrimage: boolean = false;
-    // defaultqrimage: boolean = true;
     editcontactsection: boolean = true;
 
     mydatasection: boolean = true;
@@ -144,12 +143,11 @@ export class FormsComponent {
     signin: boolean = true;
     signout: boolean = false;
 
-    qrstatus_hide: boolean = true;
 
     constructor(private router: Router, private webservice: WebService, private deviceService: Ng2DeviceService) { }
 
     ngOnInit() {
-        // this.initializevariable();
+        this.initializevariable();
 
         this.userid = localStorage.getItem("userid");
 
@@ -160,55 +158,74 @@ export class FormsComponent {
             this.signout = true;
             this.signin = false;
 
-          //  this.bindqrcode();
-            this.username = localStorage.getItem("firstname");
+
+            //  this.username = localStorage.getItem("firstname");
         }
         var x = "Language of the browser: " + navigator.language;
         console.log("Language->" + x)
-        
+
         this.epicFunction();
         // alert(x);
     }
 
-    // bindqrcode() {
-    //     this.webservice.getallqrcode().subscribe(qrcode => {
-    //         this.dynamicjsondata(qrcode);
-    //     })
-    // }
+    initializevariable() {
+        this.qrdata = "";
+
+        // url variable
+        this.url = "";
+
+        // contact variable
+        this.firstname = "";
+        this.familyname = "";
+        this.jobtitle = "";
+        this.company = "";
+        this.phonework = "";
+        this.phonehome = "";
+        this.fax = "";
+        this.street = "";
+        this.zip = "";
+        this.city = "";
+        this.state = "";
+        this.country = "";
+        this.facebook = "";
+        this.twitter = "";
+        this.pinterest = "";
+        this.linkedin = "";
+        this.phonedirect = "";
+        this.email = "";
+        this.contacturl = "";
+
+        // sms variable
+        this.mobileno = "";
+        this.message = "";
+
+        // sms variable
+        this.phoneno = "";
+
+        // text variable
+        this.text = "";
+
+        //coupon variable
+        this.ctitle = "";
+        this.cdate = "";
+        this.cdiscount = "";
+        this.coffer = "";
+        this.cwebsite = "";
+        this.cpromocode = "";
+        this.cterms = "";
 
 
-    // dynamicjsondata(qrcode) {
+        this.qrtype = "url";
+        this.qrstatus = "Static";
+        this.urlsection = true;
+        this.contactsection = false;
+        this.phonesection = false;
+        this.smssection = false;
+        this.textsection = false;
+        this.vcardsection = false;
+        this.mydatasection = false;
 
-    //     this.items = [];
-    //     var fullname = "";
-
-    //     for (var i = (qrcode.length - 1); i >= 0; i--) {
-
-    //         var dynamicpath = "";
-
-    //         if (qrcode[i].qrtype == "contact") {
-    //             debugger;
-    //             // var jsondata = qrcode[i].qrdata;
-    //             // var jsonobj = JSON.parse(jsondata);
-    //             // var keys = Object.keys(jsonobj);
-    //             // var values = Object.values(jsonobj);
-
-    //             var jsondata = qrcode[i].qrdata;
-    //             const values = Object.keys(jsondata).map(key => jsondata[key]).map(x => x.substr(0, x.length - 4));
-    //             const commaJoinedValues = values.join(',');
-    //             console.log(commaJoinedValues);
-    //             fullname = values[0] + ' ' + values[1];
-
-    //             // var dynamicpath = "http://localhost:4200/dynamic/" + qrcode[i]._id;
-    //             dynamicpath = "https://aniruddhasveltoz.github.io/qr-generator/dynamic/" + qrcode[i]._id;
-    //         } else {
-    //             dynamicpath = qrcode[i].qrdata;
-    //         }
-
-    //         this.items.push({ 'id': qrcode[i]._id, 'name': fullname, 'generateddate': qrcode[i].generateddate, 'qrtype': qrcode[i].qrtype, 'path': dynamicpath })
-    //     }
-
-    // }
+    }
 
 
     qrstatusclick() {
@@ -248,9 +265,8 @@ export class FormsComponent {
             this.textsection = false;
             this.vcardsection = false;
             this.couponsection = false;
-            this.qrstatus_hide = true;
             // this.mydatasection = false;
-            // this.othersection = true;
+            this.othersection = true;
 
         }
         else if (qrcodetype == "contact") {
@@ -263,12 +279,12 @@ export class FormsComponent {
             this.textsection = false;
             this.vcardsection = false;
             this.couponsection = false;
-            this.qrstatus_hide = false;
+            this.othersection = false;
 
 
             // this.mydatasection = false;
             // this.othersection = true;
-            //     this.qrstatus = "Dynamic";
+            this.qrstatus = "Dynamic";
         }
         else if (qrcodetype == "phone") {
             this.phonesection = true;
@@ -279,11 +295,12 @@ export class FormsComponent {
             this.textsection = false;
             this.vcardsection = false;
             this.couponsection = false;
+            this.othersection = false;
 
             // this.mydatasection = false;
             //     this.othersection = true;
 
-            //     this.qrstatus = "Static";
+            this.qrstatus = "Static";
 
         }
         else if (qrcodetype == "sms") {
@@ -295,11 +312,12 @@ export class FormsComponent {
             this.textsection = false;
             this.vcardsection = false;
             this.couponsection = false;
+            this.othersection = false;
 
             // this.mydatasection = false;
             //     this.othersection = true;
 
-            //     this.qrstatus = "Static";
+            this.qrstatus = "Static";
         }
         else if (qrcodetype == "text") {
             this.textsection = true;
@@ -310,11 +328,11 @@ export class FormsComponent {
             this.smssection = false;
             this.vcardsection = false;
             this.couponsection = false;
+            this.othersection = false;
 
             // this.mydatasection = false;
-            // this.othersection = true;
 
-            // this.qrstatus = "Static";
+            this.qrstatus = "Static";
         }
 
         else if (qrcodetype == "coupon") {
@@ -327,9 +345,10 @@ export class FormsComponent {
             this.vcardsection = false;
             this.textsection = false;
             this.mydatasection = false;
-            this.othersection = true;
+            // this.othersection = true;
+            this.othersection = false;
 
-            this.qrstatus = "Static";
+            this.qrstatus = "Dynamic";
 
         }
 
@@ -344,6 +363,7 @@ export class FormsComponent {
         //     this.vcardsection = false;
         //     this.othersection = false;
         // }
+
         else {
             this.vcardsection = true;
             this.urlsection = false;
@@ -352,14 +372,12 @@ export class FormsComponent {
             this.smssection = false;
             this.textsection = false;
             this.couponsection = false;
+            this.othersection = false;
 
             // this.mydatasection = false;
-            //     this.othersection = true;
-
-            //     this.qrstatus = "Static";
+            this.qrstatus = "Static";
 
         }
-
     }
 
 
@@ -392,6 +410,8 @@ export class FormsComponent {
             else {
                 this.messagecontactfield = false;
                 this.createJson();
+                qrtype = "contact";
+
             }
         } else if (this.phonesection) {
             if (this.phoneno == "") {
@@ -401,6 +421,8 @@ export class FormsComponent {
                 this.messagephonefield = false;
                 this.generateqrimage = true;
                 this.qrdata = this.phoneno;
+                qrtype = "phone";
+
             }
         }
         else if (this.vcardsection) {
@@ -411,6 +433,8 @@ export class FormsComponent {
                 this.messagevcardfield = false;
                 this.generateqrimage = true;
                 this.createJson();
+                qrtype = "vcard";
+
             }
 
 
@@ -422,6 +446,8 @@ export class FormsComponent {
                 this.messagesmsfield = false;
                 this.generateqrimage = true;
                 this.createJson();
+                qrtype = "SMS";
+
             }
         } else if (this.textsection) {
             if (this.text == "") {
@@ -432,10 +458,12 @@ export class FormsComponent {
                 this.messagetextfield = false;
                 this.generateqrimage = true;
                 this.qrdata = this.text;
+                qrtype = "Text";
+
             }
         }
 
-        else if (this.couponsection) {
+        else {
             qrtype = "coupon";
             if (this.ctitle == "" || this.cdiscount == "") {
                 this.messagecouponfield = true;
@@ -444,30 +472,34 @@ export class FormsComponent {
             else {
                 this.messagecouponfield = false;
                 this.createJson();
+                qrtype = "Coupon";
+
             }
-
-
         }
 
-        else {
-            this.createJson();
-        }
+        //for Dynamic add
         if (this.qrstatus == "Dynamic") {
+            this.generateqrimage = false;
+
             if (this.signin == true) {
-                this.router.navigate(['login']);
+                this.router.navigate(['pages/login']);
             }
             else {
                 console.log("adding dynamic");
                 // if (this.messagerequiredfield == false) {
+                //     this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata);
+                // }
                 if (this.messageurlfield == false || this.messagecontactfield == false || this.messagephonefield == false || this.messagetextfield == false || this.messagevcardfield == false || this.messagesmsfield == false || this.messagecouponfield == false) {
-                    //     this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata);
-                    // }
+                    // this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata);
+                    //this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
 
-                    this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata);
                     window.location.reload();
                 }
             }
         }
+
+        //for static add
+
         else {
             console.log("adding static");
             if (this.smssection || this.contactsection || this.vcardsection) {
@@ -476,18 +508,20 @@ export class FormsComponent {
             this.staticqrcode = this.qrdata;
             // this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata);
 
+
         }
 
         // this.qrElement = <HTMLVideoElement>document.getElementById("saticqr");
     }
 
     staticjsondata(qrdata) {
+        debugger;
         var jsondata = qrdata;
 
         var jsonobj = JSON.parse(jsondata);
         var keys = Object.keys(jsonobj);
-        // var values = Object.values(jsonobj)
-        var values = values.join(jsonobj)
+        var values = Object.isExtensible(jsonobj)
+        // var values = values.join(jsonobj)
         qrdata = "";
 
         for (var j = 0; j <= keys.length - 1; j++) {
@@ -496,8 +530,17 @@ export class FormsComponent {
 
         }
         this.qrdata = qrdata;
-
     }
+
+    // staticjsondata(qrdata) {
+    //     debugger;
+
+    //     const jsondata = qrdata;
+    //     const values = Object.keys(qrdata).map(key => qrdata[key]).map(x => x.substr(0, x.length - 4));
+    //     const commaJoinedValues = values.join(',');
+    //     console.log(qrdata);
+    // }
+
 
     createJson() {
         var Jsonobj = "";

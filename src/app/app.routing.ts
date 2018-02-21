@@ -11,7 +11,7 @@ import {
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'components/forms',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -40,15 +40,59 @@ export const routes: Routes = [
       {
         path: 'charts',
         loadChildren: './views/chartjs/chartjs.module#ChartJSModule'
+        
+      },
+      {
+        path: 'features',
+        loadChildren: './views/features/features.module#FeaturesModule'
+      },
+      {
+        path: 'pricing',
+        loadChildren: './views/pricing/pricing.module#PricingModule'
+      },
+      {
+        path: 'help',
+        loadChildren: './views/help/help.module#HelpModule'
+      },
+      {
+        path: 'blog',
+        loadChildren: './views/blog/blog.module#BlogModule'
+      },
+      {
+        path: 'payment',
+        loadChildren: './views/payment/payment.module#PaymentModule'
+      },
+      
+      {
+        path: 'personal',
+        loadChildren: './views/personal/personal.module#PersonalModule'
+      },
+     
+      {
+        path: 'subscription',
+        loadChildren: './views/subscription/subscription.module#SubscriptionModule'
+      },
+      {
+        path: 'change',
+        loadChildren: './views/change/change.module#ChangeModule'
       },
       {
         path: 'qrcode',
         loadChildren: './views/qrcode/qrcode.module#QrcodeModule'
       },
-      // {
-      //   path: 'contact',
-      //   loadChildren: './views/contact/contact.module#ContactModule'
-      // },
+      {
+        path: 'contact',
+        loadChildren: './views/contact/contact.module#ContactModule'
+      },
+      {
+        path: 'profile',
+        loadChildren: './views/profile/profile.module#ProfileModule'
+      },
+      {
+        path: 'home',
+        loadChildren: './views/home/home.module#HomeModule'
+      },
+      
       // {
       //   path: 'text',
       //   loadChildren: './views/text/text.module#TextModule'
@@ -57,6 +101,15 @@ export const routes: Routes = [
         path: 'myqrcode',
         loadChildren: './views/myqrcode/myqrcode.module#MyqrcodeModule'
       },
+      {
+        path: 'dynamicdata/:id',
+        loadChildren: './views/dynamicdata/dynamicdata.module#DynamicdataModule'
+      },
+      {
+        path: 'mycode',
+        loadChildren: './views/mycode/mycode.module#MycodeModule'
+      },
+      
       // {
       //   path: 'vcard',
       //   loadChildren: './views/vcard/vcard.module#VcardModule'
@@ -65,6 +118,7 @@ export const routes: Routes = [
         path: 'setting',
         loadChildren: './views/setting/setting.module#SettingModule'
       },
+     
       // {
       //   path: 'mycode',
       //   loadChildren: './views/mycode/mycode.module#MycodeModule'
@@ -72,6 +126,7 @@ export const routes: Routes = [
 
     ]
   },
+  
   {
     path: 'pages',
     component: SimpleLayoutComponent,

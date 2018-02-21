@@ -12,11 +12,10 @@ export class WebService {
     loginvalid = "loginvalid";
     userid = "userid";
 
-
-    base_url = 'http://localhost:5000/api/';
+       base_url = 'http://localhost:5000/api/';
     // base_url = 'https://qurcodeapi.herokuapp.com/api/';
 
-
+ 
     constructor(private http: Http, private router: Router) { }
 
     route(menuid: string) {
@@ -60,7 +59,7 @@ export class WebService {
         localStorage.setItem(this.loginvalid, "true");
         localStorage.setItem(this.NAME_KEY, authResponse.user.firstname);
         localStorage.setItem(this.userid, authResponse.user._id);
-        this.router.navigate(['components/forms']);
+        this.router.navigate(['home']);
     }
 
     logout() {
@@ -68,7 +67,7 @@ export class WebService {
         localStorage.removeItem(this.loginvalid);
         localStorage.removeItem(this.NAME_KEY);
         localStorage.removeItem(this.userid);
-        this.router.navigate(['components/forms']);
+        this.router.navigate(['home']);
         location.reload();
     }
 
@@ -78,15 +77,16 @@ export class WebService {
 
     // qrcode api call
     // generatecode(title: string, qrstatus: string, qrtype: string, qrdata: string) {
-    generatecode(generateddate: string, userid: string, qrtype: string, qrdata: string) {
+    generatecode(generateddate: string, userid: string, qrtype: string, qrdata: string, qrinfo:string) {
         let data = new URLSearchParams();
         // data.append('title', title);
         // data.append('qrstatus', qrstatus);        
-
+debugger;
         data.append('generateddate', generateddate);
         data.append('userid', userid);
         data.append('qrtype', qrtype);
         data.append('qrdata', qrdata);
+        data.append('qrinfo', qrinfo);
 
         // var token = localStorage.getItem('token');
         var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
@@ -143,6 +143,7 @@ export class WebService {
     }
 
     getqrcode(qrcodeid: string) {
+        debugger;
         var url = this.base_url + 'qrcode/' + qrcodeid
         var headers = new Headers({ 'Authorization': localStorage.getItem('token') });
         var options = new RequestOptions({ headers: headers });

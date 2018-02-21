@@ -12,21 +12,33 @@ export const navigation = [
   //   title: true,
   //   name: 'UI elements'
   // },
-  {
-    name: 'Components',
-    url: '/components',
+   {
+    name: 'Generate QR Code',
+    url: '/home',
     icon: 'icon-puzzle',
-    children: [
-      // {
-      //   name: 'Buttons',
-      //   url: '/components/buttons',
-      //   icon: 'icon-puzzle'
-      // },
-      // {
-      //   name: 'Social Buttons',
-      //   url: '/components/social-buttons',
-      //   icon: 'icon-puzzle'
-      // },
+    // children: [
+    //   {
+    //     name: 'Main Menu',
+    //     url: '/components/forms',
+    //     icon: 'icon-puzzle'
+    //   },]
+  },
+  
+  {
+    name: 'My QR Codes',
+    url: '/myqrcodeqrcode',
+    icon: 'icon-puzzle',
+      children: [
+        {
+          name: ' Static',
+          url: '/mycode',
+          icon: 'icon-puzzle'
+        },
+        {
+          name: ' Dynamic',
+          url: '/myqrcode',
+          icon: 'icon-puzzle'
+        },
       // {
       //   name: 'Cards',
       //   url: '/components/cards',
@@ -59,6 +71,52 @@ export const navigation = [
       //   url: '/components/tabs',
       //   icon: 'icon-puzzle'
       // }
+    ]
+  },
+
+  {
+    name: 'Account',
+    url: '/account',
+    icon: 'icon-puzzle',
+    children: [
+      {
+        name: 'Personal Details',
+        url: '/personal',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Payment',
+        url: '/payment',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Subscription',
+        url: '/subscription',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Change Password',
+        url: '/change',
+        icon: 'icon-puzzle'
+      },
+    ]
+  },
+
+  {
+    name: 'Support',
+    url: '/support',
+    icon: 'icon-puzzle',
+    children: [
+      {
+        name: 'Help',
+        url: '/help',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Contact Us',
+        url: '/contact',
+        icon: 'icon-puzzle'
+      },
     ]
   },
   // {
@@ -97,16 +155,16 @@ export const navigation = [
   //   icon: 'icon-pie-chart'
   // },
 
-  {
-    name: 'Home',
-    url: '/components/forms',
-    icon: 'icon-puzzle'
-  },
-  {
-    name: 'Features',
-    url: 'features',
-    icon: 'icon-puzzle'
-  },
+  // {
+  //   name: 'Home',
+  //   url: '/components/forms',
+  //   icon: 'icon-puzzle'
+  // },
+  // {
+  //   name: 'Features',
+  //   url: 'features',
+  //   icon: 'icon-puzzle'
+  // },
 
   // {
   //   name: 'Qrcode Generate',
@@ -114,11 +172,11 @@ export const navigation = [
   //   icon: 'icon-pie-chart'
   // },
 
-  {
-    name: 'My QRCode',
-    url: '/myqrcode',
-     icon: 'icon-pie-chart'
-  },
+  // {
+  //   name: 'My QRCode',
+  //   url: '/myqrcode',
+  //    icon: 'icon-pie-chart'
+  // },
   // {
   //   name: 'Text',
   //   url: '/text',
@@ -129,11 +187,11 @@ export const navigation = [
   //   url: '/contact',
   //   icon: 'icon-pie-chart'
   // },
-  {
-    name: 'Help',
-    url: '/help',
-    icon: 'icon-pie-chart'
-  },
+  // {
+  //   name: 'Help',
+  //   url: '/help',
+  //   icon: 'icon-pie-chart'
+  // },
   // {
   //   name: 'Vcard',
   //   url: '/vcard',

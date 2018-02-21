@@ -4,7 +4,7 @@
 
     <div class="col-sm-9">
 
-      <div class="card">
+      <div class="card card1">
         <div class="card-header">
 
           <div class="segmented-control radiofontsize" style="width: 100%; color: #20a8d8">
@@ -47,7 +47,7 @@
           </div>
 
           <div class="inputmargin " *ngIf="contactsection">
-            <!-- <span *ngIf="messagecontactfield" style="color:red !important;font: bold 15px Georgia, serif">* Mandetory Field is required</span><br> -->
+            <span *ngIf="messagecontactfield" style="color:red !important;font: bold 15px Georgia, serif">* Mandetory Field is required</span><br>
             <div class="row">
               <div class="col-sm-6">
 
@@ -193,15 +193,15 @@
 
 
           <div class="inputmargin" *ngIf="phonesection">
-            <span *ngIf="messagephonefield" style="color:red !important;font: bold 15px Georgia, serif">Please Enter message</span>
+            <span *ngIf="messagephonefield" style="color:red !important;font: bold 15px Georgia, serif">Please Enter phone no</span>
 
             <input type="text" [(ngModel)]="phoneno" placeholder="Enter Phone No." class="form-control">
           </div>
 
           <div class="inputmargin" *ngIf="smssection">
-            <span *ngIf="messagesmsfield" style="color:red !important;font: bold 15px Georgia, serif">Please Enter message</span>
+            <span *ngIf="messagesmsfield" style="color:red !important;font: bold 15px Georgia, serif">* Mandetory fields are required</span>
 
-            <input type="text" [(ngModel)]="mobileno" class="form-control" placeholder="Enter Mobile No.">
+            <input type="text" [(ngModel)]="mobileno" class="form-control" placeholder="Enter Mobile No">
             <br>
             <textarea type="text" [(ngModel)]="message" class="form-control" placeholder="Enter Message"></textarea>
             <br>
@@ -315,7 +315,7 @@
 
           
           <div class="inputmargin" *ngIf="couponsection" >
-              <span *ngIf="messagecouponfield" style="color:red !important;font: bold 15px Georgia, serif">Please Enter message</span><br>
+              <!-- <span *ngIf="messagecouponfield" style="color:red !important;font: bold 15px Georgia, serif">*Mandetory fields are required</span><br> -->
               <label><b>Create an online coupon and we'll provide you with a QR Code that links to it</b> </label>
 
               <div class="row">
@@ -364,9 +364,9 @@
 
       
 
-      <div class="card-footer">
+      <div class="card-footer card1">
         <div class="row">
-          <div *ngIf="othersection" class="col-sm-6">
+          <div  class="col-sm-6">
 
             <!--switch button-->
             <!-- <div *ngIf="urlsection">
@@ -382,7 +382,7 @@
                 
               </div> -->
 
-            <div class="segmented-control1 segmented11" style="width: 35%; color:#5fbaad;" *ngIf = "qrstatus_hide">
+            <div class="segmented-control1 segmented11" style="width: 35%; color:#5fbaad;" *ngIf="othersection">
 
               <input type="radio" name="s-1-1" id="sc-1" (click)="qrstatusclick()" checked>
 

@@ -24,6 +24,10 @@
     margin-left: 2px;  
   }  
     
+  .sidebar .nav-dropdown-items .nav-item{
+    margin-left:25px;
+  }
+
   .slider:before {  
     position: absolute;  
     content: "";  
@@ -57,7 +61,7 @@
     background-color:none;
 }
 .logo1{
-  margin-left:30px;
+  margin-left:60px;
 }
 .btn-github::before {
  
@@ -76,6 +80,16 @@
 .segmented11{
   font-size:10px;
 }
+
+
+.app-footer1{
+  margin-left:0px;
+}
+
+.button12{
+  margin-left:44px;
+}
+
 .buttonform{
   // margin-top: -30px;
   height: 35px;
@@ -617,6 +631,20 @@ tr.visible-print{display:table-row!important}td.visible-print,th.visible-print{d
 
 
 
+@media (min-width: 900px) and (max-width: 1680px){
+  .sidebar-fixed.sidebar-hidden .main {
+    padding-left:200px !important;
+    
+  }
+  .card1{
+    width:700px;
+  }
+  .qrcodeimg{
+    margin-left:67px;
+  }
+}
+
+
 
 
 
@@ -651,6 +679,13 @@ tr.visible-print{display:table-row!important}td.visible-print,th.visible-print{d
       margin-top:10px;
       margin-left:15px;
     }
+    .qrcodeimg{
+      margin-left:17px;
+      margin-top:5px;
+    }
+    .aside-menu{
+      width:140px;
+    }
         .buttonform{
           margin-top: -30px;
           height: 25px !important;
@@ -661,16 +696,16 @@ tr.visible-print{display:table-row!important}td.visible-print,th.visible-print{d
             margin-top:-45px;
         }
         .logo1{
-          margin-left: -16px;
-          font-size: 10px;
-          margin-top: 8px;
+          margin-left: 15px;
+          font-size: 15px;
+          margin-top: 4px;
         }
         .navbar1{
           margin-right:45px;
           margin-top:8px;
         }
         .button1234{
-          margin-top:7px;
+          margin-top:3px;
           margin-right:10px;
         }
         .radiofontsize{
