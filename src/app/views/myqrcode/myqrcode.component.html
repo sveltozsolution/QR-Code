@@ -35,7 +35,8 @@
                   (click)="contactModal.show()" style="margin-left:5px;">Edit</button>
               </p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4">QRType: {{item.qrtype}} 
+              <p style="color: rgb(78, 70, 72);">{{item.urldata}}</p>
               <p style="color: green;">{{item.path}}
                 <button *ngIf="item.qrtype=='url'" type="button" class="btn btn-primary" data-toggle="modal" (click)="Editurl(item.id)" (click)="urlModal.show()"
                   style="margin-left:5px;">Edit</button>

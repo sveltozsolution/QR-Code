@@ -409,7 +409,7 @@
     <div class="col-sm-3" class="qrcodeside qrcodeimg">
       <div *ngIf="generateqrimage">
         <div id="print-section">
-          <qr-code [value]="staticqrcode" [size]="150" [foreground]="qrfrontcolor" [background]="qrbackcolor" #qrcode></qr-code>
+          <qr-code [value]="staticqrcode" [size]="150" [foreground]="qrfrontcolor"  [background]="qrbackcolor" colordark='red' colorlight='green' #qrcode></qr-code>
         </div>
 
         <br />
@@ -441,9 +441,9 @@
         <!-- <div class="col-sm-2"></div> -->
         <div class="col-sm-8">
           Select foreground color here :
-          <input type="color" value="#800080" [(ngModel)]="favcolor">
+          <input type="color" value="#800080" [(ngModel)]="favcolor" (change)="test()">
           <br> Select background color here :
-          <input type="color" value="#800080" [(ngModel)]="favcolorbk">
+          <input type="color" value="#800080" [(ngModel)]="favcolorbk" (change)="test()">
           <br><br>
           <button type="button" class="btn btn-primary" data-toggle="modal" (click)="styleqrModal.show()" (click)="styleqrModal()" style="margin-left:5px;">+Style your QR-Code</button>
           <br>
@@ -469,18 +469,21 @@
         </div>
         <div class="modal-body">
           <div>Dots :
-              <input type="color" value="#800080" [(ngModel)]="dotscolor">
+              <!-- <input type="color" value="#800080" [(ngModel)]="dotscolor"> -->
+              <input type="color" value="#800080">
               Shape :
-              <input type="dropdown" value="round" [(ngModel)]="shapeqr">
+              <!-- <input type="dropdown" value="round" [(ngModel)]="shapeqr"> -->
+              <input type="dropdown" value="round" >
               Center Color :
-              <input type="color" value="#800080" [(ngModel)]="centercolor">
+              <!-- <input type="color" value="#800080" [(ngModel)]="centercolor"> -->
+              <input type="color" value="#800080" >
 
             <!-- <input type="text" [(ngModel)]="eurl" class="form-control"> -->
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="styleqrModal.hide()">Close</button>
-          <button type="button" class="btn btn-primary" (click)="styleqrdone()">Done</button>
+          <button type="button" class="btn btn-secondary" >Close</button>
+          <button type="button" class="btn btn-primary" >Done</button>
         </div>
       </div>
       <!-- /.modal-content -->

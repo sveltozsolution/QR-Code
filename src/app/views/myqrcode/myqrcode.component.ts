@@ -43,7 +43,7 @@ export class MyqrcodeComponent {
     //show the signin and signout button
     // signin: boolean = true;
     // signout: boolean = false;
-   // mydatasection: boolean = false;
+    // mydatasection: boolean = false;
 
     //edit url variable
     eurl: string = "";
@@ -60,7 +60,7 @@ export class MyqrcodeComponent {
         debugger;
 
         this.bindqrcode();
-       // this.userid = localStorage.getItem("userid");
+        // this.userid = localStorage.getItem("userid");
 
         // if (this.userid == null) {
         //     this.signin = true;
@@ -105,31 +105,38 @@ export class MyqrcodeComponent {
     }
 
     dynamicjsondata(qrcode) {
-        debugger;
+
         this.items = [];
         var fullname = "";
-
+        var urldata = "";
         for (var i = (qrcode.length - 1); i >= 0; i--) {
             var dynamicpath = "";
 
             if (qrcode[i].qrtype == "contact") {
-                debugger; 
 
                 var jsondata = qrcode[i].qrdata;
                 const values = Object.keys(jsondata).map(key => jsondata[key]).map(x => x.substr(0, x.length - 4));
                 const commaJoinedValues = values.join(',');
                 console.log(values);
-                // fullname = values[0] + ' ' + values[1];
                 fullname = values[0] + ' ' + values[1];
+                urldata="";
 
                 var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
                 //dynamicpath = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
             }
-            else {
-                dynamicpath = qrcode[i].qrdata;
+
+            else if (qrcode[i].qrtype == "url") {
+                var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+                urldata = qrcode[i].qrdata;
             }
-            debugger;
-            this.items.push({ 'id': qrcode[i]._id, 'name': fullname, 'generateddate': qrcode[i].generateddate, 'qrtype': qrcode[i].qrtype, 'path': dynamicpath })
+
+            else {
+
+                dynamicpath = qrcode[i].qrdata;
+                urldata="";
+            }
+
+            this.items.push({ 'id': qrcode[i]._id, 'name': fullname, 'urldata': urldata, 'generateddate': qrcode[i].generateddate, 'qrtype': qrcode[i].qrtype, 'path': dynamicpath })
         }
     }
 

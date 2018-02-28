@@ -94,10 +94,7 @@ debugger;
         var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new RequestOptions({ headers: headers });
         //return this.http.post(this.base_url + 'Generatecontact', data, options).map(res => res.json());
-
-
         this.http.post(this.base_url + 'addqrcode', data, options).subscribe(res => {
-
         })
     }
 

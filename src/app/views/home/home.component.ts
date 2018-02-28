@@ -416,9 +416,7 @@ export class HomeComponent {
 
 
     Generate() {
-        debugger;
-        this.qrfrontcolor = this.favcolor;
-        this.qrbackcolor = this.favcolorbk;
+       
         this.generateqrimage = true;
         this.defaultqrimage = false;
         var currentdate = new Date();
@@ -520,7 +518,6 @@ export class HomeComponent {
 
         //for Dynamic add
         if (this.qrstatus == "Dynamic") {
-
             // if (this.signin == true) {
             //     this.messageurlfield = false;
             //     this.messagecouponfield = false;
@@ -535,7 +532,7 @@ export class HomeComponent {
             if (this.messageurlfield == false && this.messagecontactfield == false && this.messagephonefield == false && this.messagetextfield == false && this.messagevcardfield == false && this.messagesmsfield == false && this.messagecouponfield == false) {
                 this.staticqrcode = this.qrdata;
                 ////remove this comment
-                //this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
+                //  this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
             }
             // }
         }
@@ -551,8 +548,7 @@ export class HomeComponent {
             if (this.messageurlfield == false && this.messagecontactfield == false && this.messagephonefield == false && this.messagetextfield == false && this.messagevcardfield == false && this.messagesmsfield == false && this.messagecouponfield == false) {
                 // this.staticqrcode = '{' + 'Type :' + qrtype + 'Data :' +'[' + this.qrdata +']' + '}';
                 this.staticqrcode = this.qrdata;
-                ////remove this comment
-                
+
                 // this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
             }
         }
@@ -688,7 +684,7 @@ export class HomeComponent {
         this.qrinfo = Jsonqrinfoobj;
 
     }
-    
+
 
 
     DownloadQRCodeAsJPG() {
@@ -754,8 +750,13 @@ export class HomeComponent {
         popupWin.document.close();
     }
 
-    styleqrModal(){
+    styleqrModal() {
         debugger;
-        this.generateqrimage =true;
+        this.generateqrimage = true;
+    }
+
+    test(){
+        this.qrfrontcolor = this.favcolor;
+        this.qrbackcolor = this.favcolorbk;
     }
 }
