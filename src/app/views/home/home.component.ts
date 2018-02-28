@@ -530,8 +530,9 @@ export class HomeComponent {
             // this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
             // }
             if (this.messageurlfield == false && this.messagecontactfield == false && this.messagephonefield == false && this.messagetextfield == false && this.messagevcardfield == false && this.messagesmsfield == false && this.messagecouponfield == false) {
+               debugger
                 this.staticqrcode = this.qrdata;
-                ////remove this comment
+               
                   this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
             }
             // }

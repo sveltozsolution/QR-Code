@@ -22,6 +22,9 @@
           <button type="button" class="btn btn-sm btn-primary" style="margin-left: 18px;width: 74px;height: 21px;" (click)="DownloadQRCode(item.id)">
             <p style="margin-top:-5px;">Download</p>
           </button>
+          <!-- <a style="margin-top:-5px;"  [routerLink]="['/dashboard', item.id]" (click)="sendid(item.id)" class="nav-link" href="/dashboard" >Analytics</a> -->
+          
+          <a style="margin-top:-5px;"  [routerLink]="['/dashboard', item.id]"  class="nav-link"  >Analytics</a>
         </div>
         <div class="col-sm-8 Download">
           <div class="row">

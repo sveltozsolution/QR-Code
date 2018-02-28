@@ -1,11 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { WebService } from 'app/web.service';
 
 @Component({
-  templateUrl: 'dashboard.component.html'
+  templateUrl: 'dashboard.component.html',
+  providers: [WebService]
 })
 export class DashboardComponent implements OnInit {
-
+  count: any;
+  generateddate: any;
+  browsername: any;
+  os: any;
+  devicedeatil: any;
+  inid: string;
+  id: string;
+  devicedeatils: any;
+  qrdata: any;
+  qrcode: any;
+  private sub: any;
+  constructor(public webservice: WebService,private route: ActivatedRoute) {
+    this.sub = this.route.params.subscribe(params => {
+      debugger;
+      this.id = params['id']; // (+) converts string 'id' to a number
+      alert(this.id);
+    
+    });
+    this.bindqrcode()
+  }
   public brandPrimary = '#20a8d8';
   public brandSuccess = '#4dbd74';
   public brandInfo = '#63c2de';
@@ -204,27 +225,7 @@ export class DashboardComponent implements OnInit {
   public barChart1Legend = false;
   public barChart1Type = 'bar';
 
-  // mainChart
 
-  public mainChartElements = 27;
-  public mainChartData1: Array<number> = [];
-  public mainChartData2: Array<number> = [];
-  public mainChartData3: Array<number> = [];
-
-  public mainChartData: Array<any> = [
-    {
-      data: this.mainChartData1,
-      label: 'Current'
-    },
-    {
-      data: this.mainChartData2,
-      label: 'Previous'
-    },
-    {
-      data: this.mainChartData3,
-      label: 'BEP'
-    }
-  ];
   /* tslint:disable:max-line-length */
   public mainChartLabels: Array<any> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Thursday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   /* tslint:enable:max-line-length */
@@ -237,7 +238,7 @@ export class DashboardComponent implements OnInit {
           drawOnChartArea: false,
         },
         ticks: {
-          callback: function(value: any) {
+          callback: function (value: any) {
             return value.charAt(0);
           }
         }
@@ -458,7 +459,27 @@ export class DashboardComponent implements OnInit {
   public random(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
+  // mainChart
 
+  public mainChartElements = 27;
+  public mainChartData1: Array<number> = [];
+  public mainChartData2: Array<number> = [];
+  public mainChartData3: Array<number> = [];
+
+  public mainChartData: Array<any> = [
+    {
+      data: this.mainChartData1,
+      label: 'Current'
+    },
+    {
+      data: this.mainChartData2,
+      label: 'Previous'
+    },
+    {
+      data: this.mainChartData3,
+      label: 'BEP'
+    }
+  ];
   ngOnInit(): void {
     // generate random values for mainChart
     for (let i = 0; i <= this.mainChartElements; i++) {
@@ -466,5 +487,43 @@ export class DashboardComponent implements OnInit {
       this.mainChartData2.push(this.random(80, 100));
       this.mainChartData3.push(65);
     }
+  }
+
+  bindqrcode() {
+    this.webservice.getallqrcode().subscribe(qrcode => {
+      this.qrcode = qrcode;
+
+      debugger;
+     
+      for (var i = 0; i <= qrcode.length; i++) {
+        var iddata = qrcode[i]._id
+        if (this.id == iddata) {
+debugger;
+          this.qrdata = qrcode[i].qrdata
+          this.generateddate=qrcode[i].generateddate
+
+          // scanedata
+          
+          // this.devicedeatils = JSON.parse(qrcode[i].qrinfo)
+          // this.os = this.devicedeatils.os;
+          // this.browsername = this.devicedeatils.browsername
+         debugger
+        }
+      }
+
+
+    })
+    // this.webservice.getuserdata().subscribe(qruserdata => {
+           
+    //   for (var i = 0; i <= qruserdata.length; i++) {
+    //     // var iddata = qruserdata[i]._id
+    //   // if (this.id == iddata) {
+    //   // this.count=qruserdata[i].qrscancount
+    //   //  debugger;
+    //   // }
+    //   debugger;
+   
+    // }
+    //     })
   }
 }

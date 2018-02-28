@@ -7,7 +7,7 @@ import { DynamicdataRoutingModule } from './dynamicdata-routing.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import { BrowserModule } from '@angular/platform-browser';
-// import { HttpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
 
 import { QRCodeModule } from 'angular2-qrcode';
@@ -17,7 +17,7 @@ import { QRCodeModule } from 'angular2-qrcode';
     DynamicdataRoutingModule,
     FormsModule,
     CommonModule,
-    // HttpModule,
+    HttpModule,
     QRCodeModule,
     Ng2DeviceDetectorModule.forRoot(),
     DynamicdataRoutingModule

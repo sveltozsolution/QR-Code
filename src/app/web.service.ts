@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
-import { Router } from '@angular/router';
+import { Router, Data } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class WebService {
@@ -12,10 +13,9 @@ export class WebService {
     loginvalid = "loginvalid";
     userid = "userid";
  
-    ////remove this comment
 
-      // base_url = 'http://localhost:5000/api/';
-     base_url = 'https://qurcodeapi.herokuapp.com/api/';
+       base_url = 'http://localhost:5000/api/';
+    // base_url = 'https://qurcodeapi.herokuapp.com/api/';
 
  
     constructor(private http: Http, private router: Router) { }
@@ -148,7 +148,46 @@ debugger;
         var options = new RequestOptions({ headers: headers });
         return this.http.get(url, options).map(res => res.json());
     }
+    getIpAddress() { 
+        return this.http 
+              .get('http://freegeoip.net/json/?callback') 
+              .map(response => response || {}) 
+              .catch(this.handleError); 
+    } 
+    
+    private handleError(error: HttpErrorResponse): 
+    Observable<any> { 
+      //Log error in the browser console 
+      console.error('observable error: ', error); 
 
-}
+      return Observable.throw(error); 
+  } 
+//   getIP(): Observable<Data[]> { 
+//       return this.http.get('http://ipinfo.io') // ...using post request 
+//       .map((res:Response) => res.json()) // ...and calling .json() on the response to return data 
+//       .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any 
+//   } 
+  postuserdata(userdata){ 
+   debugger 
+      var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' }); 
+       var options = new RequestOptions({ headers: headers }); 
+
+
+       this.http.post(this.base_url + 'addqrcode', userdata,).subscribe(res => { 
+
+      }) 
+  } 
+  getuserdata() { 
+      var url = this.base_url + 'qrcodeuserList'; 
+      var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' }); 
+      var options = new RequestOptions({ headers: headers }); 
+      debugger; 
+      return this.http.get(url, options).map(res => res.json()); 
+
+
+  } 
+} 
+
+
 
 
