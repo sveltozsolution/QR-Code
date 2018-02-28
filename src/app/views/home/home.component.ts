@@ -532,7 +532,7 @@ export class HomeComponent {
             if (this.messageurlfield == false && this.messagecontactfield == false && this.messagephonefield == false && this.messagetextfield == false && this.messagevcardfield == false && this.messagesmsfield == false && this.messagecouponfield == false) {
                 this.staticqrcode = this.qrdata;
                 ////remove this comment
-                //  this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
+                  this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
             }
             // }
         }
@@ -549,7 +549,7 @@ export class HomeComponent {
                 // this.staticqrcode = '{' + 'Type :' + qrtype + 'Data :' +'[' + this.qrdata +']' + '}';
                 this.staticqrcode = this.qrdata;
 
-                // this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
+                 this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
             }
         }
         // this.qrElement = <HTMLVideoElement>document.getElementById("saticqr");
