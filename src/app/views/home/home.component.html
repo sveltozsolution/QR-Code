@@ -1,371 +1,380 @@
+<div class="animated fadeIn">
 
-   <div class="animated fadeIn">
+  <div class="row" style="margin-top:25px;">
 
-    <div class="row" style="margin-top:25px;">
-  
-      <div class="col-sm-8">
-  
-        <div class="card card1">
-          <div class="card-header">
-  
-            <div class="segmented-control radiofontsize" style="width: 100%; color: #20a8d8">
-  
-              <input type="radio" name="sc-1-1" id="sc-1-1-1" checked>
-  
-              <input type="radio" name="sc-1-1" id="sc-1-1-2">
-  
-              <input type="radio" name="sc-1-1" id="sc-1-1-3">
-  
-              <input type="radio" name="sc-1-1" id="sc-1-1-4">
-  
-              <input type="radio" name="sc-1-1" id="sc-1-1-5">
-  
-              <input type="radio" name="sc-1-1" id="sc-1-1-6">
-  
-              <input type="radio" name="sc-1-1" id="sc-1-1-7">
-  
-              <label for="sc-1-1-1" data-value="URL" (click)="Qrtypeclick('url')">URL</label>
-  
-              <label for="sc-1-1-2" data-value="Contact" (click)="Qrtypeclick('contact')">Contact</label>
-  
-              <label for="sc-1-1-3" data-value="Text" (click)="Qrtypeclick('text')">Text</label>
-  
-              <label for="sc-1-1-4" data-value="Phone" (click)="Qrtypeclick('phone')">Phone</label>
-  
-              <label for="sc-1-1-5" data-value="Vcard" (click)="Qrtypeclick('vcard')">Vcard</label>
-  
-              <label for="sc-1-1-6" data-value="SMS" (click)="Qrtypeclick('sms')">SMS</label>
-  
-              <label for="sc-1-1-7" data-value="Coupon" (click)="Qrtypeclick('coupon')">Coupon</label>
-            </div>
-  
+    <div class="col-sm-8">
+
+      <div class="card card1">
+        <div class="card-header">
+
+          <div class="segmented-control radiofontsize" style="width: 100%; color: #20a8d8">
+
+            <input type="radio" name="sc-1-1" id="sc-1-1-1" checked>
+
+            <input type="radio" name="sc-1-1" id="sc-1-1-2">
+
+            <input type="radio" name="sc-1-1" id="sc-1-1-3">
+
+            <input type="radio" name="sc-1-1" id="sc-1-1-4">
+
+            <input type="radio" name="sc-1-1" id="sc-1-1-5">
+
+            <input type="radio" name="sc-1-1" id="sc-1-1-6">
+
+            <input type="radio" name="sc-1-1" id="sc-1-1-7">
+
+            <label for="sc-1-1-1" data-value="URL" (click)="Qrtypeclick('url')">URL</label>
+
+            <label for="sc-1-1-2" data-value="Contact" (click)="Qrtypeclick('contact')">Contact</label>
+
+            <label for="sc-1-1-3" data-value="Text" (click)="Qrtypeclick('text')">Text</label>
+
+            <label for="sc-1-1-4" data-value="Phone" (click)="Qrtypeclick('phone')">Phone</label>
+
+            <label for="sc-1-1-5" data-value="Vcard" (click)="Qrtypeclick('vcard')">Vcard</label>
+
+            <label for="sc-1-1-6" data-value="SMS" (click)="Qrtypeclick('sms')">SMS</label>
+
+            <label for="sc-1-1-7" data-value="Coupon" (click)="Qrtypeclick('coupon')">Coupon</label>
           </div>
-          <div class="card-body">
-            <div class="inputmargin" *ngIf="urlsection">
-              <span *ngIf="messageurlfield" style="color:red !important;font: bold 15px Georgia, serif">Url is required</span>            
-              <input type="text" [(ngModel)]="url" class="form-control" placeholder="Enter your URL (ex. http://www.example.com)">
-            </div>
-  
-            <div class="inputmargin " *ngIf="contactsection">
-              <span *ngIf="messagecontactfield" style="color:red !important;font: bold 15px Georgia, serif">Firstname and Familyname are required</span><br>
-              <div class="row">
-                <div class="col-sm-6">
-  
-                  <!-- <label style="color:red">*</label> -->
-                  <input type="text" [(ngModel)]="firstname" class="form-control" placeholder="Enter Name">
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>Family Name</label>
+
+        </div>
+        <div class="card-body">
+          <div class="inputmargin" *ngIf="urlsection">
+            <span *ngIf="messageurlfield" style="color:red !important;font: bold 15px Georgia, serif">Url is required</span>
+            <input type="text" [(ngModel)]="url" class="form-control" placeholder="Enter your URL (ex. http://www.example.com)">
+          </div>
+
+          <div class="inputmargin " *ngIf="contactsection">
+            <span *ngIf="messagecontactfield" style="color:red !important;font: bold 15px Georgia, serif">Firstname and Familyname are required</span>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+
+                <!-- <label style="color:red">*</label> -->
+                <input type="text" [(ngModel)]="firstname" class="form-control" placeholder="Enter Name">
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>Family Name</label>
                   <label style="color:red">*</label> -->
-                  <input type="text" [(ngModel)]="familyname" class="form-control" placeholder="Enter Family Name">
-                </div>
-  
+                <input type="text" [(ngModel)]="familyname" class="form-control" placeholder="Enter Family Name">
               </div>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Job Title</label> -->
-                  <input type="text" [(ngModel)]="jobtitle" class="form-control" placeholder="Enter Job Title">
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>Company</label> -->
-                  <input type="text" [(ngModel)]="company" class="form-control" placeholder="Enter Company">
-                </div>
-              </div>
-  
-              <hr style="border-bottom: 1px solid #8C969D;width:100%">
-  
-              <label style="padding-bottom:15px;">
-                <b>Add Phone</b>
-              </label>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Phone (direct)</label> -->
-                  <input type="text" [(ngModel)]="phonedirect" class="form-control" placeholder="Phone (direct)" maxlength="256">
-  
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>Phone (work)</label> -->
-                  <input type="text" [(ngModel)]="phonework" class="form-control" placeholder="Phone (work)" maxlength="256">
-                </div>
-  
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Phone (home)</label> -->
-                  <input type="text" [(ngModel)]="phonehome" class="form-control" placeholder="Phone (home)" maxlength="256">
-  
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>Fax (work)</label> -->
-                  <input type="text" [(ngModel)]="fax" class="form-control" placeholder="Fax (work)" maxlength="256">
-  
-                </div>
-              </div>
-  
-  
-              <hr style="border-bottom: 1px solid #8C969D;width:100%">
-  
-              <label style="padding-bottom:15px;">
-                <b>Add Email/URL</b>
-              </label>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Email</label> -->
-                  <input type="text" [(ngModel)]="email" class="form-control" placeholder=" Enter Email" maxlength="256">
-  
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>URL</label> -->
-                  <input type="text" [(ngModel)]="contacturl" class="form-control" placeholder="Enter URL" maxlength="256">
-  
-                </div>
-              </div>
-  
-              <hr style="border-bottom: 1px solid #8C969D;width:100%">
-  
-              <label style="padding-bottom:15px;">
-                <b>Add Address</b>
-              </label>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Street</label> -->
-                  <input type="text" [(ngModel)]="street" class="form-control" placeholder="Enter Street">
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>City</label> -->
-                  <input type="text" [(ngModel)]="city" class="form-control" placeholder="Enter City">
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>State</label> -->
-                  <input type="text" [(ngModel)]="state" class="form-control" placeholder="Enter State">
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>Zip</label> -->
-                  <input type="text" [(ngModel)]="zip" class="form-control" placeholder="Enter Zip">
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Country</label> -->
-                  <input type="text" [(ngModel)]="country" class="form-control" placeholder="Enter Country">
-                </div>
-                <div class="col-sm-6"></div>
-              </div>
-  
-              <hr style="border-bottom: 1px solid #8C969D;width:100%">
-  
-              <label style="padding-bottom:15px;">
-                <b>Add Social Profile</b>
-              </label>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Facebook</label> -->
-                  <input type="text" [(ngModel)]="facebook" class="form-control" placeholder="http://www.facebook.com/example">
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>Twitter</label> -->
-                  <input type="text" [(ngModel)]="twitter" class="form-control" placeholder="http://www.twitter.com/example">
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Pinterest</label> -->
-                  <input type="text" [(ngModel)]="pinterest" class="form-control" placeholder="http://www.pinterest.com/example">
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>LinkedIn</label> -->
-                  <input type="text" [(ngModel)]="linkedin" class="form-control" placeholder="http://www.linkedin.com/example">
-                </div>
-              </div>
-  
+
             </div>
-  
-  
-            <div class="inputmargin" *ngIf="phonesection">
-              <span *ngIf="messagephonefield" style="color:red !important;font: bold 15px Georgia, serif">Phone No. is required</span>
-              <input type="text" [(ngModel)]="phoneno" placeholder="Enter Phone No." class="form-control">
-            </div>
-  
-            <div class="inputmargin" *ngIf="smssection">
-              <span *ngIf="messagesmsfield" style="color:red !important;font: bold 15px Georgia, serif">Mobile No. is required</span>
-  
-              <input type="text" [(ngModel)]="mobileno" class="form-control" placeholder="Enter Mobile No">
-              <br>
-              <textarea type="text" [(ngModel)]="message" class="form-control" placeholder="Enter Message"></textarea>
-              <br>
-            </div>
-  
-            <div class="inputmargin" *ngIf="textsection">
-              <span *ngIf="messagetextfield" style="color:red !important;font: bold 15px Georgia, serif">Message is required</span>
-  
-              <textarea type="text" [(ngModel)]="text" class="form-control" placeholder="Enter Message" rows="4" cols="50"></textarea>
-            </div>
-  
-            <div class="inputmargin" *ngIf="vcardsection">
-              <span *ngIf="messagevcardfield" style="color:red !important;font: bold 15px Georgia, serif">Firstname and Familyname are required</span>
-  
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>First Name</label> -->
-                  <!-- <label style="color:red">*</label> -->
-                  <input type="text" [(ngModel)]="vfirstname" class="form-control" placeholder="First Name" maxlength="256">
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>Family Name</label> -->
-                  <!-- <label style="color:red">*</label> -->
-                  <input type="text" [(ngModel)]="vfamilyname" class="form-control" placeholder="Family Name" maxlength="256">
-                </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Job Title</label> -->
+                <input type="text" [(ngModel)]="jobtitle" class="form-control" placeholder="Enter Job Title">
               </div>
-              <hr style="border-bottom: 1px solid #8C969D;width:100%">
-  
-              <label style="padding-bottom:15px;">
-                <b>Add Organization</b>
-              </label>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Company Name</label> -->
-                  <input type="text" [(ngModel)]="vcompany" class="form-control" placeholder="Company Name" maxlength="256">
-  
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>Title within Company</label> -->
-                  <input type="text" [(ngModel)]="vtitle" class="form-control" placeholder="Title within Company" maxlength="256">
-                </div>
-              </div>
-  
-              <hr style="border-bottom: 1px solid #8C969D;width:100%">
-  
-              <label style="padding-bottom:15px;">
-                <b>Add Phone</b>
-              </label>
-  
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Phone Number</label> -->
-                  <input type="text" [(ngModel)]="vphoneno" class="form-control" placeholder="Phone Number" maxlength="256">
-                </div>
-              </div>
-  
-  
-              <hr style="border-bottom: 1px solid #8C969D;width:100%">
-  
-              <label style="padding-bottom:15px;">
-                <b>Add Email/URL</b>
-              </label>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Email</label> -->
-                  <input type="text" [(ngModel)]="vemail" class="form-control" placeholder="Email" maxlength="256">
-  
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>Website</label> -->
-                  <input type="text" [(ngModel)]="vwebsite" class="form-control" placeholder="Website" maxlength="256">
-  
-                </div>
-              </div>
-  
-              <hr style="border-bottom: 1px solid #8C969D;width:100%">
-  
-              <label style="padding-bottom:15px;">Address</label>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Street</label> -->
-                  <input type="text" [(ngModel)]="vstreet" class="form-control" placeholder="Street" maxlength="256">
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>city</label> -->
-                  <input type="text" [(ngModel)]="vcity" class="form-control" placeholder="City" maxlength="256">
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>State</label> -->
-                  <input type="text" [(ngModel)]="vstate" class="form-control" placeholder="State" maxlength="256">
-                </div>
-                <div class="col-sm-6">
-                  <!-- <label>Zip</label> -->
-                  <input type="text" [(ngModel)]="vzip" class="form-control" placeholder="Zip" maxlength="256">
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- <label>Country</label> -->
-                  <input type="text" [(ngModel)]="vcountry" class="form-control" placeholder="Country" maxlength="256">
-                </div>
+              <div class="col-sm-6">
+                <!-- <label>Company</label> -->
+                <input type="text" [(ngModel)]="company" class="form-control" placeholder="Enter Company">
               </div>
             </div>
-  
-            
-            <div class="inputmargin" *ngIf="couponsection" >
-                 <span *ngIf="messagecouponfield" style="color:red !important;font: bold 15px Georgia, serif">Title and Discount are required</span><br> 
-                <label><b>Create an online coupon and we'll provide you with a QR Code that links to it</b> </label>
-  
-                <div class="row">
-                  <div class="col-sm-6">
-                    <!-- <label>Title</label> -->
-                    <input type="text" [(ngModel)]="ctitle" class="form-control" placeholder="Title" maxlength="256">
-                  </div>
-                  <div class="col-sm-6">
-                    <!-- <label>Discount</label><label style="color:red">*</label> -->
-                    <input type="text" [(ngModel)]="cdiscount" class="form-control"placeholder="Discount" maxlength="256"><br>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <!-- <label>Enter the website where people can use your coupon</label><label style="color:red">*</label> -->
-                    <input type="text" [(ngModel)]="cwebsite" class="form-control"placeholder="Enter the website where people can use your coupon" maxlength="256"><br>
-                  </div>
-                  <div class="col-sm-6">
-                    <!-- <label>Promo Code if needed</label> -->
-                    <input type="text" [(ngModel)]="cpromocode" class="form-control" placeholder="Promo code if needed" maxlength="256"><br>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <!-- <label>Describe Your Offer</label><br> -->
-                    <textarea type="text" [(ngModel)]="coffer" placeholder="Describe Your Offer" class="form-control" ></textarea><br>
-                  </div>
-                  <div class="col-sm-6">
-                    <!-- <label>Terms</label><br> -->
-                    <textarea type="text" [(ngModel)]="cterms" placeholder="Terms" class="form-control" ></textarea><br>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <!-- <label>Expiry Date</label><br> -->
-                    <input type="text" class="form-control" [(ngModel)]="cdate"  placeholder="Expiry Date  dd-mm-yyyy" maxlength="150">
-                  </div>
-                  <div class="col-sm-6">
-                    
-                  </div>
-                </div>
+
+            <hr style="border-bottom: 1px solid #8C969D;width:100%">
+
+            <label style="padding-bottom:15px;">
+              <b>Add Phone</b>
+            </label>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Phone (direct)</label> -->
+                <input type="text" [(ngModel)]="phonedirect" class="form-control" placeholder="Phone (direct)" maxlength="256">
+
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>Phone (work)</label> -->
+                <input type="text" [(ngModel)]="phonework" class="form-control" placeholder="Phone (work)" maxlength="256">
+              </div>
+
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Phone (home)</label> -->
+                <input type="text" [(ngModel)]="phonehome" class="form-control" placeholder="Phone (home)" maxlength="256">
+
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>Fax (work)</label> -->
+                <input type="text" [(ngModel)]="fax" class="form-control" placeholder="Fax (work)" maxlength="256">
+
+              </div>
+            </div>
+
+
+            <hr style="border-bottom: 1px solid #8C969D;width:100%">
+
+            <label style="padding-bottom:15px;">
+              <b>Add Email/URL</b>
+            </label>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Email</label> -->
+                <input type="text" [(ngModel)]="email" class="form-control" placeholder=" Enter Email" maxlength="256">
+
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>URL</label> -->
+                <input type="text" [(ngModel)]="contacturl" class="form-control" placeholder="Enter URL" maxlength="256">
+
+              </div>
+            </div>
+
+            <hr style="border-bottom: 1px solid #8C969D;width:100%">
+
+            <label style="padding-bottom:15px;">
+              <b>Add Address</b>
+            </label>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Street</label> -->
+                <input type="text" [(ngModel)]="street" class="form-control" placeholder="Enter Street">
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>City</label> -->
+                <input type="text" [(ngModel)]="city" class="form-control" placeholder="Enter City">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>State</label> -->
+                <input type="text" [(ngModel)]="state" class="form-control" placeholder="Enter State">
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>Zip</label> -->
+                <input type="text" [(ngModel)]="zip" class="form-control" placeholder="Enter Zip">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Country</label> -->
+                <input type="text" [(ngModel)]="country" class="form-control" placeholder="Enter Country">
+              </div>
+              <div class="col-sm-6"></div>
+            </div>
+
+            <hr style="border-bottom: 1px solid #8C969D;width:100%">
+
+            <label style="padding-bottom:15px;">
+              <b>Add Social Profile</b>
+            </label>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Facebook</label> -->
+                <input type="text" [(ngModel)]="facebook" class="form-control" placeholder="http://www.facebook.com/example">
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>Twitter</label> -->
+                <input type="text" [(ngModel)]="twitter" class="form-control" placeholder="http://www.twitter.com/example">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Pinterest</label> -->
+                <input type="text" [(ngModel)]="pinterest" class="form-control" placeholder="http://www.pinterest.com/example">
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>LinkedIn</label> -->
+                <input type="text" [(ngModel)]="linkedin" class="form-control" placeholder="http://www.linkedin.com/example">
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="inputmargin" *ngIf="phonesection">
+            <span *ngIf="messagephonefield" style="color:red !important;font: bold 15px Georgia, serif">Phone No. is required</span>
+            <input type="text" [(ngModel)]="phoneno" placeholder="Enter Phone No." class="form-control">
+          </div>
+
+          <div class="inputmargin" *ngIf="smssection">
+            <span *ngIf="messagesmsfield" style="color:red !important;font: bold 15px Georgia, serif">Mobile No. is required</span>
+
+            <input type="text" [(ngModel)]="mobileno" class="form-control" placeholder="Enter Mobile No">
+            <br>
+            <textarea type="text" [(ngModel)]="message" class="form-control" placeholder="Enter Message"></textarea>
+            <br>
+          </div>
+
+          <div class="inputmargin" *ngIf="textsection">
+            <span *ngIf="messagetextfield" style="color:red !important;font: bold 15px Georgia, serif">Message is required</span>
+
+            <textarea type="text" [(ngModel)]="text" class="form-control" placeholder="Enter Message" rows="4" cols="50"></textarea>
+          </div>
+
+          <div class="inputmargin" *ngIf="vcardsection">
+            <span *ngIf="messagevcardfield" style="color:red !important;font: bold 15px Georgia, serif">Firstname and Familyname are required</span>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>First Name</label> -->
+                <!-- <label style="color:red">*</label> -->
+                <input type="text" [(ngModel)]="vfirstname" class="form-control" placeholder="First Name" maxlength="256">
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>Family Name</label> -->
+                <!-- <label style="color:red">*</label> -->
+                <input type="text" [(ngModel)]="vfamilyname" class="form-control" placeholder="Family Name" maxlength="256">
+              </div>
+            </div>
+            <hr style="border-bottom: 1px solid #8C969D;width:100%">
+
+            <label style="padding-bottom:15px;">
+              <b>Add Organization</b>
+            </label>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Company Name</label> -->
+                <input type="text" [(ngModel)]="vcompany" class="form-control" placeholder="Company Name" maxlength="256">
+
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>Title within Company</label> -->
+                <input type="text" [(ngModel)]="vtitle" class="form-control" placeholder="Title within Company" maxlength="256">
+              </div>
+            </div>
+
+            <hr style="border-bottom: 1px solid #8C969D;width:100%">
+
+            <label style="padding-bottom:15px;">
+              <b>Add Phone</b>
+            </label>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Phone Number</label> -->
+                <input type="text" [(ngModel)]="vphoneno" class="form-control" placeholder="Phone Number" maxlength="256">
+              </div>
+            </div>
+
+
+            <hr style="border-bottom: 1px solid #8C969D;width:100%">
+
+            <label style="padding-bottom:15px;">
+              <b>Add Email/URL</b>
+            </label>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Email</label> -->
+                <input type="text" [(ngModel)]="vemail" class="form-control" placeholder="Email" maxlength="256">
+
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>Website</label> -->
+                <input type="text" [(ngModel)]="vwebsite" class="form-control" placeholder="Website" maxlength="256">
+
+              </div>
+            </div>
+
+            <hr style="border-bottom: 1px solid #8C969D;width:100%">
+
+            <label style="padding-bottom:15px;">Address</label>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Street</label> -->
+                <input type="text" [(ngModel)]="vstreet" class="form-control" placeholder="Street" maxlength="256">
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>city</label> -->
+                <input type="text" [(ngModel)]="vcity" class="form-control" placeholder="City" maxlength="256">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>State</label> -->
+                <input type="text" [(ngModel)]="vstate" class="form-control" placeholder="State" maxlength="256">
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>Zip</label> -->
+                <input type="text" [(ngModel)]="vzip" class="form-control" placeholder="Zip" maxlength="256">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Country</label> -->
+                <input type="text" [(ngModel)]="vcountry" class="form-control" placeholder="Country" maxlength="256">
               </div>
             </div>
           </div>
-  
-        <div class="card-footer card1">
-          <div class="row">
-            <div  class="col-sm-6">
-  
-              <!--switch button-->
-              <!-- <div *ngIf="urlsection">
+
+
+          <div class="inputmargin" *ngIf="couponsection">
+            <span *ngIf="messagecouponfield" style="color:red !important;font: bold 15px Georgia, serif">Title and Discount are required</span>
+            <br>
+            <label>
+              <b>Create an online coupon and we'll provide you with a QR Code that links to it</b>
+            </label>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Title</label> -->
+                <input type="text" [(ngModel)]="ctitle" class="form-control" placeholder="Title" maxlength="256">
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>Discount</label><label style="color:red">*</label> -->
+                <input type="text" [(ngModel)]="cdiscount" class="form-control" placeholder="Discount" maxlength="256">
+                <br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Enter the website where people can use your coupon</label><label style="color:red">*</label> -->
+                <input type="text" [(ngModel)]="cwebsite" class="form-control" placeholder="Enter the website where people can use your coupon"
+                  maxlength="256">
+                <br>
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>Promo Code if needed</label> -->
+                <input type="text" [(ngModel)]="cpromocode" class="form-control" placeholder="Promo code if needed" maxlength="256">
+                <br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Describe Your Offer</label><br> -->
+                <textarea type="text" [(ngModel)]="coffer" placeholder="Describe Your Offer" class="form-control"></textarea>
+                <br>
+              </div>
+              <div class="col-sm-6">
+                <!-- <label>Terms</label><br> -->
+                <textarea type="text" [(ngModel)]="cterms" placeholder="Terms" class="form-control"></textarea>
+                <br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- <label>Expiry Date</label><br> -->
+                <input type="text" class="form-control" [(ngModel)]="cdate" placeholder="Expiry Date  dd-mm-yyyy" maxlength="150">
+              </div>
+              <div class="col-sm-6">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer card1">
+        <div class="row">
+          <div class="col-sm-6">
+
+            <!--switch button-->
+            <!-- <div *ngIf="urlsection">
                   <div class="row" style="margin-left:4px;">
                     <div><label > Static</label></div>
                     <div><label class="switch ">
@@ -377,69 +386,118 @@
                   </div>
                   
                 </div> -->
-  
-              <div class="segmented-control1 segmented11" style="width: 35%; color:#5fbaad;" *ngIf="othersection">
-  
-                <input type="radio" name="s-1-1" id="sc-1" (click)="qrstatusclick()" checked>
-  
-                <input type="radio" name="s-1-1" id="sc-2" (click)="qrstatusclick()">
-  
-  
-                <label for="sc-1" data-value="Static">Static</label>
-  
-                <label for="sc-2" data-value="Dynamic">Dynamic</label>
-  
-              </div>
+
+            <div class="segmented-control1 segmented11" style="width: 35%; color:#5fbaad;" *ngIf="othersection">
+
+              <input type="radio" name="s-1-1" id="sc-1" (click)="qrstatusclick()" checked>
+
+              <input type="radio" name="s-1-1" id="sc-2" (click)="qrstatusclick()">
+
+
+              <label for="sc-1" data-value="Static">Static</label>
+
+              <label for="sc-2" data-value="Dynamic">Dynamic</label>
+
             </div>
-            <div class="col-sm-6">
-              <button type="submit" (click)="Generate()" class="btn btn-sm btn-success buttonform" style="font-size: 15px">Generate</button>
-            </div>
+          </div>
+          <div class="col-sm-6">
+
           </div>
         </div>
       </div>
-      <div class="col-sm-3" class="qrcodeside qrcodeimg">
-          <div *ngIf="generateqrimage">
+    </div>
+    <div class="col-sm-3" class="qrcodeside qrcodeimg">
+      <div *ngIf="generateqrimage">
+        <div id="print-section">
+          <qr-code [value]="staticqrcode" [size]="150" [foreground]="qrfrontcolor" [background]="qrbackcolor" #qrcode></qr-code>
+        </div>
 
-                <div id="print-section" >
-              <qr-code [value]="staticqrcode" [size]="150" [foreground]= "qrcolor" #qrcode ></qr-code>
-            </div>
-              <br />
-              <br />
-              <button type="button" class="btn btn-sm btn-primary" style="width: 110px;height:21px;" >
-                  <p style="margin-top:-5px;" (click)="DownloadQRCodeAsJPG()">Download As JPG</p>
-              </button>
-              <!--<br />-->
-              <button type="button" class="btn btn-sm btn-primary" style="width:110px;height: 21px;" >
-                  <p style="margin-top:-5px;" (click)="DownloadQRCodeAsEPS()">Download As EPS</p>
-              </button>
-              <br>
-              <button type="button" class="btn btn-sm btn-primary" style="width:110px;height: 21px;" >
-                <p style="margin-top:-5px;" (click)="DownloadQRCodeAsPDF()">Download As PDF</p>
-            </button>
+        <br />
+        <br />
+        <button type="button" class="btn btn-sm btn-primary" style="width: 110px;height:21px;">
+          <p style="margin-top:-5px;" (click)="DownloadQRCodeAsJPG()">Download As JPG</p>
+        </button>
+        <!--<br />-->
+        <button type="button" class="btn btn-sm btn-primary" style="width:110px;height: 21px;">
+          <p style="margin-top:-5px;" (click)="DownloadQRCodeAsEPS()">Download As EPS</p>
+        </button>
+        <br>
+        <button type="button" class="btn btn-sm btn-primary" style="width:110px;height: 21px;">
+          <p style="margin-top:-5px;" (click)="DownloadQRCodeAsPDF()">Download As PDF</p>
+        </button>
 
 
-            <button type="button" class="btn btn-sm btn-primary" style="width:110px;height: 21px;" >
-                <p style="margin-top:-5px;" (click)="printcode()">Print</p>
-            </button>
-            
-            </div>
+        <button type="button" class="btn btn-sm btn-primary" style="width:110px;height: 21px;">
+          <p style="margin-top:-5px;" (click)="printcode()">Print</p>
+        </button>
       </div>
-  
+
+
+      <div *ngIf="defaultqrimage">
+        <img src="assets/defaultqrimage.png" height="180px" width="180px" class="img-responsive" />
+      </div>
+      <br>
+      <div class="row">
+        <!-- <div class="col-sm-2"></div> -->
+        <div class="col-sm-8">
+          Select foreground color here :
+          <input type="color" value="#800080" [(ngModel)]="favcolor">
+          <br> Select background color here :
+          <input type="color" value="#800080" [(ngModel)]="favcolorbk">
+          <br><br>
+          <button type="button" class="btn btn-primary" data-toggle="modal" (click)="styleqrModal.show()" (click)="styleqrModal()" style="margin-left:5px;">+Style your QR-Code</button>
+          <br>
+          <br>
+
+          <button type="submit" (click)="Generate()" class="btn btn-sm btn-success buttonform" style="font-size: 15px">Generate</button>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+    </div>
   </div>
 
-   <!-- <div>
+  <!-- Style your QR-Code -->
+  <div>
+  <div bsModal #styleqrModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-primary" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Style your QR Code</h4>
+          <button type="button" class="close" (click)="styleqrModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>Dots :
+              <input type="color" value="#800080" [(ngModel)]="dotscolor">
+              Shape :
+              <input type="dropdown" value="round" [(ngModel)]="shapeqr">
+              Center Color :
+              <input type="color" value="#800080" [(ngModel)]="centercolor">
+
+            <!-- <input type="text" [(ngModel)]="eurl" class="form-control"> -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="styleqrModal.hide()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="styleqrdone()">Done</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</div>
+<!-- <div>
       <input name="file" type="file" (change)="onChange($event)"/>
     </div> -->
- 
-    Select your favorite color:
-    <input type="color" name="favcolor" value="#ff0000">
-    <input type="submit">
- 
-  
-  
-        <!--Dynamic data-->
-      <!-- <div *ngIf="mydatasection"> -->
-          <!-- <div>
+
+
+
+
+<!--Dynamic data-->
+<!-- <div *ngIf="mydatasection"> -->
+<!-- <div>
               <div class="col-sm-12" style="margin-top:10px;">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
@@ -474,5 +532,3 @@
               </div>
             </div>
         </div> -->
- 
-  

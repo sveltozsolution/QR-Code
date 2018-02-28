@@ -31,6 +31,12 @@ export class HomeComponent {
     items = [];
     qrdata: string = "";
 
+    //color change for qrocde
+    favcolor: string;
+    qrfrontcolor: string;
+    favcolorbk: string;
+    qrbackcolor: string;
+
     //  username: string = "";
 
     loginvalid;
@@ -135,10 +141,12 @@ export class HomeComponent {
     //boolean variable for static or Dynamic
     staticqrcode: String = "";
     userid: string = "";
-    qrcolor: string = "";
+
 
     contactid: string;
     generateqrimage: boolean = false;
+    defaultqrimage: boolean = true;
+
     editcontactsection: boolean = true;
 
     mydatasection: boolean = true;
@@ -160,6 +168,7 @@ export class HomeComponent {
     //show the signin and signout button
     signin: boolean = true;
     signout: boolean = false;
+
 
 
     constructor(private router: Router, private webservice: WebService, private deviceService: Ng2DeviceService) { }
@@ -279,6 +288,7 @@ export class HomeComponent {
 
     Qrtypeclick(qrcodetype) {
         this.generateqrimage = false;
+        this.defaultqrimage = true;
 
         if (qrcodetype == "url") {
             this.urlsection = true;
@@ -406,11 +416,11 @@ export class HomeComponent {
 
 
     Generate() {
-
         debugger;
-        this.qrcolor = "red";
+        this.qrfrontcolor = this.favcolor;
+        this.qrbackcolor = this.favcolorbk;
         this.generateqrimage = true;
-        // this.defaultqrimage = false;
+        this.defaultqrimage = false;
         var currentdate = new Date();
         var generateddate = currentdate.toLocaleDateString();
         var userid = this.userid;
@@ -420,6 +430,7 @@ export class HomeComponent {
             if (this.url == "") {
                 this.messageurlfield = true;
                 this.generateqrimage = false;
+                this.defaultqrimage = true;
             } else {
                 this.messageurlfield = false;
                 this.qrdata = this.url;
@@ -429,6 +440,8 @@ export class HomeComponent {
             if (this.firstname == "" || this.familyname == "") {
                 this.messagecontactfield = true;
                 this.generateqrimage = false;
+                this.defaultqrimage = true;
+
             }
             else {
                 this.messagecontactfield = false;
@@ -440,6 +453,8 @@ export class HomeComponent {
             if (this.phoneno == "") {
                 this.messagephonefield = true;
                 this.generateqrimage = false;
+                this.defaultqrimage = true;
+
             } else {
                 this.messagephonefield = false;
                 this.generateqrimage = true;
@@ -451,6 +466,8 @@ export class HomeComponent {
             if (this.vfirstname == "" && this.vfamilyname == "") {
                 this.messagevcardfield = true;
                 this.generateqrimage = false;
+                this.defaultqrimage = true;
+
             } else {
                 this.messagevcardfield = false;
                 this.generateqrimage = true;
@@ -463,6 +480,8 @@ export class HomeComponent {
             if (this.mobileno == "" && this.message == "") {
                 this.messagesmsfield = true;
                 this.generateqrimage = false;
+                this.defaultqrimage = true;
+
             } else {
                 this.messagesmsfield = false;
                 this.generateqrimage = true;
@@ -473,6 +492,8 @@ export class HomeComponent {
             if (this.text == "") {
                 this.messagetextfield = true;
                 this.generateqrimage = false;
+                this.defaultqrimage = true;
+
             }
             else {
                 this.messagetextfield = false;
@@ -487,6 +508,8 @@ export class HomeComponent {
             if (this.ctitle == "" || this.cdiscount == "") {
                 this.messagecouponfield = true;
                 this.generateqrimage = false;
+                this.defaultqrimage = true;
+
             }
             else {
                 this.messagecouponfield = false;
@@ -498,22 +521,23 @@ export class HomeComponent {
         //for Dynamic add
         if (this.qrstatus == "Dynamic") {
 
-            if (this.signin == true) {
-                this.messageurlfield = false;
-                this.messagecouponfield = false;
-                // this.router.navigate(['pages/login']);
+            // if (this.signin == true) {
+            //     this.messageurlfield = false;
+            //     this.messagecouponfield = false;
+            //     // this.router.navigate(['pages/login']);
+            // }
+            // else {
+            console.log("adding dynamic");
+
+            // if (this.messagerequiredfield == false) {
+            // this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
+            // }
+            if (this.messageurlfield == false && this.messagecontactfield == false && this.messagephonefield == false && this.messagetextfield == false && this.messagevcardfield == false && this.messagesmsfield == false && this.messagecouponfield == false) {
+                this.staticqrcode = this.qrdata;
+                ////remove this comment
+                //this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
             }
-            else {
-                console.log("adding dynamic");
-               
-                // if (this.messagerequiredfield == false) {
-                // this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
-                // }
-                if (this.messageurlfield == false && this.messagecontactfield == false && this.messagephonefield == false && this.messagetextfield == false && this.messagevcardfield == false && this.messagesmsfield == false && this.messagecouponfield == false) {
-                    this.staticqrcode = this.qrdata;
-                    this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
-                }
-            }
+            // }
         }
 
         //for static add
@@ -527,7 +551,9 @@ export class HomeComponent {
             if (this.messageurlfield == false && this.messagecontactfield == false && this.messagephonefield == false && this.messagetextfield == false && this.messagevcardfield == false && this.messagesmsfield == false && this.messagecouponfield == false) {
                 // this.staticqrcode = '{' + 'Type :' + qrtype + 'Data :' +'[' + this.qrdata +']' + '}';
                 this.staticqrcode = this.qrdata;
-                this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
+                ////remove this comment
+                
+                // this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
             }
         }
         // this.qrElement = <HTMLVideoElement>document.getElementById("saticqr");
@@ -662,6 +688,7 @@ export class HomeComponent {
         this.qrinfo = Jsonqrinfoobj;
 
     }
+    
 
 
     DownloadQRCodeAsJPG() {
@@ -725,5 +752,10 @@ export class HomeComponent {
           </html>`
         );
         popupWin.document.close();
+    }
+
+    styleqrModal(){
+        debugger;
+        this.generateqrimage =true;
     }
 }

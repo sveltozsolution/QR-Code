@@ -13,13 +13,14 @@ export class AppHeaderComponent {
   signin: boolean = true;
   signout: boolean = false;
   navtoggle: boolean = false;
+  myqrrcode: boolean = false;
   userid: string = "";
   username: string = "";
-  
+
 
   constructor(private router: Router, private webservice: WebService) { }
+
   ngOnInit() {
-    // this.initializevariable();
     debugger;
     this.userid = localStorage.getItem("userid");
 
@@ -27,18 +28,44 @@ export class AppHeaderComponent {
       this.signin = true;
       this.signout = false;
       this.navtoggle = false;
+      this.myqrrcode = true;
     } else {
       this.signout = true;
       this.signin = false;
 
       this.username = localStorage.getItem("firstname");
       this.navtoggle = true;
-
+      this.myqrrcode = false;
     }
   }
-  
+  home() {
+    this.router.navigate(['/home'])
+
+  }
+  features() {
+    this.router.navigate(['/features'])
+
+  }
+
+  pricing() {
+    this.router.navigate(['/pricing'])
+
+  }
+  help() {
+    this.router.navigate(['/help'])
+
+  }
+  blog() {
+    this.router.navigate(['/blog'])
+  }
+
+  myqrcode() {
+    debugger;
+    this.router.navigate(['/myqrcode'])
+  }
 
   login() {
+    debugger
     this.router.navigate(['pages/login'])
   }
   logout() {

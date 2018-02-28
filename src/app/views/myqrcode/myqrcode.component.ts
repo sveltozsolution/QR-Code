@@ -41,9 +41,9 @@ export class MyqrcodeComponent {
 
     userid: string = "";
     //show the signin and signout button
-    signin: boolean = true;
-    signout: boolean = false;
-    mydatasection: boolean = false;
+    // signin: boolean = true;
+    // signout: boolean = false;
+   // mydatasection: boolean = false;
 
     //edit url variable
     eurl: string = "";
@@ -60,19 +60,19 @@ export class MyqrcodeComponent {
         debugger;
 
         this.bindqrcode();
-        this.userid = localStorage.getItem("userid");
+       // this.userid = localStorage.getItem("userid");
 
-        if (this.userid == null) {
-            this.signin = true;
-            this.signout = false;
-            this.mydatasection = false;
+        // if (this.userid == null) {
+        //     this.signin = true;
+        //     this.signout = false;
+        //     this.mydatasection = false;
 
-        } else {
-            this.signout = true;
-            this.signin = false;
-            this.mydatasection = true;
+        // } else {
+        //     this.signout = true;
+        //     this.signin = false;
+        //     this.mydatasection = true;
 
-        }
+        // }
         // this.username = localStorage.getItem("firstname");
     }
 
@@ -113,7 +113,7 @@ export class MyqrcodeComponent {
             var dynamicpath = "";
 
             if (qrcode[i].qrtype == "contact") {
-                debugger;
+                debugger; 
 
                 var jsondata = qrcode[i].qrdata;
                 const values = Object.keys(jsondata).map(key => jsondata[key]).map(x => x.substr(0, x.length - 4));
@@ -122,7 +122,7 @@ export class MyqrcodeComponent {
                 // fullname = values[0] + ' ' + values[1];
                 fullname = values[0] + ' ' + values[1];
 
-                var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
+                var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
                 //dynamicpath = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
             }
             else {

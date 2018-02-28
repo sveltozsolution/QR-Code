@@ -11,6 +11,8 @@ export class WebService {
     USER_ROLE = "userrole";
     loginvalid = "loginvalid";
     userid = "userid";
+ 
+    ////remove this comment
 
        base_url = 'http://localhost:5000/api/';
     // base_url = 'https://qurcodeapi.herokuapp.com/api/';
