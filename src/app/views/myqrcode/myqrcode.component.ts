@@ -13,7 +13,7 @@ export class MyqrcodeComponent {
     id: string = "";
 
 
-    @ViewChild('qrcode') qrcode_ana: QRCodeComponent;
+    @ViewChild('qrcode') qrcode_download: QRCodeComponent;
 
     //Edit Contact variables
     efirstname: string = "";
@@ -121,14 +121,21 @@ export class MyqrcodeComponent {
                 fullname = values[0] + ' ' + values[1];
                 urldata="";
 
-                var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
-                //dynamicpath = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+               // var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+                var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
             }
 
             else if (qrcode[i].qrtype == "url") {
-                var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+               // var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+                var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
                 urldata = qrcode[i].qrdata;
             }
+            
+            else if (qrcode[i].qrtype == "Coupon") {
+                // var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+                 var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
+                //  urldata = qrcode[i].qrdata;
+             }
 
             else {
 
@@ -246,16 +253,67 @@ export class MyqrcodeComponent {
     // }
 
 
-    DownloadQRCode(id) {
+    DownloadQRCodeAsJPG() {
+        //@ViewChild('qrcode') : QRCodeComponent;
         debugger;
-
-        let el: ElementRef = this.qrcode_ana['elementRef'];
+        //  @ViewChild('qrcode') qrcode1: QRCodeComponent;
+        let el: ElementRef = this.qrcode_download['elementRef'];
         let html: string = el.nativeElement.innerHTML;
         let img64: string = html.substr(0, html.length - 2).split('base64,')[1];
+
         let a = document.createElement("a");
         a.href = 'data:application/octet-stream;base64,' + img64;
-        a.download = 'qrcode.png';
+        a.download = 'qrcode.jpg';
         a.click();
+    }
+
+    DownloadQRCodeAsEPS() {
+        //@ViewChild('qrcode') : QRCodeComponent;
+        debugger;
+        //  @ViewChild('qrcode') qrcode1: QRCodeComponent;
+        let el: ElementRef = this.qrcode_download['elementRef'];
+        let html: string = el.nativeElement.innerHTML;
+        let img64: string = html.substr(0, html.length - 2).split('base64,')[1];
+
+        let a = document.createElement("a");
+        a.href = 'data:application/octet-stream;base64,' + img64;
+        a.download = 'qrcode.eps';
+        a.click();
+    }
+    
+    DownloadQRCodeAsPDF() {
+        //@ViewChild('qrcode') : QRCodeComponent;
+        debugger;
+        //  @ViewChild('qrcode') qrcode1: QRCodeComponent;
+        let el: ElementRef = this.qrcode_download['elementRef'];
+        let html: string = el.nativeElement.innerHTML;
+        let img64: string = html.substr(0, html.length - 2).split('base64,')[1];
+
+        let a = document.createElement("a");
+        a.href = 'data:application/octet-stream;base64,' + img64;
+        a.download = 'qrcode.pdf';
+        a.click();
+    }
+
+    //print QRCode image
+    printcode() {
+        debugger;
+        let printContents, popupWin;
+        printContents = document.getElementById('print-section').innerHTML;
+        popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+        popupWin.document.open();
+        popupWin.document.write(`
+          <html>
+            <head>
+              <title>Qr Code</title>
+              <style>
+              //........Customized style.......
+              </style>
+            </head>
+        <body onload="window.print();window.close()">${printContents}</body>
+          </html>`
+        );
+        popupWin.document.close();
     }
 
 }

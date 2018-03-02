@@ -9,6 +9,8 @@ import { QRCodeComponent } from 'angular2-qrcode';
     providers: [WebService, Ng2DeviceService]
 })
 export class HomeComponent {
+    demoarr:Array<any> = [];
+
     @ViewChild('qrcode') qrcode_download: QRCodeComponent;
 
     //device location
@@ -152,7 +154,7 @@ export class HomeComponent {
     mydatasection: boolean = true;
     othersection: boolean = true;
 
-    //color on button 
+    //color on button
     // staticbutton: boolean = true;
     // dynamicbutton: boolean = false;
 
@@ -410,13 +412,12 @@ export class HomeComponent {
 
             // this.mydatasection = false;
             this.qrstatus = "Static";
-
         }
     }
 
 
     Generate() {
-       
+       debugger;
         this.generateqrimage = true;
         this.defaultqrimage = false;
         var currentdate = new Date();
@@ -532,7 +533,7 @@ export class HomeComponent {
             if (this.messageurlfield == false && this.messagecontactfield == false && this.messagephonefield == false && this.messagetextfield == false && this.messagevcardfield == false && this.messagesmsfield == false && this.messagecouponfield == false) {
                debugger
                 this.staticqrcode = this.qrdata;
-               
+
                   this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
             }
             // }
@@ -541,6 +542,7 @@ export class HomeComponent {
         //for static add
         else {
             console.log("adding static");
+
 
             if (this.smssection || this.contactsection || this.vcardsection || this.couponsection) {
                 this.staticjsondata(this.qrdata);
@@ -578,61 +580,88 @@ export class HomeComponent {
     // }
 
     staticjsondata(qrdata) {
+        debugger
+        // let qrdata1: any;
         const jsondata = qrdata;
         const values = Object.keys(qrdata).map(key => qrdata[key]).map(x => x.substr(0, x.length - 4));
         const commaJoinedValues = values.join(',');
         console.log(qrdata);
+
+        // if (this.couponsection) {
+        //     debugger;
+        //     this.qrtype = "Coupon";
+        //     var ctitle = qrdata.Title
+        //     var cdiscount = qrdata.Discount
+        //     var cwebsite = qrdata.Website
+        //     var cpromocode = qrdata["Promo Code"]
+        //     var coffer = qrdata.Offer
+        //     var cterms = qrdata.Terms
+        //     var cdate = qrdata["Expiry Date"]
+
+        //     qrdata1 = this.qrtype + '\n' +
+        //         'Title :' + qrdata.Title + '\n' +
+        //         'Discount :' + qrdata.Discount + '\n' +
+        //         'Website :' + qrdata.Website + '\n' +
+        //         'Promo Code :' + qrdata["Promo Code"] + '\n' +
+        //         'Offer :' + qrdata.Offer + '\n' +
+        //         'Terms :' + qrdata.Terms + '\n' +
+        //         'Expiry Date :' + qrdata["Expiry Date"];
+
+        //     alert(qrdata1);
+        // }
+
     }
 
     createJson() {
         var Jsonobj = "";
 
         if (this.smssection) {
+            debugger;
             Jsonobj = '{'
-                + 'Mobile No. : "' + this.mobileno + '",'
-                + 'Message : "' + this.message + '"'
+                + '"Mobile No." : "' + this.mobileno + '",'
+                + '"Message" : "' + this.message + '"'
                 + '}';
         }
         else if (this.contactsection) {
 
             Jsonobj = '{'
-                + 'First Name : "' + this.firstname + '",'
-                + 'Family Name : "' + this.familyname + '",'
-                + 'Job Title: "' + this.jobtitle + '",'
-                + 'Company : "' + this.company + '",'
-                + 'PhoneDirect : "' + this.phonedirect + '",'
-                + 'PhoneWork : "' + this.phonework + '",'
-                + 'PhoneHome: "' + this.phonehome + '",'
-                + 'Fax : "' + this.fax + '",'
-                + 'Email: "' + this.email + '",'
-                + 'URL : "' + this.contacturl + '",'
-                + 'Street : "' + this.street + '",'
-                + 'City : "' + this.city + '",'
-                + 'state : "' + this.state + '",'
-                + 'Zip: "' + this.zip + '",'
-                + 'Country : "' + this.country + '",'
-                + 'Facebook : "' + this.facebook + '",'
-                + 'Twitter : "' + this.twitter + '",'
-                + 'Pinterest : "' + this.pinterest + '",'
-                + 'LinkedIn : "' + this.linkedin + '"'
+                + '"First Name" : "' + this.firstname + '",'
+                + '"Family Name" : "' + this.familyname + '",'
+                + '"Job Title": "' + this.jobtitle + '",'
+                + '"Company" : "' + this.company + '",'
+                + '"PhoneDirect" : "' + this.phonedirect + '",'
+                + '"PhoneWork" : "' + this.phonework + '",'
+                + '"PhoneHome": "' + this.phonehome + '",'
+                + '"Fax" : "' + this.fax + '",'
+                + '"Email": "' + this.email + '",'
+                + '"URL" : "' + this.contacturl + '",'
+                + '"Street" : "' + this.street + '",'
+                + '"City" : "' + this.city + '",'
+                + '"state" : "' + this.state + '",'
+                + '"Zip": "' + this.zip + '",'
+                + '"Country" : "' + this.country + '",'
+                + '"Facebook" : "' + this.facebook + '",'
+                + '"Twitter" : "' + this.twitter + '",'
+                + '"Pinterest" : "' + this.pinterest + '",'
+                + '"LinkedIn" : "' + this.linkedin + '"'
                 + '}';
         }
 
         else if (this.vcardsection) {
 
             Jsonobj = '{'
-                + 'First Name : "' + this.vfirstname + '",'
-                + 'Family Name : "' + this.vfamilyname + '",'
-                + 'Company Name : "' + this.vcompany + '",'
-                + 'Title Within Company : "' + this.vtitle + '",'
-                + 'Phone No : "' + this.vphoneno + '",'
-                + 'Email : "' + this.vemail + '",'
-                + 'Website : "' + this.vwebsite + '",'
-                + 'Street : "' + this.vstreet + '",'
-                + 'City : "' + this.vcity + '",'
-                + 'State : "' + this.vstate + '",'
-                + 'Zip: "' + this.vzip + '",'
-                + 'Country : "' + this.vcountry + '"'
+                + '"First Name" : "' + this.vfirstname + '",'
+                + '"Family Name" : "' + this.vfamilyname + '",'
+                + '"Company Name" : "' + this.vcompany + '",'
+                + '"Title Within Company" : "' + this.vtitle + '",'
+                + '"Phone No" : "' + this.vphoneno + '",'
+                + '"Email" : "' + this.vemail + '",'
+                + '"Website" : "' + this.vwebsite + '",'
+                + '"Street" : "' + this.vstreet + '",'
+                + '"City" : "' + this.vcity + '",'
+                + '"State" : "' + this.vstate + '",'
+                + '"Zip": "' + this.vzip + '",'
+                + '"Country" : "' + this.vcountry + '"'
                 + '}';
         }
         //coupon section
@@ -640,18 +669,35 @@ export class HomeComponent {
             this.qrtype = "Coupon";
 
             Jsonobj = '{'
-                + 'Title : "' + this.ctitle + '",'
+                + '"Title" : "' + this.ctitle + '",'
                 + 'Discount : "' + this.cdiscount + '",'
-                + 'Website : "' + this.cwebsite + '",'
-                + 'Promo Code : "' + this.cpromocode + '",'
-                + 'Offer : "' + this.coffer + '",'
-                + 'Terms : "' + this.cterms + '",'
-                + 'Expiry Date : "' + this.cdate + '",'
-
+                + '"Website" : "' + this.cwebsite + '",'
+                + '"Promo Code" : "' + this.cpromocode + '",'
+                + '"Offer" : "' + this.coffer + '",'
+                + '"Terms" : "' + this.cterms + '",'
+                + '"Expiry Date" : "' + this.cdate + '"'
                 + '}';
         }
         this.qrdata = Jsonobj;
     }
+
+//     createJsoncoupon(){
+//         debugger;
+//         this.qrtype = "Coupon";
+
+//         this.demoarr.push({
+//             "Title": this.ctitle,
+//             "Discount": this.cdiscount,
+//             "Website": this.cwebsite,
+//             "Promo Code": this.cpromocode,
+//             "Offer": this.coffer,
+//             "Terms": this.cterms,
+//             "Expiry Date": this.cdate,
+//         })
+//   this.qrdata = this.demoarr[0];
+//   debugger;
+//     }
+
 
     epicFunction() {
 

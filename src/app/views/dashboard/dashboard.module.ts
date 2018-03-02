@@ -13,7 +13,8 @@ import { QRCodeModule } from 'angular2-qrcode';
     DashboardRoutingModule,
     ChartsModule,
     QRCodeModule,
-    BsDropdownModule
+    BsDropdownModule,
+    ChartsModule
   ],
   declarations: [ DashboardComponent]
 })

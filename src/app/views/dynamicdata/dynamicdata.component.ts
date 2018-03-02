@@ -4,10 +4,9 @@ import { WebService } from '../../web.service';
 import { ActivatedRoute } from '@angular/router';
 import { Ng2DeviceService } from 'ng2-device-detector';
 import { Location } from '@angular/common';
-// import { MyUserServService } from 'app/views/dynamicdata/dynamicdata.service';
+// import { MyUserServService } from 'app/views/dynamicdata/dynamicdata.service'; 
 import { HttpClient } from '@angular/common/http';
-import { Alert } from 'selenium-webdriver';
-// import { HttpRequest,HttpClient, HttpResponse, HttpInterceptor, HttpHandler, HttpEvent } from '@angular/common/http'
+// import { HttpRequest,HttpClient, HttpResponse, HttpInterceptor, HttpHandler, HttpEvent } from '@angular/common/http' 
 @Component({
   selector: 'app-dynamicdata',
   templateUrl: './dynamicdata.component.html',
@@ -17,13 +16,24 @@ import { Alert } from 'selenium-webdriver';
 })
 
 export class DynamicdataComponent implements OnInit {
-
-
-
-  i: number=0;
-  userid: string;
+  Title: any;
+  newdata: any;
+  qrinfo: string;
+  language: any;
+  usseragent: any;
+  osversion: any;
+  os: any;
+  browsername: any;
+  timezone: any;
+  state: any;
+  city: any;
+  country: any;
+  ip: any;
   userdata: any;
-  _body: any;
+  qrdata2: any;
+
+
+
   errorMessage: any;
   IppDetails: any;
   loading: boolean;
@@ -37,70 +47,146 @@ export class DynamicdataComponent implements OnInit {
   qrdata: string = "";
   deviceInfo = null;
   id: any;
+  qruserinfo = "";
+  qrdata1 = "";
+
   private sub: any;
 
   constructor(
     public WebService: WebService,
-    //  public  userService: MyUserServService,
+    //  public  userService: MyUserServService, 
     public router: Router, location: Location, private webservice: WebService, private route: ActivatedRoute, private deviceService: Ng2DeviceService) {
     this.epicFunction();
-    this.WebService.getIpAddress().subscribe(data => {
-      console.log(data);
-    this.userdata=JSON.parse(data._body);
-      debugger;
-    //  this.usersdata()
-     this.deviceInfo = this.deviceService.getDeviceInfo();
-    });
+
   }
+
   epicFunction() {
     console.log('hello `Dynamic` component');
-   
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+    console.log(this.deviceInfo);
+    // alert(this.deviceInfo); 
   }
 
   ngOnInit() {
-    debugger;
+
+    debugger
     this.sub = this.route.params.subscribe(params => {
-      debugger;
-      this.id = params['id']; // (+) converts string 'id' to a number
-      alert(this.id);
+
+      this.id = params['id']; // ✓ converts string 'id' to a number 
+      // alert(this.id);
+      this.Getid();
+
+
     });
 
+    console.log("ip");
+    this.WebService.getIpAddress().subscribe(data => {
+      console.log(data);
+      debugger;
+      this.qruserinfo = data._body
+
+
+      //  var abc=JSON.parse(data._body); 
+      //   debugger; 
+      //   alert(abc.ip); 
+      //   alert(abc.country_name); 
+      this.userdata = JSON.parse(this.qruserinfo);
+      // this.userdata = JSON.stringify(this.userdata); 
+      // this.userdata=JSON.parse(this.userdata); 
+      // this.usersdata() 
+      this.ip = this.userdata.ip
+      this.country = this.userdata.country_name
+      this.city = this.userdata.city
+      this.state = this.userdata.region_name
+      this.timezone = this.userdata.time_zone
+      this.deviceInfo = this.deviceService.getDeviceInfo();
+      this.browsername = this.deviceInfo.browser;
+      this.os = this.deviceInfo.os;
+      this.osversion = this.deviceInfo.os_version;
+      this.usseragent = this.deviceInfo.userAgent;
+      this.language = this.deviceInfo.language;
+      this.createJson2();
+
+      // alert(this.userdata.ip); 
+      // alert(this.userdata.city); 
+      //this.usersdata() 
+    });
+
+    // this.getIP() 
+
+    this._http.get("http://freegeoip.net/json/")
+      .map(data => {
+
+        console.log(data.json().ip);
+      });
+
+
+
+
+    // }; 
+    // this.Getid(); 
+    // if(window.navigator.geolocation){ 
+    //   window.navigator.geolocation.getCurrentPosition(this.setPosition.bind(this)); 
+    // debugger; 
+    // }; 
   }
 
   Getid() {
-    // debugger;
+
     // this.id = "5a8fee91d7f04f0021f60813"
 
-    // console.log("qrcodeid value");
-    // console.log(this.id);
-    // this.webservice.getqrcode(this.id).subscribe(qrcode => {
-    //   this.qrdata = JSON.parse(qrcode.qrdata);
+    console.log("qrcodeid value");
+    console.log(this.id);
+    this.webservice.getqrcode(this.id).subscribe(qrcode => {
+      debugger;
+      this.qrdata1 = qrcode.qrdata;
+      // var jsonobj = JSON.parse(this.qrdata1);
+      this.qrdata2 = JSON.parse(this.qrdata1);
 
-    //   alert(this.qrcode.qrdata)
-    //   console.log("json data");
-    //   console.log(this.qrdata);
-    // });
+    });
   }
 
   keys() {
-    // this.count()
-    return Object.keys(this.qrdata);
+    return Object.keys(this.qrdata2);
   }
-  // getIP() {
-  //   this.count()
-  //   this.loading = true;
-  //   this.webservice.getIP()
-  //     .subscribe(
-  //       IPDetails => this.IppDetails,
-  //       error => this.errorMessage = <any>error
-  //     );
+  //   getIP() { 
+  //     debugger; 
+  //     this.loading = true; 
+  //     this.webservice.getIP() 
+  //     .subscribe( 
+  //         IPDetails => this.IppDetails, 
+  //         error =>  this.errorMessage = <any>error 
+  //         ); 
+  // } 
+
+  usersdata(qruserinfo, id) {
+
+    this.webservice.postuserdata(qruserinfo, id);
+
   }
 
-//   usersdata(){
-// //  this.webservice.postuserdata(this.userdata);
-//  this.count()
+  createJson2() {
 
-//   }
 
-// }
+    var Jsonuserqrinfoobj = '{'
+      //+ '"device" : "' + this.device + '",' 
+      + '"language" : "' + this.language + '",'
+      + '"browsername" : "' + this.browsername + '",'
+      // + '"browserversion" : "' + this.browserversion + '",' 
+      + '"os" : "' + this.os + '",'
+      + '"osversion" : "' + this.osversion + '",'
+      + '"usseragent" : "' + this.usseragent + '",'
+      // + '" getDeviceInfo" : "' + this.getDeviceInfo + '" ' 
+      + '"ip" : "' + this.ip + '",'
+      + '"country" : "' + this.country + '",'
+      + '"city" : "' + this.city + '",'
+      + '"state" : "' + this.state + '",'
+      + '"timezone" : "' + this.timezone + '"'
 
+      + '}'
+    this.qruserinfo = Jsonuserqrinfoobj;
+    // this.usersdata(this.qrinfo); 
+    this.usersdata(this.qruserinfo, this.id);
+  }
+
+}

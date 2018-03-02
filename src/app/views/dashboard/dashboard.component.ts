@@ -7,7 +7,21 @@ import { WebService } from 'app/web.service';
   providers: [WebService]
 })
 export class DashboardComponent implements OnInit {
-  count: any;
+  Otheros: number = 0;
+  windows: number = 0;
+  ipa: any;
+  otherbrowser: number = 0;
+  crome: number = 0;
+  totalcount: any;
+  country: any;
+  city: any;
+  ipadress: any;
+  osy: any;
+  browser: any;
+  device: any;
+  ip: any;
+  ipget: any;
+
   generateddate: any;
   browsername: any;
   os: any;
@@ -18,15 +32,25 @@ export class DashboardComponent implements OnInit {
   qrdata: any;
   qrcode: any;
   private sub: any;
-  constructor(public webservice: WebService,private route: ActivatedRoute) {
+  count: number = 0;
+  constructor(public webservice: WebService, private route: ActivatedRoute) {
+
     this.sub = this.route.params.subscribe(params => {
-      debugger;
+
       this.id = params['id']; // (+) converts string 'id' to a number
-      alert(this.id);
-    
+
+
     });
+    this.getcount(this.id)
     this.bindqrcode()
   }
+
+  public pieChartLabels: string[] = ['Crome', 'Other'];
+  public pieChartData: number[] = [this.crome, this.otherbrowser];
+  public pieChartType: string = 'pie';
+
+  // events
+
   public brandPrimary = '#20a8d8';
   public brandSuccess = '#4dbd74';
   public brandInfo = '#63c2de';
@@ -493,37 +517,85 @@ export class DashboardComponent implements OnInit {
     this.webservice.getallqrcode().subscribe(qrcode => {
       this.qrcode = qrcode;
 
-      debugger;
-     
       for (var i = 0; i <= qrcode.length; i++) {
         var iddata = qrcode[i]._id
         if (this.id == iddata) {
-debugger;
-          this.qrdata = qrcode[i].qrdata
-          this.generateddate=qrcode[i].generateddate
 
-          // scanedata
-          
-          // this.devicedeatils = JSON.parse(qrcode[i].qrinfo)
-          // this.os = this.devicedeatils.os;
-          // this.browsername = this.devicedeatils.browsername
-         debugger
+          this.qrdata = qrcode[i].qrdata
+          this.generateddate = qrcode[i].generateddate
         }
       }
 
 
     })
-    // this.webservice.getuserdata().subscribe(qruserdata => {
-           
-    //   for (var i = 0; i <= qruserdata.length; i++) {
-    //     // var iddata = qruserdata[i]._id
-    //   // if (this.id == iddata) {
-    //   // this.count=qruserdata[i].qrscancount
-    //   //  debugger;
-    //   // }
-    //   debugger;
-   
-    // }
-    //     })
+    this.webservice.getuserdata().subscribe(qruserdata => {
+      this.ipa = [];
+      for (var i = 0; i <= qruserdata.length; i++) {
+        this.count++
+        var iddata = qruserdata[i].userid
+        if (this.id == iddata) {
+          this.devicedeatils = qruserdata[i].qruserinfo
+          var finalData = this.devicedeatils.replace(/\\/g, "");
+          this.device = JSON.parse(finalData)
+          debugger;
+          //  let devicedata=[]
+          this.browser = this.device.browsername
+
+
+          //  browser
+          if (this.browser == "chrome") {
+
+            this.crome++
+          }
+          else {
+            this.otherbrowser++
+          }
+
+          // os
+          this.osy = this.device.os
+          if (this.osy == "windows") {
+
+            this.windows++
+          }
+          else {
+            this.Otheros++
+          }
+          //    if( this.osy=="chrome"){
+
+          //    this.crome++
+          //  }
+          //  else {
+          //    this.otherbrowser++
+          //  }
+
+          this.ipadress = this.device.ip
+
+          this.ipa.push(this.ipadress);
+          this.city = this.device.city
+          this.country = this.device.country
+          debugger;
+
+        }
+
+      }
+    })
+  }
+
+  getcount(id) {
+
+    this.webservice.getusercount(id).subscribe(qrcode => {
+      debugger;
+      this.totalcount = qrcode;
+
+      // for (var i = 0; i <= qrcode.length; i++) {
+      //   var iddata = qrcode[i]._id
+      //   if (this.id == iddata) {
+
+      //     // this.qrdata = qrcode[i].qrdata
+      //     // this.generateddate=qrcode[i].generateddate
+      //   }
+
+
+    })
   }
 }

@@ -17,10 +17,21 @@
     <div class="col-sm-6">
       <div class="row">
         <div id="wrapper" #wrapper class="col-sm-4">
-          <qr-code style="margin-left: 15px;" [value]="item.path + item.qrtype" [size]="110" #qrcode></qr-code>
+            <div id="print-section">
+          <qr-code style="margin-left: 15px;" [value]="item.path" [size]="110" #qrcode></qr-code>
+         </div>
           <br>
-          <button type="button" class="btn btn-sm btn-primary" style="margin-left: 18px;width: 74px;height: 21px;" (click)="DownloadQRCode(item.id)">
-            <p style="margin-top:-5px;">Download</p>
+          <button type="button" class="btn btn-sm btn-primary" style="width: 110px;height:21px;">
+            <p style="margin-top:-5px;" (click)="DownloadQRCodeAsJPG()">JPG</p>
+          </button>
+          <button type="button" class="btn btn-sm btn-primary" style="width:110px;height: 21px;">
+            <p style="margin-top:-5px;" (click)="DownloadQRCodeAsEPS()">EPS</p>
+          </button>
+          <button type="button" class="btn btn-sm btn-primary" style="width:110px;height: 21px;">
+            <p style="margin-top:-5px;" (click)="DownloadQRCodeAsPDF()">PDF</p>
+          </button>
+          <button type="button" class="btn btn-sm btn-primary" style="width:110px;height: 21px;">
+            <p style="margin-top:-5px;" (click)="printcode()">Print</p>
           </button>
           <!-- <a style="margin-top:-5px;"  [routerLink]="['/dashboard', item.id]" (click)="sendid(item.id)" class="nav-link" href="/dashboard" >Analytics</a> -->
           

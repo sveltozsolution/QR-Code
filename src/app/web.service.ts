@@ -12,12 +12,12 @@ export class WebService {
     USER_ROLE = "userrole";
     loginvalid = "loginvalid";
     userid = "userid";
- 
 
-      // base_url = 'http://localhost:5000/api/';
+
+   // base_url = 'http://localhost:5000/api/';
      base_url = 'https://qurcodeapi.herokuapp.com/api/';
 
- 
+
     constructor(private http: Http, private router: Router) { }
 
     route(menuid: string) {
@@ -37,7 +37,7 @@ export class WebService {
     }
 
     Login(email: string, password: string) {
-        
+
         // localStorage.setItem(this.loginvalid, "false");
         let data = new URLSearchParams();
         data.append('email', email);
@@ -79,11 +79,11 @@ export class WebService {
 
     // qrcode api call
     // generatecode(title: string, qrstatus: string, qrtype: string, qrdata: string) {
-    generatecode(generateddate: string, userid: string, qrtype: string, qrdata: string, qrinfo:string) {
+    generatecode(generateddate: string, userid: string, qrtype: string, qrdata: string, qrinfo: string) {
         let data = new URLSearchParams();
         // data.append('title', title);
         // data.append('qrstatus', qrstatus);        
-debugger;
+        debugger;
         data.append('generateddate', generateddate);
         data.append('userid', userid);
         data.append('qrtype', qrtype);
@@ -142,51 +142,62 @@ debugger;
     }
 
     getqrcode(qrcodeid: string) {
-        debugger;
         var url = this.base_url + 'qrcode/' + qrcodeid
         var headers = new Headers({ 'Authorization': localStorage.getItem('token') });
         var options = new RequestOptions({ headers: headers });
         return this.http.get(url, options).map(res => res.json());
     }
-    getIpAddress() { 
-        return this.http 
-              .get('http://freegeoip.net/json/?callback') 
-              .map(response => response || {}) 
-              .catch(this.handleError); 
-    } 
-    
-    private handleError(error: HttpErrorResponse): 
-    Observable<any> { 
-      //Log error in the browser console 
-      console.error('observable error: ', error); 
+    getIpAddress() {
+        return this.http
+            .get('http://freegeoip.net/json/?callback')
+            .map(response => response || {})
+            .catch(this.handleError);
+    }
 
-      return Observable.throw(error); 
-  } 
-//   getIP(): Observable<Data[]> { 
-//       return this.http.get('http://ipinfo.io') // ...using post request 
-//       .map((res:Response) => res.json()) // ...and calling .json() on the response to return data 
-//       .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any 
-//   } 
-  postuserdata(userdata){ 
-   debugger 
-      var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' }); 
-       var options = new RequestOptions({ headers: headers }); 
+    private handleError(error: HttpErrorResponse):
+        Observable<any> {
+        //Log error in the browser console 
+        console.error('observable error: ', error);
 
+        return Observable.throw(error);
+    }
+    //   getIP(): Observable<Data[]> { 
+    //       return this.http.get('http://ipinfo.io') // ...using post request 
+    //       .map((res:Response) => res.json()) // ...and calling .json() on the response to return data 
+    //       .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any 
+    //   } 
 
-       this.http.post(this.base_url + 'addqrcode', userdata,).subscribe(res => { 
-
-      }) 
-  } 
-  getuserdata() { 
-      var url = this.base_url + 'qrcodeuserList'; 
-      var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' }); 
-      var options = new RequestOptions({ headers: headers }); 
-      debugger; 
-      return this.http.get(url, options).map(res => res.json()); 
+    postuserdata(userdata, id) {
+        let data = new URLSearchParams();
+        data.append('qruserinfo', userdata);
+        data.append('userid', id);
+        var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        var options = new RequestOptions({ headers: headers });
 
 
-  } 
-} 
+        this.http.post(this.base_url + 'qruserinfo', data, ).subscribe(res => {
+
+        })
+    }
+    getuserdata() {
+        var url = this.base_url + 'qrcodeuserList';
+        var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        var options = new RequestOptions({ headers: headers });
+        debugger;
+        return this.http.get(url, options).map(res => res.json());
+
+    }
+
+    getusercount(id) {
+        var url = this.base_url + 'qrcount/';
+        var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        var options = new RequestOptions({ headers: headers });
+        debugger;
+        return this.http.get(url + id, options).map(res => res.json());
+
+    }
+
+}
 
 
 
