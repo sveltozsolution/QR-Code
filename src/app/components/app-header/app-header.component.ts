@@ -20,9 +20,9 @@ export class AppHeaderComponent {
 
 
   constructor(private router: Router, private webservice: WebService) {
-    this.id="5a978a08d81ac815f84ef999"
-    // 5a978a08d81ac815f84ef999
-   }
+    // this.id = "5a98e67f95673611dc9b2e42" //coupon
+    //this.id= "5a978a08d81ac815f84ef999" //youtube
+  }
 
   ngOnInit() {
     debugger;
@@ -42,26 +42,26 @@ export class AppHeaderComponent {
       this.myqrrcode = false;
     }
   }
-  home() {
-    this.router.navigate(['/home'])
+  // home() {
+  //   this.router.navigate(['/home'])
 
-  }
-  features() {
-    this.router.navigate(['/features'])
+  // }
+  // features() {
+  //   this.router.navigate(['/features'])
 
-  }
+  // }
 
-  pricing() {
-    this.router.navigate(['/pricing'])
+  // pricing() {
+  //   this.router.navigate(['/pricing'])
 
-  }
-  help() {
-    this.router.navigate(['/help'])
+  // }
+  // help() {
+  //   this.router.navigate(['/help'])
 
-  }
-  blog() {
-    this.router.navigate(['/blog'])
-  }
+  // }
+  // blog() {
+  //   this.router.navigate(['/blog'])
+  // }
 
   myqrcode() {
     debugger;

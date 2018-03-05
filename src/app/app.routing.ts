@@ -21,9 +21,9 @@ export const routes: Routes = [
       title: 'Home'
     },
     children: [
-      { 
-        path: 'dashboard/:id', 
-        loadChildren: './views/dashboard/dashboard.module#DashboardModule' 
+      {
+        path: 'dashboard/:id',
+        loadChildren: './views/dashboard/dashboard.module#DashboardModule'
       },
       {
         path: 'components',
@@ -40,7 +40,7 @@ export const routes: Routes = [
       {
         path: 'charts',
         loadChildren: './views/chartjs/chartjs.module#ChartJSModule'
-        
+
       },
       {
         path: 'features',
@@ -62,12 +62,12 @@ export const routes: Routes = [
         path: 'payment',
         loadChildren: './views/payment/payment.module#PaymentModule'
       },
-      
+
       {
         path: 'personal',
         loadChildren: './views/personal/personal.module#PersonalModule'
       },
-     
+
       {
         path: 'subscription',
         loadChildren: './views/subscription/subscription.module#SubscriptionModule'
@@ -92,7 +92,7 @@ export const routes: Routes = [
         path: 'home',
         loadChildren: './views/home/home.module#HomeModule'
       },
-      
+
       // {
       //   path: 'text',
       //   loadChildren: './views/text/text.module#TextModule'
@@ -109,7 +109,7 @@ export const routes: Routes = [
         path: 'mycode',
         loadChildren: './views/mycode/mycode.module#MycodeModule'
       },
-      
+
       // {
       //   path: 'vcard',
       //   loadChildren: './views/vcard/vcard.module#VcardModule'
@@ -118,7 +118,7 @@ export const routes: Routes = [
         path: 'setting',
         loadChildren: './views/setting/setting.module#SettingModule'
       },
-     
+
       // {
       //   path: 'mycode',
       //   loadChildren: './views/mycode/mycode.module#MycodeModule'
@@ -126,7 +126,7 @@ export const routes: Routes = [
 
     ]
   },
-  
+
   {
     path: 'pages',
     component: SimpleLayoutComponent,
@@ -143,7 +143,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes),HttpModule ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes), HttpModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {} 
+export class AppRoutingModule { } 

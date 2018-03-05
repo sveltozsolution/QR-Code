@@ -56,11 +56,12 @@ export class MyqrcodeComponent {
     constructor(private webservice: WebService) { }
 
     ngOnInit() {
-        this.initializecontactvariable();
-        debugger;
+        // this.id = "5a98e67f95673611dc9b2e42" //coupon
+        //this.id= "5a978a08d81ac815f84ef999" //youtube
 
+        this.initializecontactvariable();
         this.bindqrcode();
-        // this.userid = localStorage.getItem("userid");
+        this.userid = localStorage.getItem("userid");
 
         // if (this.userid == null) {
         //     this.signin = true;
@@ -99,7 +100,9 @@ export class MyqrcodeComponent {
     }
 
     bindqrcode() {
+        debugger;
         this.webservice.getallqrcode().subscribe(qrcode => {
+
             this.dynamicjsondata(qrcode);
         })
     }
@@ -111,7 +114,7 @@ export class MyqrcodeComponent {
         var urldata = "";
         for (var i = (qrcode.length - 1); i >= 0; i--) {
             var dynamicpath = "";
-
+            var qrstatus = true;
             if (qrcode[i].qrtype == "contact") {
 
                 var jsondata = qrcode[i].qrdata;
@@ -119,36 +122,37 @@ export class MyqrcodeComponent {
                 const commaJoinedValues = values.join(',');
                 console.log(values);
                 fullname = values[0] + ' ' + values[1];
-                urldata="";
+                urldata = "";
 
-               // var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
-                var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
+                var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+               // var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
             }
 
             else if (qrcode[i].qrtype == "url") {
-               // var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
-                var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
+                 var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+                //var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
                 urldata = qrcode[i].qrdata;
             }
-            
+
             else if (qrcode[i].qrtype == "Coupon") {
-                // var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
-                 var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
+                 var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+               // var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
                 //  urldata = qrcode[i].qrdata;
-             }
+            }
 
             else {
 
                 dynamicpath = qrcode[i].qrdata;
-                urldata="";
+                urldata = "";
+                qrstatus=false;
             }
 
-            this.items.push({ 'id': qrcode[i]._id, 'name': fullname, 'urldata': urldata, 'generateddate': qrcode[i].generateddate, 'qrtype': qrcode[i].qrtype, 'path': dynamicpath })
+            this.items.push({ 'id': qrcode[i]._id, 'name': fullname, 'urldata': urldata, 'generateddate': qrcode[i].generateddate, 'qrtype': qrcode[i].qrtype, 'path': dynamicpath, 'qrstatus': qrstatus })
         }
     }
 
     Editurl(id) {
-        debugger;
+
         this.eurl = " ";
         this.urlid = id;
         this.webservice.getqrcode(this.urlid).subscribe(qrcode => {
@@ -159,7 +163,7 @@ export class MyqrcodeComponent {
     }
 
     updateurl() {
-        debugger;
+
         var currentdate = new Date();
         var generateddate = currentdate.toLocaleDateString();
         var userid = this.userid;
@@ -253,9 +257,10 @@ export class MyqrcodeComponent {
     // }
 
 
-    DownloadQRCodeAsJPG() {
+    DownloadQRCodeAsJPG(item) {
+        debugger
         //@ViewChild('qrcode') : QRCodeComponent;
-        debugger;
+
         //  @ViewChild('qrcode') qrcode1: QRCodeComponent;
         let el: ElementRef = this.qrcode_download['elementRef'];
         let html: string = el.nativeElement.innerHTML;
@@ -269,7 +274,7 @@ export class MyqrcodeComponent {
 
     DownloadQRCodeAsEPS() {
         //@ViewChild('qrcode') : QRCodeComponent;
-        debugger;
+
         //  @ViewChild('qrcode') qrcode1: QRCodeComponent;
         let el: ElementRef = this.qrcode_download['elementRef'];
         let html: string = el.nativeElement.innerHTML;
@@ -280,10 +285,10 @@ export class MyqrcodeComponent {
         a.download = 'qrcode.eps';
         a.click();
     }
-    
+
     DownloadQRCodeAsPDF() {
         //@ViewChild('qrcode') : QRCodeComponent;
-        debugger;
+
         //  @ViewChild('qrcode') qrcode1: QRCodeComponent;
         let el: ElementRef = this.qrcode_download['elementRef'];
         let html: string = el.nativeElement.innerHTML;
@@ -297,7 +302,7 @@ export class MyqrcodeComponent {
 
     //print QRCode image
     printcode() {
-        debugger;
+
         let printContents, popupWin;
         printContents = document.getElementById('print-section').innerHTML;
         popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');

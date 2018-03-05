@@ -52,10 +52,12 @@ export class DynamicdataComponent implements OnInit {
 
   private sub: any;
 
-  constructor(
-    public WebService: WebService,
+  //show jeson data on dynamicpage
+  jsondata:boolean =true;
+  nonjsondata:boolean =true;
+
+  constructor( public router: Router, location: Location, private webservice: WebService, private route: ActivatedRoute, private deviceService: Ng2DeviceService) {
     //  public  userService: MyUserServService, 
-    public router: Router, location: Location, private webservice: WebService, private route: ActivatedRoute, private deviceService: Ng2DeviceService) {
     this.epicFunction();
 
   }
@@ -73,18 +75,14 @@ export class DynamicdataComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
 
       this.id = params['id']; // ✓ converts string 'id' to a number 
-      // alert(this.id);
       this.Getid();
-
-
     });
 
     console.log("ip");
-    this.WebService.getIpAddress().subscribe(data => {
+    this.webservice.getIpAddress().subscribe(data => {
       console.log(data);
       debugger;
       this.qruserinfo = data._body
-
 
       //  var abc=JSON.parse(data._body); 
       //   debugger; 
@@ -120,9 +118,6 @@ export class DynamicdataComponent implements OnInit {
         console.log(data.json().ip);
       });
 
-
-
-
     // }; 
     // this.Getid(); 
     // if(window.navigator.geolocation){ 
@@ -139,16 +134,35 @@ export class DynamicdataComponent implements OnInit {
     console.log(this.id);
     this.webservice.getqrcode(this.id).subscribe(qrcode => {
       debugger;
-      this.qrdata1 = qrcode.qrdata;
-      // var jsonobj = JSON.parse(this.qrdata1);
-      this.qrdata2 = JSON.parse(this.qrdata1);
-
+     
+      if(qrcode.qrtype == "url"){
+        this.qrdata2 = qrcode.qrdata;
+        this.nonjsondata= true;
+        this.jsondata = false;
+      }
+      else if(qrcode.qrtype == "phone"){
+        this.qrdata2 = qrcode.qrdata;
+        this.nonjsondata= true;
+        this.jsondata = false;
+        
+      }
+      else{
+        this.qrdata1 = qrcode.qrdata;
+        // var jsonobj = JSON.parse(this.qrdata1);
+        this.qrdata2 = JSON.parse(this.qrdata1);
+        this.nonjsondata= false;
+        this.jsondata = true;
+      }
     });
   }
 
   keys() {
     return Object.keys(this.qrdata2);
   }
+ 
+
+
+
   //   getIP() { 
   //     debugger; 
   //     this.loading = true; 

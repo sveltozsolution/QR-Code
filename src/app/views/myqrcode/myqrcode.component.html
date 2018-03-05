@@ -1,6 +1,6 @@
 <!--Dynamic data-->
 <!-- <div *ngIf="mydatasection"> -->
-  <div>
+<div>
   <div class="row" style="margin-top:10px;">
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
@@ -17,44 +17,47 @@
     <div class="col-sm-6">
       <div class="row">
         <div id="wrapper" #wrapper class="col-sm-4">
-            <div id="print-section">
-          <qr-code style="margin-left: 15px;" [value]="item.path" [size]="110" #qrcode></qr-code>
-         </div>
+          <div id="print-section">
+            <qr-code style="margin-left: 15px;" [value]="item.path" [size]="110" #qrcode></qr-code>
+          </div>
           <br>
-          <button type="button" class="btn btn-sm btn-primary" style="width: 110px;height:21px;">
-            <p style="margin-top:-5px;" (click)="DownloadQRCodeAsJPG()">JPG</p>
+          <button type="button" class="btn btn-sm btn-primary" style="width:50px;height:21px;">
+            <p style="margin-top:-5px;" (click)="DownloadQRCodeAsJPG(item.id)">JPG</p>
           </button>
-          <button type="button" class="btn btn-sm btn-primary" style="width:110px;height: 21px;">
+          <button type="button" class="btn btn-sm btn-primary" style="width:50px;height: 21px;">
             <p style="margin-top:-5px;" (click)="DownloadQRCodeAsEPS()">EPS</p>
           </button>
-          <button type="button" class="btn btn-sm btn-primary" style="width:110px;height: 21px;">
+          <button type="button" class="btn btn-sm btn-primary" style="width:50px;height: 21px;">
             <p style="margin-top:-5px;" (click)="DownloadQRCodeAsPDF()">PDF</p>
           </button>
-          <button type="button" class="btn btn-sm btn-primary" style="width:110px;height: 21px;">
+          <button type="button" class="btn btn-sm btn-primary" style="width:50px;height: 21px;">
             <p style="margin-top:-5px;" (click)="printcode()">Print</p>
           </button>
           <!-- <a style="margin-top:-5px;"  [routerLink]="['/dashboard', item.id]" (click)="sendid(item.id)" class="nav-link" href="/dashboard" >Analytics</a> -->
-          
-          <a style="margin-top:-5px;"  [routerLink]="['/dashboard', item.id]"  class="nav-link"  >Analytics</a>
+
+          <a style="margin-top:-5px;" [routerLink]="['/dashboard', item.id]" class="nav-link">Analytics</a>
         </div>
         <div class="col-sm-8 Download">
           <div class="row">
             <div class="col-sm-4">
               <label>{{item.generateddate | date }}</label>
-              
             </div>
             <div class="col-sm-4">
               <p style="font-size: 25px;">{{item.name}}
                 <button *ngIf="item.qrtype=='contact'" type="button" class="btn btn-primary" data-toggle="modal" (click)="Editcontact(item.id)"
-                  (click)="contactModal.show()" style="margin-left:5px;">Edit</button>
+                  (click)="contactModal.show()" style="margin-left:5px;">Edit Contact</button>
               </p>
             </div>
-            <div class="col-sm-4">QRType: {{item.qrtype}} 
+            <div class="col-sm-4">QRtype: {{item.qrtype}}
               <p style="color: rgb(78, 70, 72);">{{item.urldata}}</p>
-              <p style="color: green;">{{item.path}}
-                <button *ngIf="item.qrtype=='url'" type="button" class="btn btn-primary" data-toggle="modal" (click)="Editurl(item.id)" (click)="urlModal.show()"
-                  style="margin-left:5px;">Edit</button>
-              </p>
+              <a *ngIf = "item.qrstatus" style="margin-top:-5px;" [routerLink]="['/dynamicdata',item.id]" class="nav-link" >
+                <p style="color: green;">{{item.path}} </p>
+
+              </a>
+              <button *ngIf="item.qrtype=='url'" type="button" class="btn btn-primary" data-toggle="modal" (click)="Editurl(item.id)"
+                (click)="urlModal.show()" style="margin-left:5px;">Edit URL</button>
+
+              <button *ngIf="item.qrtype=='Coupon'" type="button" class="btn btn-primary" data-toggle="modal" style="margin-left:5px;">Edit Coupon</button>
             </div>
           </div>
         </div>

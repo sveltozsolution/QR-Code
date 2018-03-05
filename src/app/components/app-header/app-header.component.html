@@ -15,27 +15,27 @@
   </button>
   <ul class="nav navbar-nav navbar1 d-md-down-none ">
     <li class="nav-item px-3">
-      <a class="nav-link " (click)="home()">
+      <a class="nav-link " [routerLink]="['/home']">
         <b>Home</b>
       </a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" (click)="features()">
+      <a class="nav-link" [routerLink]="['/features']">
         <b>Features</b>
       </a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" (click)="pricing()">
+      <a class="nav-link" [routerLink]="['/pricing']">
         <b>Pricing</b>
       </a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" (click)="help()">
+      <a class="nav-link" [routerLink]="['/help']">
         <b>Help</b>
       </a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" (click)="blog()">
+      <a class="nav-link" [routerLink]="['/blog']">
         <b>Blog</b>
       </a>
     </li>
@@ -45,11 +45,11 @@
     <li class="nav-item px-3">
       <!-- <a class="nav-link" href="#">Settings</a> -->
     </li>
+    <!-- <li class="nav-item px-3">
+      <a style="margin-top:-5px;" [routerLink]="['/dynamicdata',id]" class="nav-link">Dynamic data</a>
+
+    </li> -->
     <li class="nav-item px-3">
-        <a style="margin-top:-5px;"  [routerLink]="['/dynamicdata',id]"  class="nav-link"  >Dynamic data</a>
-          
-        </li>
-        <li class="nav-item px-3">
   </ul>
   <ul class="nav navbar-nav ml-auto ">
     <li class="nav-item d-md-down-none">

@@ -14,8 +14,8 @@ export class WebService {
     userid = "userid";
 
 
-   // base_url = 'http://localhost:5000/api/';
-     base_url = 'https://qurcodeapi.herokuapp.com/api/';
+    base_url = 'http://localhost:5000/api/';
+     //base_url = 'https://qurcodeapi.herokuapp.com/api/';
 
 
     constructor(private http: Http, private router: Router) { }
@@ -185,7 +185,6 @@ export class WebService {
         var options = new RequestOptions({ headers: headers });
         debugger;
         return this.http.get(url, options).map(res => res.json());
-
     }
 
     getusercount(id) {
