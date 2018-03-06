@@ -137,8 +137,9 @@ export class DynamicdataComponent implements OnInit {
       debugger;
 
       if (qrcode.qrtype == "url") {
+        debugger
         this.qrdata2 = qrcode.qrdata;
-        this.nonjsondata = true;
+        this.nonjsondata = false;
         this.jsondata = false;
 
         let url: string = '';
@@ -146,7 +147,8 @@ export class DynamicdataComponent implements OnInit {
           url += 'http://';
         }
         url += this.qrdata2;
-        window.open(url, '_blank');
+        window.location.href = url;
+        // window.open(url, '_blank');
       }
       
       else if (qrcode.qrtype == "phone") {

@@ -124,18 +124,18 @@ export class MyqrcodeComponent {
                 fullname = values[0] + ' ' + values[1];
                 urldata = "";
 
-                var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+                var dynamicpath = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
                // var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
             }
 
             else if (qrcode[i].qrtype == "url") {
-                 var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+                 var dynamicpath = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
                 //var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
                 urldata = qrcode[i].qrdata;
             }
 
             else if (qrcode[i].qrtype == "Coupon") {
-                 var dynamicpath = "http://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+                 var dynamicpath = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
                // var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
                 //  urldata = qrcode[i].qrdata;
             }

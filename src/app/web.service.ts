@@ -15,7 +15,7 @@ export class WebService {
 
 
     //base_url = 'http://localhost:5000/api/';
-    base_url = 'https://qurcodeapi.herokuapp.com/api/';
+   base_url = 'https://qurcodeapi.herokuapp.com/api/';
 
 
     constructor(private http: Http, private router: Router) { }
@@ -80,10 +80,10 @@ export class WebService {
     // qrcode api call
     // generatecode(title: string, qrstatus: string, qrtype: string, qrdata: string) {
     generatecode(generateddate: string, userid: string, qrtype: string, qrdata: string, qrinfo: string) {
+        // var id ="";
         let data = new URLSearchParams();
         // data.append('title', title);
         // data.append('qrstatus', qrstatus);        
-        debugger;
         data.append('generateddate', generateddate);
         data.append('userid', userid);
         data.append('qrtype', qrtype);
@@ -94,9 +94,19 @@ export class WebService {
         var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new RequestOptions({ headers: headers });
         //return this.http.post(this.base_url + 'Generatecontact', data, options).map(res => res.json());
-        this.http.post(this.base_url + 'addqrcode', data, options).subscribe(res => {
-        })
-    }
+         this.http.post(this.base_url + 'addqrcode', data, options).subscribe(res =>{
+         })
+        }
+
+        // var res = this.http.post(this.base_url + 'addqrcode', data, options).subscribe(res => {
+        //     debugger;
+        //     var result = res.json();
+        //    id = result.url._id;
+        //    localStorage.setItem(id, "id");
+        //    return;
+        // });
+        
+    
 
     Updateqrcode(qrcodeid: string, generateddate: string, userid: string, qrtype: string, qrdata: string) {
         debugger;
