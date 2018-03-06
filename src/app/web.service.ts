@@ -14,8 +14,8 @@ export class WebService {
     userid = "userid";
 
 
-    base_url = 'http://localhost:5000/api/';
-     //base_url = 'https://qurcodeapi.herokuapp.com/api/';
+    // base_url = 'http://localhost:5000/api/';
+    base_url = 'https://qurcodeapi.herokuapp.com/api/';
 
 
     constructor(private http: Http, private router: Router) { }
