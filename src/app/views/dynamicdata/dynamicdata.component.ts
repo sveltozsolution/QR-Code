@@ -16,6 +16,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class DynamicdataComponent implements OnInit {
+  // urlToOpen: string;
   Title: any;
   newdata: any;
   qrinfo: string;
@@ -53,10 +54,10 @@ export class DynamicdataComponent implements OnInit {
   private sub: any;
 
   //show jeson data on dynamicpage
-  jsondata:boolean =true;
-  nonjsondata:boolean =true;
+  jsondata: boolean = true;
+  nonjsondata: boolean = true;
 
-  constructor( public router: Router, location: Location, private webservice: WebService, private route: ActivatedRoute, private deviceService: Ng2DeviceService) {
+  constructor(public router: Router, location: Location, private webservice: WebService, private route: ActivatedRoute, private deviceService: Ng2DeviceService) {
     //  public  userService: MyUserServService, 
     this.epicFunction();
 
@@ -134,23 +135,31 @@ export class DynamicdataComponent implements OnInit {
     console.log(this.id);
     this.webservice.getqrcode(this.id).subscribe(qrcode => {
       debugger;
-     
-      if(qrcode.qrtype == "url"){
+
+      if (qrcode.qrtype == "url") {
         this.qrdata2 = qrcode.qrdata;
-        this.nonjsondata= true;
+        this.nonjsondata = true;
         this.jsondata = false;
+
+        let url: string = '';
+        if (!/^http[s]?:\/\//.test(this.qrdata2)) {
+          url += 'http://';
+        }
+        url += this.qrdata2;
+        window.open(url, '_blank');
       }
-      else if(qrcode.qrtype == "phone"){
+      
+      else if (qrcode.qrtype == "phone") {
         this.qrdata2 = qrcode.qrdata;
-        this.nonjsondata= true;
+        this.nonjsondata = true;
         this.jsondata = false;
-        
+
       }
-      else{
+      else {
         this.qrdata1 = qrcode.qrdata;
         // var jsonobj = JSON.parse(this.qrdata1);
         this.qrdata2 = JSON.parse(this.qrdata1);
-        this.nonjsondata= false;
+        this.nonjsondata = false;
         this.jsondata = true;
       }
     });
@@ -159,7 +168,7 @@ export class DynamicdataComponent implements OnInit {
   keys() {
     return Object.keys(this.qrdata2);
   }
- 
+
 
 
 
