@@ -7,19 +7,24 @@ import { WebService } from 'app/web.service';
   providers: [WebService]
 })
 export class DashboardComponent implements OnInit {
+  crom: number;
+  Ot: any;
+  // public pieChartData=[];
+  ipcount: number = 0;
+  ipaddress: any;
   Otheros: number = 0;
   windows: number = 0;
-  ipa: any;
+
   otherbrowser: number = 0;
   crome: number = 0;
   totalcount: any;
   country: any;
   city: any;
-  ipadress: any;
+
   osy: any;
   browser: any;
   device: any;
-  ip: any;
+  ip = [];
   ipget: any;
 
   generateddate: any;
@@ -35,19 +40,18 @@ export class DashboardComponent implements OnInit {
   count: number = 0;
   constructor(public webservice: WebService, private route: ActivatedRoute) {
 
-    this.sub = this.route.params.subscribe(params => {
-
-      this.id = params['id']; // (+) converts string 'id' to a number
-
-
-    });
-    this.getcount(this.id)
-    this.bindqrcode()
   }
+ 
 
-  public pieChartLabels: string[] = ['Crome', 'Other'];
-  public pieChartData: number[] = [this.crome, this.otherbrowser];
-  public pieChartType: string = 'pie';
+  // Pie
+  public pieChartLabels: string[] = ['Windows', 'other', 'ios'];
+  public pieChartData: number[] = [300, 500, 100];
+  public pieChartType = 'pie';
+
+ 
+  // public pieChartLabels:any [];
+
+  // public color:["#FFFCC4", "#B9E8E0"]
 
   // events
 
@@ -511,46 +515,55 @@ export class DashboardComponent implements OnInit {
       this.mainChartData2.push(this.random(80, 100));
       this.mainChartData3.push(65);
     }
+
+    this.sub = this.route.params.subscribe(params => {
+
+      this.id = params['id']; // (+) converts string 'id' to a number
+
+
+    });
+    this.getcount(this.id);
+    this.bindqrcode();
+
+    // this.pieChartLabels = ['Windows', 'Other'];
+    // this.pieChartData = [this.windows,this.Otheros];
+        //this.pieChartType= 'Os';
+
   }
 
   bindqrcode() {
     this.webservice.getallqrcode().subscribe(qrcode => {
       this.qrcode = qrcode;
 
-      for (var i = 0; i <= qrcode.length; i++) {
+      for (var i = 0; i < qrcode.length; i++) {
         var iddata = qrcode[i]._id
         if (this.id == iddata) {
 
           this.qrdata = qrcode[i].qrdata
-          this.generateddate = qrcode[i].generateddate
+          // this.generateddate=qrcode[i].generateddate
         }
       }
 
 
     })
+    var ipget = [];
+    var ipnumber = [];
     this.webservice.getuserdata().subscribe(qruserdata => {
-      this.ipa = [];
-      for (var i = 0; i <= qruserdata.length; i++) {
-        this.count++
+debugger;
+      for (var i = 0; i < qruserdata.length; i++) {
+
         var iddata = qruserdata[i].userid
         if (this.id == iddata) {
           this.devicedeatils = qruserdata[i].qruserinfo
           var finalData = this.devicedeatils.replace(/\\/g, "");
           this.device = JSON.parse(finalData)
-          debugger;
-          //  let devicedata=[]
           this.browser = this.device.browsername
-
-
-          //  browser
           if (this.browser == "chrome") {
-
             this.crome++
           }
           else {
             this.otherbrowser++
           }
-
           // os
           this.osy = this.device.os
           if (this.osy == "windows") {
@@ -560,42 +573,61 @@ export class DashboardComponent implements OnInit {
           else {
             this.Otheros++
           }
-          //    if( this.osy=="chrome"){
 
-          //    this.crome++
-          //  }
-          //  else {
-          //    this.otherbrowser++
-          //  }
+          this.ipaddress = this.device.ip
+          ipget.push(this.ipaddress);
+          //debugger;
+          // if (ipnumber.length > 0) {
+          //   for (var i = 0; i < ipnumber.length; i++) {
 
-          this.ipadress = this.device.ip
+          //     if (this.ipaddress == ipnumber[i]) {
+          //       // ipnumber.push(this.ipaddress);
+          //      // debugger;
+          //     }
+          //     else {
+          //       ipnumber.push(this.ipaddress);
+          //       this.ipcount++
+          //     }
+          //   }
 
-          this.ipa.push(this.ipadress);
+          // }
+          // else {
+          //   ipnumber.push(this.ipaddress);
+          //   this.ipcount++
+
+          // }
           this.city = this.device.city
           this.country = this.device.country
-          debugger;
+
 
         }
+        // this.pieChartLabels = ['Windows', 'Other'];
+        //  this.pieChartData=[this.windows,this.Otheros,this.crome];
+        // this.pieChartType= 'Os';
+
+       
 
       }
-    })
-  }
+      debugger;
+      this.pieChartLabels = ['Windows', 'Other'];
+      this.pieChartData=[this.windows,this.Otheros];
+      //this.pieChartType= 'Os';
 
+    })
+
+    this.count = ipnumber.length;
+
+
+
+
+  }
   getcount(id) {
 
     this.webservice.getusercount(id).subscribe(qrcode => {
-      debugger;
+
       this.totalcount = qrcode;
-
-      // for (var i = 0; i <= qrcode.length; i++) {
-      //   var iddata = qrcode[i]._id
-      //   if (this.id == iddata) {
-
-      //     // this.qrdata = qrcode[i].qrdata
-      //     // this.generateddate=qrcode[i].generateddate
-      //   }
-
-
     })
   }
+
+
 }

@@ -1,51 +1,51 @@
 <h1>
   statistics
-</h1>
-<div class="row">
-  <div id="wrapper" #wrapper class="col-sm-4">
-    <a></a>
+   </h1>
+   <div  class="row">
+     <div id="wrapper" #wrapper  class="col-sm-4"  >
+       <a></a>
 
-    <qr-code style="margin-left: 15px;" [value]="qrdata" [size]="110" #qrcode></qr-code>
-
-  </div>
-  <div class="col-sm-8">
-    <a>Created date:</a>
-    <b>{{generateddate}}</b>
-    <br>
-    <a>URL:</a>
-    <b>{{qrdata}}</b>
-  </div>
-
-</div>
-<br>
-<br>
-
-<br>
-<div class="row">
-  <div class="col-sm-3">
-    <!-- <a>Browser:<b>{{browsername}}</b></a>  -->
-  </div>
-  <!-- <div  class="col-sm-3" >
+       <qr-code style="margin-left: 15px;" [value]="qrdata" [size]="110" #qrcode></qr-code>
+       
+     </div>
+     <div  class="col-sm-8" >
+        <a>Created date:</a>
+         <b>{{generateddate}}</b>
+         <br>
+         <a>URL:</a>
+         <b>{{qrdata}}</b>
+       </div>
+   
+   </div>
+   <br>
+   <br>
+  
+   <br>
+   <div class="row">
+       <div  class="col-sm-3" >
+          <a>Browser:<b>{{browsername}}</b></a> 
+       </div>
+       <div  class="col-sm-3" >
     <a>OS:<b>{{os}}</b></a>
-         </div> -->
-  <div class="col-sm-3">
-
-    <!-- <a>Country</a> -->
-  </div>
-  <div class="col-sm-3">
-    <!-- <a>City</a> -->
-  </div>
-
-</div>
-<h2>Scans over time</h2>
-
-<br>
-<!--<piechart ng-model="vm.data"></piechart>-->
-<div>
-
-
-</div>
-
+         </div>
+         <div  class="col-sm-3" >
+          
+             <!-- <a>Country</a> -->
+           </div>
+           <div  class="col-sm-3" >
+               <!-- <a>City</a> -->
+             </div>
+     
+     </div>
+     <h2>Scans over time</h2>
+     
+     <br>
+     <!--<piechart ng-model="vm.data"></piechart>-->
+     <div>
+   
+   
+     </div>
+     
 
 
 
@@ -66,38 +66,47 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </div>
-          <h4 class="mb-0">{{count}}</h4>
+          <h4 class="mb-0">{{totalcount}}</h4>
           <p>Scans</p>
         </div>
         <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart" [datasets]="lineChart1Data" [labels]="lineChart1Labels" [options]="lineChart1Options" [colors]="lineChart1Colours"
-            [legend]="lineChart1Legend" [chartType]="lineChart1Type" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          <canvas baseChart class="chart"
+          [datasets]="lineChart1Data"
+          [labels]="lineChart1Labels"
+          [options]="lineChart1Options"
+          [colors]="lineChart1Colours"
+          [legend]="lineChart1Legend"
+          [chartType]="lineChart1Type"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
         </div>
       </div>
-    </div>
-    <!--/.col-->
+    </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-info">
         <div class="card-body pb-0">
           <button type="button" class="btn btn-transparent p-0 float-right">
             <i class="icon-location-pin"></i>
           </button>
-          <h4 class="mb-0"></h4>
+          <!--<h4 class="mb-0">{{ipa}}</h4>-->
+          <!--<p>Unique Scans</p>-->
           <h3>OS</h3>
-          <p> Windows:
-            <b>{{windows}}</b>
-          </p>
-          <p> Other:
-            <b>{{Otheros}}</b>
-          </p>
+          <p> Windows:<b>{{windows}}</b></p>
+          <p> Other:<b>{{Otheros}}</b></p>
         </div>
         <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart" [datasets]="lineChart2Data" [labels]="lineChart2Labels" [options]="lineChart2Options" [colors]="lineChart2Colours"
-            [legend]="lineChart2Legend" [chartType]="lineChart2Type" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          <canvas baseChart class="chart"
+          [datasets]="lineChart2Data"
+          [labels]="lineChart2Labels"
+          [options]="lineChart2Options"
+          [colors]="lineChart2Colours"
+          [legend]="lineChart2Legend"
+          [chartType]="lineChart2Type"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
         </div>
       </div>
-    </div>
-    <!--/.col-->
+    </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-warning">
         <div class="card-body pb-0">
@@ -112,21 +121,23 @@
             </div>
           </div>
           <h4 class="mb-0"> </h4>
-          <h3>Browsers</h3>
-          <p> Crome:
-            <b>{{crome}}</b>
-          </p>
-          <p> Other:
-            <b>{{otherbrowser}}</b>
-          </p>
+     <h3>Browsers</h3>
+          <p> Crome:<b>{{crome}}</b></p>
+          <p> Other:<b>{{otherbrowser}}</b></p>
         </div>
         <div class="chart-wrapper" style="height:70px;">
-          <canvas baseChart class="chart" [datasets]="lineChart3Data" [labels]="lineChart3Labels" [options]="lineChart3Options" [colors]="lineChart3Colours"
-            [legend]="lineChart3Legend" [chartType]="lineChart3Type" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          <canvas baseChart class="chart"
+          [datasets]="lineChart3Data"
+          [labels]="lineChart3Labels"
+          [options]="lineChart3Options"
+          [colors]="lineChart3Colours"
+          [legend]="lineChart3Legend"
+          [chartType]="lineChart3Type"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
         </div>
       </div>
-    </div>
-    <!--/.col-->
+    </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-danger">
         <div class="card-body pb-0">
@@ -140,30 +151,32 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </div>
-          <h4 class="mb-0"></h4>
-          <p>{{city}}</p>
+          <h4 class="mb-0">Unique</h4>
+           <p>{{count}}</p><h3>{{ipcount}}</h3>
         </div>
         <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart" [datasets]="barChart1Data" [labels]="barChart1Labels" [options]="barChart1Options" [colors]="barChart1Colours"
-            [legend]="barChart1Legend" [chartType]="barChart1Type" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+          <canvas baseChart class="chart"
+          [datasets]="barChart1Data"
+          [labels]="barChart1Labels"
+          [options]="barChart1Options"
+          [colors]="barChart1Colours"
+          [legend]="barChart1Legend"
+          [chartType]="barChart1Type"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
         </div>
       </div>
-    </div>
-    <!--/.col-->
-  </div>
-  <!--/.row-->
+    </div><!--/.col-->
+  </div><!--/.row-->
   <div class="card">
     <div class="card-body">
       <div class="row">
         <div class="col-sm-5">
           <h4 class="card-title mb-0">Traffic</h4>
           <div class="small text-muted">November 2015</div>
-        </div>
-        <!--/.col-->
+        </div><!--/.col-->
         <div class="col-sm-7 d-none d-md-block">
-          <button type="button" class="btn btn-primary float-right">
-            <i class="icon-cloud-download"></i>
-          </button>
+          <button type="button" class="btn btn-primary float-right"><i class="icon-cloud-download"></i></button>
           <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
               <label class="btn btn-outline-secondary">
@@ -177,20 +190,31 @@
               </label>
             </div>
           </div>
-        </div>
-        <!--/.col-->
-      </div>
-      <!--/.row-->
+        </div><!--/.col-->
+      </div><!--/.row-->
       <div class="chart-wrapper" style="height:300px;margin-top:40px;">
-        <canvas baseChart class="chart" [datasets]="mainChartData" [labels]="mainChartLabels" [options]="mainChartOptions" [colors]="mainChartColours"
-          [legend]="mainChartLegend" [chartType]="mainChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        <canvas baseChart class="chart"
+        [datasets]="mainChartData"
+        [labels]="mainChartLabels"
+        [options]="mainChartOptions"
+        [colors]="mainChartColours"
+        [legend]="mainChartLegend"
+        [chartType]="mainChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
       </div>
     </div>
-    <h1>piechart</h1>
-    <div style="display: block">
-      <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"></canvas>
-    </div>
+<h1>piechart</h1>
+     <div style="display: block">
+            <canvas baseChart
+          [data]="pieChartData"
+          [colors]="color"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+          
+</div>
     <!-- <div class="card-footer">
       <ul>
         <li>
@@ -230,6 +254,12 @@
         </li>
       </ul>
     </div> -->
+   
+    <div class="card-actions">
+      <a href="http://www.chartjs.org">
+        <small class="text-muted">docs</small>
+      </a>
+    </div>
   </div>
-
+  
 </div>
