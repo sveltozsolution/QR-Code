@@ -46,8 +46,8 @@
             </div>
             <div class="col-sm-4">
               <p style="font-size: 25px;">{{item.name}}
-                <button *ngIf="item.qrtype=='contact'" type="button" class="btn btn-primary" data-toggle="modal" (click)="Editcontact(item.id)"
-                  (click)="contactModal.show()" style="margin-left:5px;">Edit Contact</button>
+                <!-- <button *ngIf="item.qrtype=='contact'" type="button" class="btn btn-primary" data-toggle="modal" (click)="Editcontact(item.id)"
+                  (click)="contactModal.show()" style="margin-left:5px;">Edit Contact</button> -->
               </p>
             </div>
             <div class="col-sm-4"><b>QRtype: {{item.qrtype}}</b>
@@ -58,7 +58,8 @@
               </a>
               <button *ngIf="item.qrtype=='url'" type="button" class="btn btn-primary" data-toggle="modal" (click)="Editurl(item.id)"
                 (click)="urlModal.show()" style="margin-left:5px;">Edit URL</button>
-
+                <button *ngIf="item.qrtype=='contact'" type="button" class="btn btn-primary" data-toggle="modal" (click)="Editcontact(item.id)"
+                (click)="contactModal.show()" style="margin-left:5px;">Edit Contact</button>
               <button *ngIf="item.qrtype=='Coupon'" type="button" class="btn btn-primary" data-toggle="modal" style="margin-left:5px;">Edit Coupon</button>
             </div>
           </div>
