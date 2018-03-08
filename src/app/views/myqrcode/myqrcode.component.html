@@ -18,7 +18,9 @@
       <div class="row">
         <div id="wrapper" #wrapper class="col-sm-4">
           <div id="print-section">
-            <qr-code style="margin-left: 15px;" [value]="item.path" [size]="110" #qrcode></qr-code>
+            <qr-code style="margin-left: 15px;" [value]="item.path" [size]="110" #qrcode>
+              <a style="margin-top:-5px;" [routerLink]="['/dynamicdata', item.id]" class="nav-link">mobilescan</a>
+            </qr-code>
           </div>
           <br>
           <button type="button" class="btn btn-sm btn-primary" style="width:50px;height:21px;">
@@ -48,7 +50,7 @@
                   (click)="contactModal.show()" style="margin-left:5px;">Edit Contact</button>
               </p>
             </div>
-            <div class="col-sm-4">QRtype: {{item.qrtype}}
+            <div class="col-sm-4"><b>QRtype: {{item.qrtype}}</b>
               <p style="color: rgb(78, 70, 72);">{{item.urldata}}</p>
               <a *ngIf = "item.qrstatus" style="margin-top:-5px;" [routerLink]="['/dynamicdata',item.id]" class="nav-link" >
                 <p style="color: green;">{{item.path}} </p>

@@ -14,8 +14,8 @@ export class WebService {
     userid = "userid";
 
 
-    //base_url = 'http://localhost:5000/api/';
-   base_url = 'https://qurcodeapi.herokuapp.com/api/';
+   // base_url = 'http://localhost:5000/api/';
+     base_url = 'https://qurcodeapi.herokuapp.com/api/';
 
 
     constructor(private http: Http, private router: Router) { }
@@ -80,7 +80,7 @@ export class WebService {
     // qrcode api call
     // generatecode(title: string, qrstatus: string, qrtype: string, qrdata: string) {
     generatecode(generateddate: string, userid: string, qrtype: string, qrdata: string, qrinfo: string) {
-        // var id ="";
+        
         let data = new URLSearchParams();
         // data.append('title', title);
         // data.append('qrstatus', qrstatus);        
@@ -93,20 +93,10 @@ export class WebService {
         // var token = localStorage.getItem('token');
         var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new RequestOptions({ headers: headers });
-        //return this.http.post(this.base_url + 'Generatecontact', data, options).map(res => res.json());
-         this.http.post(this.base_url + 'addqrcode', data, options).subscribe(res =>{
-         })
-        }
 
-        // var res = this.http.post(this.base_url + 'addqrcode', data, options).subscribe(res => {
-        //     debugger;
-        //     var result = res.json();
-        //    id = result.url._id;
-        //    localStorage.setItem(id, "id");
-        //    return;
-        // });
+        return this.http.post(this.base_url + 'addqrcode', data, options).map(res => res.json());
         
-    
+    }
 
     Updateqrcode(qrcodeid: string, generateddate: string, userid: string, qrtype: string, qrdata: string) {
         debugger;
@@ -134,6 +124,7 @@ export class WebService {
     }
 
     getallqrcode() {
+        debugger;
         var url = this.base_url + 'qrcodeList';
         var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new RequestOptions({ headers: headers });
@@ -152,11 +143,13 @@ export class WebService {
     }
 
     getqrcode(qrcodeid: string) {
+        debugger;
         var url = this.base_url + 'qrcode/' + qrcodeid
         var headers = new Headers({ 'Authorization': localStorage.getItem('token') });
         var options = new RequestOptions({ headers: headers });
         return this.http.get(url, options).map(res => res.json());
     }
+    
     getIpAddress() {
         return this.http
             .get('http://freegeoip.net/json/?callback')
@@ -177,19 +170,28 @@ export class WebService {
     //       .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any 
     //   } 
 
-    postuserdata(userdata, id) {
-        let data = new URLSearchParams();
-        data.append('qruserinfo', userdata);
-        data.append('userid', id);
-        var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-        var options = new RequestOptions({ headers: headers });
-
-
-        this.http.post(this.base_url + 'qruserinfo', data, ).subscribe(res => {
-
-        })
+    postuserdata(city, ip, country, os, browsername, userdata, id) { 
+        debugger 
+        // city="pune" 
+        let data = new URLSearchParams(); 
+        data.append('cities', city); 
+        data.append('ip', ip); 
+        data.append('country', country); 
+        data.append('os', os); 
+        data.append('browser', browsername); 
+        data.append('qruserinfo', userdata); 
+        data.append('userid', id); 
+        var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' }); 
+        var options = new RequestOptions({ headers: headers }); 
+ 
+ 
+        this.http.post(this.base_url + 'qruserinfo', data, ).subscribe(res => { 
+ 
+        }) 
     }
+
     getuserdata() {
+        debugger;
         var url = this.base_url + 'qrcodeuserList';
         var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new RequestOptions({ headers: headers });

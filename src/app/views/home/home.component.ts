@@ -9,7 +9,7 @@ import { QRCodeComponent } from 'angular2-qrcode';
     providers: [WebService, Ng2DeviceService]
 })
 export class HomeComponent {
-    demoarr:Array<any> = [];
+    demoarr: Array<any> = [];
 
     @ViewChild('qrcode') qrcode_download: QRCodeComponent;
 
@@ -170,7 +170,7 @@ export class HomeComponent {
     //show the signin and signout button
     signin: boolean = true;
     signout: boolean = false;
-
+    QRcd_id:string;
 
 
     constructor(private router: Router, private webservice: WebService, private deviceService: Ng2DeviceService) { }
@@ -384,7 +384,6 @@ export class HomeComponent {
             // this.othersection = true;
             this.othersection = false;
 
-            this.qrstatus = "static";
 
         }
 
@@ -417,7 +416,7 @@ export class HomeComponent {
 
 
     Generate() {
-       debugger;
+        debugger;
         this.generateqrimage = true;
         this.defaultqrimage = false;
         var currentdate = new Date();
@@ -446,6 +445,7 @@ export class HomeComponent {
                 this.messagecontactfield = false;
                 this.createJson();
                 qrtype = "contact";
+                console.log(this.qrstatus)
 
             }
         } else if (this.phonesection) {
@@ -502,7 +502,7 @@ export class HomeComponent {
             }
         }
 
-        else {
+        else  {
             qrtype = "coupon";
             if (this.ctitle == "" || this.cdiscount == "") {
                 this.messagecouponfield = true;
@@ -514,45 +514,55 @@ export class HomeComponent {
                 this.messagecouponfield = false;
                 this.createJson();
                 qrtype = "Coupon";
+                console.log(this.qrstatus)
+                
             }
         }
+      
 
         //for Dynamic add
         if (this.qrstatus == "Dynamic") {
+            console.log("adding dynamic");
+            
             // if (this.signin == true) {
             //     this.messageurlfield = false;
             //     this.messagecouponfield = false;
             //     // this.router.navigate(['pages/login']);
             // }
             // else {
-            console.log("adding dynamic");
-
             // if (this.messagerequiredfield == false) {
             // this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
             // }
             if (this.messageurlfield == false && this.messagecontactfield == false && this.messagephonefield == false && this.messagetextfield == false && this.messagevcardfield == false && this.messagesmsfield == false && this.messagecouponfield == false) {
-               debugger
-                this.staticqrcode = this.qrdata;
-
-                  this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
+               
+                var result = this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo).subscribe(
+                    qrcode => {
+                        debugger;
+                        this.QRcd_id=qrcode.url._id;
+                        if(this.QRcd_id!="")
+                        {
+                            this.staticqrcode = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" +this.QRcd_id;
+                        }
+                    });
             }
-            // }
         }
 
         //for static add
         else {
             console.log("adding static");
-
-
+            debugger;
             if (this.smssection || this.contactsection || this.vcardsection || this.couponsection) {
                 this.staticjsondata(this.qrdata);
+            }
+            else if (this.urlsection || this.textsection || this.phonesection) {
+                this.qrdata = this.qrdata;
             }
 
             if (this.messageurlfield == false && this.messagecontactfield == false && this.messagephonefield == false && this.messagetextfield == false && this.messagevcardfield == false && this.messagesmsfield == false && this.messagecouponfield == false) {
                 // this.staticqrcode = '{' + 'Type :' + qrtype + 'Data :' +'[' + this.qrdata +']' + '}';
                 this.staticqrcode = this.qrdata;
 
-                 this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
+                this.webservice.generatecode(generateddate, userid, qrtype, this.qrdata, this.qrinfo);
             }
         }
         // this.qrElement = <HTMLVideoElement>document.getElementById("saticqr");
@@ -681,22 +691,22 @@ export class HomeComponent {
         this.qrdata = Jsonobj;
     }
 
-//     createJsoncoupon(){
-//         debugger;
-//         this.qrtype = "Coupon";
+    //     createJsoncoupon(){
+    //         debugger;
+    //         this.qrtype = "Coupon";
 
-//         this.demoarr.push({
-//             "Title": this.ctitle,
-//             "Discount": this.cdiscount,
-//             "Website": this.cwebsite,
-//             "Promo Code": this.cpromocode,
-//             "Offer": this.coffer,
-//             "Terms": this.cterms,
-//             "Expiry Date": this.cdate,
-//         })
-//   this.qrdata = this.demoarr[0];
-//   debugger;
-//     }
+    //         this.demoarr.push({
+    //             "Title": this.ctitle,
+    //             "Discount": this.cdiscount,
+    //             "Website": this.cwebsite,
+    //             "Promo Code": this.cpromocode,
+    //             "Offer": this.coffer,
+    //             "Terms": this.cterms,
+    //             "Expiry Date": this.cdate,
+    //         })
+    //   this.qrdata = this.demoarr[0];
+    //   debugger;
+    //     }
 
 
     epicFunction() {
@@ -731,7 +741,6 @@ export class HomeComponent {
         this.qrinfo = Jsonqrinfoobj;
 
     }
-
 
 
     DownloadQRCodeAsJPG() {
@@ -802,7 +811,7 @@ export class HomeComponent {
         this.generateqrimage = true;
     }
 
-    test(){
+    test() {
         this.qrfrontcolor = this.favcolor;
         this.qrbackcolor = this.favcolorbk;
     }

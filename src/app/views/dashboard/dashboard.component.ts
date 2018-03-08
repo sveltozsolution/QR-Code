@@ -7,6 +7,12 @@ import { WebService } from 'app/web.service';
   providers: [WebService]
 })
 export class DashboardComponent implements OnInit {
+  sortedcountry: any[];
+  countrycount:number = 0;
+  uniquescane: any;
+  citycount: number = 0;
+  topcities = [];
+  ips = [];
   crom: number;
   Ot: any;
   // public pieChartData=[];
@@ -18,7 +24,7 @@ export class DashboardComponent implements OnInit {
   otherbrowser: number = 0;
   crome: number = 0;
   totalcount: any;
-  country: any;
+  country =[];
   city: any;
 
   osy: any;
@@ -39,16 +45,24 @@ export class DashboardComponent implements OnInit {
   private sub: any;
   count: number = 0;
   constructor(public webservice: WebService, private route: ActivatedRoute) {
+    this.topcities = ['Mumbai ', 'Pune', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', 'Kolkata', 'Nagpur', 'Coimbatore', 'Thane'];
 
+    // var countries = require('country-list')();
+    // var require: any;
+    // const cities = require(this.topcities);
+
+    // cities.filter(city => {
+    //   return city.name.match('Albuquerque');
+    // })
   }
- 
+
 
   // Pie
-  public pieChartLabels: string[] = ['Windows', 'other', 'ios'];
-  public pieChartData: number[] = [300, 500, 100];
+  public pieChartLabels: string[] = ['Windows', 'other'];
+  public pieChartData: number[] = [300, 100];
   public pieChartType = 'pie';
 
- 
+
   // public pieChartLabels:any [];
 
   // public color:["#FFFCC4", "#B9E8E0"]
@@ -527,7 +541,7 @@ export class DashboardComponent implements OnInit {
 
     // this.pieChartLabels = ['Windows', 'Other'];
     // this.pieChartData = [this.windows,this.Otheros];
-        //this.pieChartType= 'Os';
+    //this.pieChartType= 'Os';
 
   }
 
@@ -549,24 +563,25 @@ export class DashboardComponent implements OnInit {
     var ipget = [];
     var ipnumber = [];
     this.webservice.getuserdata().subscribe(qruserdata => {
-debugger;
+      debugger;
       for (var i = 0; i < qruserdata.length; i++) {
 
         var iddata = qruserdata[i].userid
         if (this.id == iddata) {
-          this.devicedeatils = qruserdata[i].qruserinfo
-          var finalData = this.devicedeatils.replace(/\\/g, "");
-          this.device = JSON.parse(finalData)
-          this.browser = this.device.browsername
-          if (this.browser == "chrome") {
+          // this.devicedeatils = qruserdata[i].qruserinfo
+          // var finalData = this.devicedeatils.replace(/\\/g, "");
+          // this.device = JSON.parse(finalData)
+          // this.browser = this.device.browsername
+
+          if (qruserdata[i].browser == "chrome") {
             this.crome++
           }
           else {
             this.otherbrowser++
           }
           // os
-          this.osy = this.device.os
-          if (this.osy == "windows") {
+
+          if (qruserdata[i].os == "windows") {
 
             this.windows++
           }
@@ -574,47 +589,35 @@ debugger;
             this.Otheros++
           }
 
-          this.ipaddress = this.device.ip
-          ipget.push(this.ipaddress);
-          //debugger;
-          // if (ipnumber.length > 0) {
-          //   for (var i = 0; i < ipnumber.length; i++) {
 
-          //     if (this.ipaddress == ipnumber[i]) {
-          //       // ipnumber.push(this.ipaddress);
-          //      // debugger;
-          //     }
-          //     else {
-          //       ipnumber.push(this.ipaddress);
-          //       this.ipcount++
-          //     }
-          //   }
-
-          // }
-          // else {
-          //   ipnumber.push(this.ipaddress);
-          //   this.ipcount++
-
-          // }
-          this.city = this.device.city
-          this.country = this.device.country
+          // ipget.push(qruserdata[i].ip);
+          // var ips = [];
+          // if (qruserdata[i].country == "") {
+            if (this.ips.indexOf(qruserdata[i].ip) == -1) {
+              this.ips.push(qruserdata[i].ip);
+             
+            }
+            if (this.country.indexOf(qruserdata[i].country) == -1) {
+              this.country.push(qruserdata[i].country);
+              this.countrycount++
+             
+            }
+           
+          var allcountri = [];
+          allcountri.push(qruserdata[i].country);
 
 
         }
         // this.pieChartLabels = ['Windows', 'Other'];
         //  this.pieChartData=[this.windows,this.Otheros,this.crome];
         // this.pieChartType= 'Os';
-
-       
-
       }
       debugger;
       this.pieChartLabels = ['Windows', 'Other'];
-      this.pieChartData=[this.windows,this.Otheros];
-      //this.pieChartType= 'Os';
-
+      this.pieChartData = [this.windows, this.Otheros];
+      this.uniquescane=this.ips.length;
     })
-
+    this.sortedcountry=this.ips
     this.count = ipnumber.length;
 
 

@@ -125,26 +125,27 @@ export class MyqrcodeComponent {
                 urldata = "";
 
                 var dynamicpath = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
-               // var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
+                // var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
             }
 
             else if (qrcode[i].qrtype == "url") {
-                 var dynamicpath = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+                var dynamicpath = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
                 //var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
                 urldata = qrcode[i].qrdata;
             }
 
             else if (qrcode[i].qrtype == "Coupon") {
-                 var dynamicpath = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
-               // var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
+                var dynamicpath = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
+                // var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
                 //  urldata = qrcode[i].qrdata;
+                
             }
 
             else {
 
                 dynamicpath = qrcode[i].qrdata;
                 urldata = "";
-                qrstatus=false;
+                qrstatus = false;
             }
 
             this.items.push({ 'id': qrcode[i]._id, 'name': fullname, 'urldata': urldata, 'generateddate': qrcode[i].generateddate, 'qrtype': qrcode[i].qrtype, 'path': dynamicpath, 'qrstatus': qrstatus })
