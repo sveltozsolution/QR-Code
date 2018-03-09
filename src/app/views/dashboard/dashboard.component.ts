@@ -7,6 +7,7 @@ import { WebService } from 'app/web.service';
   providers: [WebService]
 })
 export class DashboardComponent implements OnInit {
+  useridvisedata= [];
   sortedcountry: any[];
   countrycount:number = 0;
   uniquescane: any;
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
   otherbrowser: number = 0;
   crome: number = 0;
   totalcount: any;
-  country =[];
+  country= [];
   city: any;
 
   osy: any;
@@ -534,6 +535,7 @@ export class DashboardComponent implements OnInit {
 
       this.id = params['id']; // (+) converts string 'id' to a number
 
+
     });
     this.getcount(this.id);
     this.bindqrcode();
@@ -562,11 +564,13 @@ export class DashboardComponent implements OnInit {
     var ipget = [];
     var ipnumber = [];
     this.webservice.getuserdata().subscribe(qruserdata => {
-      debugger;
+     
       for (var i = 0; i < qruserdata.length; i++) {
 
         var iddata = qruserdata[i].userid
         if (this.id == iddata) {
+        
+          // this.useridvisedata=qruserdata;
           // this.devicedeatils = qruserdata[i].qruserinfo
           // var finalData = this.devicedeatils.replace(/\\/g, "");
           // this.device = JSON.parse(finalData)
@@ -588,18 +592,19 @@ export class DashboardComponent implements OnInit {
             this.Otheros++
           }
 
-
+          debugger; 
           // ipget.push(qruserdata[i].ip);
-          // var ips = [];
+          // var ips = [];ipbrowser
           // if (qruserdata[i].country == "") {
+            this.useridvisedata.push({'date':qruserdata[i].date,'Country':qruserdata[i].country,'ip':qruserdata[i].ip,'browser':qruserdata[i].browser,'os':qruserdata[i].os});
+            
             if (this.ips.indexOf(qruserdata[i].ip) == -1) {
               this.ips.push(qruserdata[i].ip);
              
             }
             if (this.country.indexOf(qruserdata[i].country) == -1) {
-              this.country.push(qruserdata[i].country);
+              this.country.push({'Country':qruserdata[i].country});
               this.countrycount++
-             
             }
            
           var allcountri = [];
@@ -612,12 +617,16 @@ export class DashboardComponent implements OnInit {
         // this.pieChartType= 'Os';
       }
       debugger;
+      console.log( this.useridvisedata)
       this.pieChartLabels = ['Windows', 'Other'];
       this.pieChartData = [this.windows, this.Otheros];
       this.uniquescane=this.ips.length;
     })
     this.sortedcountry=this.ips
     this.count = ipnumber.length;
+
+
+
 
   }
   getcount(id) {

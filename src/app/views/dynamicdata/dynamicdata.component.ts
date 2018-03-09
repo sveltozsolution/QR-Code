@@ -3,18 +3,19 @@ import { Router } from '@angular/router';
 import { WebService } from '../../web.service';
 import { ActivatedRoute } from '@angular/router';
 import { Ng2DeviceService } from 'ng2-device-detector';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dynamicdata',
   templateUrl: './dynamicdata.component.html',
   styleUrls: ['./dynamicdata.component.css'],
-  providers: [WebService, HttpClient]
+  providers: [WebService, HttpClient, DatePipe]
 
 })
 
 export class DynamicdataComponent implements OnInit {
+  date: Date;
   newdata: any;
   qrinfo: string;
   language: any;
@@ -49,8 +50,12 @@ export class DynamicdataComponent implements OnInit {
   jsondata: boolean = true;
   nonjsondata: boolean = true;
 
-  constructor(public router: Router, location: Location, private webservice: WebService, private route: ActivatedRoute, private deviceService: Ng2DeviceService) {
-
+  constructor(public router: Router, location: Location, private webservice: WebService, private route: ActivatedRoute, private deviceService: Ng2DeviceService, private datePipe: DatePipe) {
+    this.epicFunction(); 
+     
+    this.date = new Date(); 
+   var dates= this.datePipe.transform(new Date(), 'dd-MM-yy'); 
+   let newDate = new Date(dates);  
   }
 
 
@@ -62,6 +67,7 @@ export class DynamicdataComponent implements OnInit {
 
     });
 
+   
     console.log("ip");
     this.webservice.getIpAddress().subscribe(data => {
 
@@ -81,13 +87,22 @@ export class DynamicdataComponent implements OnInit {
       this.usseragent = this.deviceInfo.userAgent;
       this.language = this.deviceInfo.language;
 
-      this.usersdata(this.city, this.ip, this.country, this.os, this.browsername, this.qruserinfo, this.id);
+      this.usersdata(this.date, this.city, this.ip, this.country, this.os, this.browsername, this.qruserinfo, this.id);
 
     });
 
     // this.Getid();
   }
 
+  epicFunction() { 
+   
+    console.log('hello `Dynamic` component'); 
+    this.deviceInfo = this.deviceService.getDeviceInfo(); 
+    console.log(this.deviceInfo); 
+    // alert(this.deviceInfo); 
+  }  
+
+  
   Getid() {
     debugger;
     this.webservice.getqrcode(this.id).subscribe(qrcode => {
@@ -131,9 +146,9 @@ export class DynamicdataComponent implements OnInit {
     }
   }
 
-  usersdata(city, ip, country, os, browsername, qruserinfo, id) {
+  usersdata(date, city, ip, country, os, browsername, qruserinfo, id) {
 
-    this.webservice.postuserdata(city, ip, country, os, browsername, qruserinfo, id);
+    this.webservice.postuserdata(date, city, ip, country, os, browsername, qruserinfo, id);
 
   }
 } 

@@ -441,9 +441,9 @@
         <!-- <div class="col-sm-2"></div> -->
         <div class="col-sm-8">
           Select foreground color here :
-          <input type="color" value="#800080" [(ngModel)]="favcolor" (change)="test()">
+          <input type="color" value="#800080" [(ngModel)]="favcolor" (change)="colorchange()">
           <br> Select background color here :
-          <input type="color" value="#800080" [(ngModel)]="favcolorbk" (change)="test()">
+          <input type="color" value="#800080" [(ngModel)]="favcolorbk" (change)="colorchange()">
           <br><br>
           <button type="button" class="btn btn-primary" data-toggle="modal" (click)="styleqrModal.show()" (click)="styleqrModal()" style="margin-left:5px;">+Style your QR-Code</button>
           <br>

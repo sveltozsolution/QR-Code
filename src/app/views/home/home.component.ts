@@ -1,12 +1,13 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, Inject  } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebService } from 'app/web.service';
 import { Ng2DeviceService } from 'ng2-device-detector';
 import { QRCodeComponent } from 'angular2-qrcode';
+import * as jsPDF from 'jspdf'
 
 @Component({
     templateUrl: 'home.component.html',
-    providers: [WebService, Ng2DeviceService]
+    providers: [WebService, Ng2DeviceService, { provide: 'Window',  useValue: window }]
 })
 export class HomeComponent {
     demoarr: Array<any> = [];
@@ -173,7 +174,7 @@ export class HomeComponent {
     QRcd_id:string;
 
 
-    constructor(private router: Router, private webservice: WebService, private deviceService: Ng2DeviceService) { }
+    constructor(private router: Router, private webservice: WebService, private deviceService: Ng2DeviceService, @Inject('Window') private window: Window,) { }
 
     ngOnInit() {
 
@@ -767,18 +768,24 @@ export class HomeComponent {
         a.click();
     }
 
-    DownloadQRCodeAsPDF() {
-        //@ViewChild('qrcode') : QRCodeComponent;
-        debugger;
-        //  @ViewChild('qrcode') qrcode1: QRCodeComponent;
-        let el: ElementRef = this.qrcode_download['elementRef'];
-        let html: string = el.nativeElement.innerHTML;
-        let img64: string = html.substr(0, html.length - 2).split('base64,')[1];
-
-        let a = document.createElement("a");
-        a.href = 'data:application/octet-stream;base64,' + img64;
-        a.download = 'qrcode.pdf';
-        a.click();
+    DownloadQRCodeAsPDF() { 
+        debugger; 
+        let el: ElementRef = this.qrcode_download['elementRef']; 
+        let html: string = el.nativeElement.innerHTML; 
+ 
+        var doc = new jsPDF(); 
+        doc.text(20, 20, 'QR code in PDF'); 
+        //  doc.addPage(); 
+        let img64: string = html.substr(0, html.length - 2).split('base64,')[1]; 
+        var imgData = 'data:image/png;base64,'+img64; 
+        // var width = doc.internal.pageSize.width-60;     
+        // var height = doc.internal.pageSize.height-120; 
+        var width = 60;  
+        var height = 60; 
+         
+        doc.addImage(imgData, 'PNG', 20, 30, width, height); 
+ 
+        doc.save('qrcode_pdf.pdf'); 
     }
 
     //print QRCode image
@@ -807,7 +814,7 @@ export class HomeComponent {
         this.generateqrimage = true;
     }
 
-    test() {
+    colorchange() {
         this.qrfrontcolor = this.favcolor;
         this.qrbackcolor = this.favcolorbk;
     }

@@ -197,20 +197,52 @@
         #
       </div>
       <div class="col-4">
-        Country
-        {{sortedcountry}}
+        Country {{sortedcountry}}
       </div>
       <div class="col-4">
-        Scans
-        {{countrycount}}
+        Scans {{countrycount}}
       </div>
     </div> -->
     <h1>piechart</h1>
     <div style="display: block">
-      <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
+      <canvas baseChart [data]="pieChartData" [colors]="color" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
         (chartClick)="chartClicked($event)"></canvas>
 
     </div>
+    <br>
+    <br>
+    <h2>Row data</h2>
+    <div style=" background-color: lightblue ;width: 765px;height: 200px;overflow: auto;">
+    
+      <div class="row">
+      <div class="col-3">
+
+        <b>Date</b>
+      </div>
+      <div class="col-3">
+        <b>Country</b>
+      </div>
+      <div class="col-3">
+        <b>Browser</b>
+      </div>
+      <div class="col-3">
+        <b>os</b>
+      </div>
+    </div>
+
+    <div class="row" *ngFor="let item of useridvisedata;">
+      <div class="col-3">
+          {{item.date}}
+
+      </div>
+      <div class="col-3">{{item.Country}}</div>
+      <div class="col-3">{{item.browser}}</div>
+      <div class="col-3">{{item.os}}</div>
+
+
+
+    </div>
+  </div>
     <!-- <div class="card-footer">
       <ul>
         <li>

@@ -13,7 +13,7 @@ export class WebService {
     loginvalid = "loginvalid";
     userid = "userid";
 
-    //base_url = 'http://localhost:5000/api/';
+   // base_url = 'http://localhost:5000/api/';
      base_url = 'https://qurcodeapi.herokuapp.com/api/';
 
 
@@ -188,10 +188,11 @@ export class WebService {
     //       .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any 
     //   } 
 
-    postuserdata(city, ip, country, os, browsername, userdata, id) { 
+    postuserdata(date, city, ip, country, os, browsername, userdata, id) { 
         debugger 
         // city="pune" 
         let data = new URLSearchParams(); 
+        data.append('date', date);         
         data.append('cities', city); 
         data.append('ip', ip); 
         data.append('country', country); 
