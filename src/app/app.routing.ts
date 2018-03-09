@@ -119,6 +119,12 @@ export const routes: Routes = [
         loadChildren: './views/setting/setting.module#SettingModule'
       },
 
+      {
+        path: 'demo/:id',
+        // path: 'demo',
+        loadChildren: './views/demo/demo.module#DemoModule'
+      },
+
       // {
       //   path: 'mycode',
       //   loadChildren: './views/mycode/mycode.module#MycodeModule'

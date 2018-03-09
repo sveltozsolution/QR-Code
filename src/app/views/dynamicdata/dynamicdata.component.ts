@@ -50,22 +50,15 @@ export class DynamicdataComponent implements OnInit {
   nonjsondata: boolean = true;
 
   constructor(public router: Router, location: Location, private webservice: WebService, private route: ActivatedRoute, private deviceService: Ng2DeviceService) {
-    // this.epicFunction();
 
   }
 
-  // epicFunction() {
-  //   console.log('hello `Dynamic` component');
-  //   this.deviceInfo = this.deviceService.getDeviceInfo();
-  //   console.log(this.deviceInfo);
-  //   // alert(this.deviceInfo);
-  // }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
 
       this.id = params['id']; // ✓ converts string 'id' to a number
-       this.Getid();
+      this.Getid();
 
     });
 
@@ -96,9 +89,9 @@ export class DynamicdataComponent implements OnInit {
   }
 
   Getid() {
-debugger;
+    debugger;
     this.webservice.getqrcode(this.id).subscribe(qrcode => {
-
+// alert(qrcode);
       if (qrcode.qrtype == "url") {
         debugger;
         this.qrdata2 = qrcode.qrdata;
@@ -132,33 +125,15 @@ debugger;
 
 
   keys() {
-    return Object.keys(this.qrdata2);
+    if(this.qrdata2!=""  && this.qrdata2!=null)
+    {
+      return Object.keys(this.qrdata2);
+    }
   }
 
   usersdata(city, ip, country, os, browsername, qruserinfo, id) {
 
     this.webservice.postuserdata(city, ip, country, os, browsername, qruserinfo, id);
 
-  }
-
-  createJson2() {
-
-    var Jsonuserqrinfoobj = '{'
-      //+ '"device" : "' + this.device + '",'
-      + '"language" : "' + this.language + '",'
-      + '"browsername" : "' + this.browsername + '",'
-      // + '"browserversion" : "' + this.browserversion + '",'
-      + '"os" : "' + this.os + '",'
-      + '"osversion" : "' + this.osversion + '",'
-      + '"usseragent" : "' + this.usseragent + '",'
-      // + '" getDeviceInfo" : "' + this.getDeviceInfo + '" '
-      + '"ip" : "' + this.ip + '",'
-      + '"country" : "' + this.country + '",'
-      + '"city" : "' + this.city + '",'
-      + '"state" : "' + this.state + '",'
-      + '"timezone" : "' + this.timezone + '"'
-
-      + '}'
-    this.qruserinfo = Jsonuserqrinfoobj;
   }
 } 

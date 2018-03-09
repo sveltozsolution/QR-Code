@@ -117,12 +117,12 @@ export class MyqrcodeComponent {
             var qrstatus = true;
             if (qrcode[i].qrtype == "contact") {
 
-                var jsondata = qrcode[i].qrdata;
-                const values = Object.keys(jsondata).map(key => jsondata[key]).map(x => x.substr(0, x.length - 4));
-                const commaJoinedValues = values.join(',');
-                console.log(values);
-                fullname = values[0] + ' ' + values[1];
-                urldata = "";
+                // var jsondata = qrcode[i].qrdata;
+                // const values = Object.keys(jsondata).map(key => jsondata[key]).map(x => x.substr(0, x.length - 4));
+                // const commaJoinedValues = values.join(',');
+                // console.log(values);
+                // fullname = values[0] + ' ' + values[1];
+                // urldata = "";
 
                 var dynamicpath = "https://sveltozsolution.github.io/QR-Code/dynamicdata/" + qrcode[i]._id;
                 // var dynamicpath = "http://localhost:4200/dynamicdata/" + qrcode[i]._id;
@@ -148,7 +148,7 @@ export class MyqrcodeComponent {
                 qrstatus = false;
             }
 
-            this.items.push({ 'id': qrcode[i]._id, 'name': fullname, 'urldata': urldata, 'generateddate': qrcode[i].generateddate, 'qrtype': qrcode[i].qrtype, 'path': dynamicpath, 'qrstatus': qrstatus })
+            this.items.push({ 'id': qrcode[i]._id, 'urldata': urldata, 'generateddate': qrcode[i].generateddate, 'qrtype': qrcode[i].qrtype, 'path': dynamicpath, 'qrstatus': qrstatus })
         }
     }
 

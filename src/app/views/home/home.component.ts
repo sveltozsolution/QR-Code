@@ -265,7 +265,7 @@ export class HomeComponent {
 
     qrstatusclick() {
 
-        if (this.urlsection || this.contactsection) {
+        if (this.urlsection || this.contactsection || this.couponsection)  {
 
             if (this.qrstatus == "Static") {
                 this.qrstatus = "Dynamic";
@@ -315,7 +315,7 @@ export class HomeComponent {
             this.textsection = false;
             this.vcardsection = false;
             this.couponsection = false;
-            this.othersection = false;
+            this.othersection = true;
 
 
             // this.mydatasection = false;
@@ -331,7 +331,7 @@ export class HomeComponent {
             this.textsection = false;
             this.vcardsection = false;
             this.couponsection = false;
-            this.othersection = false;
+            this.othersection = true;
 
             // this.mydatasection = false;
             //     this.othersection = true;
@@ -348,10 +348,10 @@ export class HomeComponent {
             this.textsection = false;
             this.vcardsection = false;
             this.couponsection = false;
-            this.othersection = false;
+            this.othersection = true;
 
             // this.mydatasection = false;
-            //     this.othersection = true;
+            // this.othersection = true;
 
             this.qrstatus = "Static";
         }
@@ -364,10 +364,8 @@ export class HomeComponent {
             this.smssection = false;
             this.vcardsection = false;
             this.couponsection = false;
-            this.othersection = false;
-
+            this.othersection = true;
             // this.mydatasection = false;
-
             this.qrstatus = "Static";
         }
 
@@ -382,8 +380,7 @@ export class HomeComponent {
             this.textsection = false;
             this.mydatasection = false;
             // this.othersection = true;
-            this.othersection = false;
-
+            this.othersection = true;
 
         }
 
@@ -407,8 +404,7 @@ export class HomeComponent {
             this.smssection = false;
             this.textsection = false;
             this.couponsection = false;
-            this.othersection = false;
-
+            this.othersection = true;
             // this.mydatasection = false;
             this.qrstatus = "Static";
         }

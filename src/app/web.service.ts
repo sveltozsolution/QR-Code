@@ -13,8 +13,7 @@ export class WebService {
     loginvalid = "loginvalid";
     userid = "userid";
 
-
-   // base_url = 'http://localhost:5000/api/';
+    //base_url = 'http://localhost:5000/api/';
      base_url = 'https://qurcodeapi.herokuapp.com/api/';
 
 
@@ -141,6 +140,25 @@ export class WebService {
         // console.log("in get profile");
         // return this.http.get(url, options).map(res => res.json());
     }
+
+    // getqrcode(qrcodeid: string) {
+    //     debugger;
+    //    var url = this.base_url + 'qrcode/' + qrcodeid
+    //     var headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    //     var options = new RequestOptions({ headers: headers });
+    //     return this.http.get(url, options).map(res => res.json());
+    
+
+        //   return this.http.get(url, options).subscribe(res => {
+        //         var data = res.json();
+        //         console.log(data);
+        //     })
+
+        // var headers = new Headers({ 'Authorization': localStorage.getItem('token') });
+        // var options = new RequestOptions({ headers: headers });
+        // console.log("in get profile");
+        // return this.http.get(url, options).map(res => res.json());
+    // }
 
     getqrcode(qrcodeid: string) {
         debugger;

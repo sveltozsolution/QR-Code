@@ -534,7 +534,6 @@ export class DashboardComponent implements OnInit {
 
       this.id = params['id']; // (+) converts string 'id' to a number
 
-
     });
     this.getcount(this.id);
     this.bindqrcode();
@@ -619,9 +618,6 @@ export class DashboardComponent implements OnInit {
     })
     this.sortedcountry=this.ips
     this.count = ipnumber.length;
-
-
-
 
   }
   getcount(id) {
